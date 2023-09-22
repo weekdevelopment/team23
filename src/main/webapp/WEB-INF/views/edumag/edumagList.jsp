@@ -47,6 +47,7 @@
     }
 
     .column1 {
+        margin-top: -125px;
         text-align: center;
         display: block;
         flex-basis: 0;

@@ -18,4 +18,5 @@ public interface NoticeService {
     public void commentDelete(int cno) throws Exception;
     public List<Notice> selectComment() throws Exception;
     public List<Notice> commentCount() throws Exception;
+    public List<Notice> newNotice() throws Exception;
 }
