@@ -43,6 +43,14 @@
 			float: right;
 			padding-top: 3px;
 		}
+		.cmtNum {
+			margin-left: 3px;
+			font-size: 17px;
+			color: #CE7777;
+		}
+		.media-right {
+			margin: -34px 3px 0 0;
+		}
 	</style>
 </head>
 <body>
@@ -134,7 +142,7 @@
 													&#${9311+status.count} <a href="${path1}/free/detail.do?bno=${free.bno }">${free.title }</a>
 												</td>
 												<td class="level-right">
-													&#x1F44D; ${free.rec }
+													&#x1F5E8; ${free.count }
 												</td>
 											</tr>
 											</tbody>
@@ -151,13 +159,14 @@
 			<div class="box content">
 				<c:forEach items="${freeList }" var="free" varStatus="status">
 					<article class="post">
-						<h4><a href="${path1}/free/detail.do?bno=${free.bno }">${free.title }</a></h4>
-						<%--<c:forEach items="${commentCount }" var="count" varStatus="status">
-							<c:if test="${count.bno eq free.bno }">
-								&lt;%&ndash;<h4>${count.count }</h4>&ndash;%&gt;
-								<span>${count.count }</span>
+						<h4>
+							<a href="${path1}/free/detail.do?bno=${free.bno }">${free.title }</a>
+
+							<c:if test="${free.count != 0}">
+								<span class="cmtNum">(${free.count})</span>
 							</c:if>
-						</c:forEach>--%>
+						</h4>
+
 						<div class="media">
 							<div class="media-content">
 								<div class="content">
@@ -170,19 +179,13 @@
 										<span>${free.visited }</span>
 										| 추천수
 										<span>${free.rec }</span>
-
-										<c:forEach items="${commentCount }" var="count" varStatus="status">
-											<c:if test="${count.bno eq free.bno }">
-												<i class="fa fa-solid fa-comment-dots" style="color: #2B3A55; margin: 11px 2px 11px 11px;"></i>
-												<span>${count.count }</span>
-											</c:if>
-										</c:forEach>
-
 									</p>
 								</div>
 							</div>
 							<div class="media-right">
-								<span class="has-text-grey-light"><i class="fa fa-comments"></i> 1</span>
+								<%--<span class="has-text-grey-light"><i class="fa fa-comments"></i> 1</span>--%>
+									<p class="has-text-grey">${free.id }</p>
+									<p class="has-text-grey">${free.regdate }</p>
 							</div>
 						</div>
 					</article>

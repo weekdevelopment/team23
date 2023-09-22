@@ -81,7 +81,7 @@
                 </p>
 
                 <div class="columns mt-5">
-                    <div class="column is-3"></div>
+                    <%--<div class="column is-3"></div>
                     <div class="column is-2">
                         <a class="button is-fullwidth is-info" href="${path1 }/free/list.do">글 목록</a>
                     </div>
@@ -91,7 +91,30 @@
                     <div class="column is-2">
                         <a class="button is-fullwidth is-danger" href="${path1 }/free/delete.do?bno=${freeDTO.bno}">글 삭제</a>
                     </div>
-                    <div class="column is-3"></div>
+                    <div class="column is-3"></div>--%>
+                    <c:choose>
+                        <c:when test="${not empty sid && (sid eq 'admin' || sid eq freeDTO.id)}">
+                            <div class="column is-3"></div>
+                            <div class="column is-2">
+                                <a class="button is-fullwidth is-info" href="${path1 }/free/list.do">글 목록</a>
+                            </div>
+                            <div class="column is-2">
+                                <a class="button is-fullwidth is-primary" href="${path1 }/free/edit.do?bno=${freeDTO.bno}">글 수정</a>
+                            </div>
+                            <div class="column is-2">
+                                <a class="button is-fullwidth is-danger" href="${path1 }/free/delete.do?nno=${freeDTO.bno}">글 삭제</a>
+                            </div>
+                            <div class="column is-3"></div>
+                        </c:when>
+                        <c:otherwise>
+                            <div class="column is-5"></div>
+                            <div class="column is-2">
+                                <a class="button is-fullwidth is-info" href="${path1 }/free/list.do">글 목록</a>
+                            </div>
+                            <div class="column is-5"></div>
+                        </c:otherwise>
+                    </c:choose>
+
                 </div>
             </div>
 

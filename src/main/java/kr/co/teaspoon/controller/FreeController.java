@@ -17,7 +17,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.*;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Controller
@@ -53,17 +55,26 @@ public class FreeController {
         model.addAttribute("page", page);
         model.addAttribute("curPage", curPage);
 
+        List<Free> commentCount = freeService.commentCount();
+        Map<Integer, Integer> commentMap = new HashMap<>();
+        for (Free fr : commentCount) {
+            commentMap.put(fr.getBno(), fr.getCount());
+        }
+
         List<Free> freeList = freeService.freeList(page);
         model.addAttribute("freeList", freeList);
         List<Free> freeBestRecList = freeService.freeBestRecList();
         model.addAttribute("freeBestRecList", freeBestRecList);
         List<Free> freeBestCmtList = freeService.freeBestCmtList();
         model.addAttribute("freeBestCmtList", freeBestCmtList);
-
-        List<Free> commentCount = freeService.commentCount();
-        model.addAttribute("commentCount", commentCount);
-        System.out.println("commentCount : " + commentCount);
-
+        //System.out.println("최다 댓글 리스트 : " + freeBestCmtList);
+        for (Free fr :freeBestCmtList) {
+            fr.setCount(commentMap.get(fr.getBno()));
+        }
+        for (Free free : freeList) {
+            int bno = free.getBno();
+            free.setCount(commentMap.get(bno));
+        }
         return "/free/freeList";
     }
 
