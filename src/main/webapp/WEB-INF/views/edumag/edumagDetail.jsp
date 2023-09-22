@@ -17,7 +17,7 @@
     <style>
         .content h2 {
             height: 80px;
-            margin-top: 45px;
+            margin-top: 155px;
             text-align: center;
             font-size: 30px;
             margin-bottom: 0.5714em;
@@ -27,6 +27,7 @@
         }
 
         .column1 {
+            margin-top: -125px;
             text-align: center;
             display: block;
             flex-basis: 0;
@@ -34,7 +35,6 @@
             flex-shrink: 1;
             padding: 0.75rem;
         }
-
         .p {
             line-height: 35px;
         }
