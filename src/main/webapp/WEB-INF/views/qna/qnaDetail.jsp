@@ -18,7 +18,7 @@
 			min-height: 100px;
 			text-align: center;
 			width: 100%;
-			margin: 72px 0px 0px 110px;
+			margin: 72px 0px 0px 5px;
 			font-size: 20px;
 			font-weight: 700;
 		}
@@ -76,29 +76,79 @@
 						</p>
 					</div>
 				</div>
+<%--				<div class="columns">--%>
+<%--					<div class="column is-3"></div>--%>
+<%--					<div class="column is-2">--%>
+<%--						<a class="button is-fullwidth is-info" href="${path1 }/qna/list.do">글 목록</a>--%>
+<%--					</div>--%>
+<%--					<c:if test='${sid eq "admin" || sid eq dto.author }'>--%>
+<%--					<div class="column is-2">--%>
+<%--						<a class="button is-fullwidth is-primary" href="${path1 }/qna/edit.do?qno=${dto.qno}&lev=${dto.lev }">글 수정</a>--%>
+<%--					</div>--%>
+<%--					<div class="column is-2">--%>
+<%--						<a class="button is-fullwidth is-danger" href="${path1 }/qna/delete.do?qno=${dto.qno}&lev=${dto.lev }">글 삭제</a>--%>
+<%--					</div>--%>
+<%--					<c:if test='${dto.lev == 0 && !empty sid}'>--%>
+
+<%--					</c:if>--%>
+<%--					</c:if>--%>
+<%--					<div class="column is-3"></div>--%>
+<%--				</div>--%>
 				<div class="columns">
-					<div class="column is-3"></div>
-					<div class="column is-2">
-						<a class="button is-fullwidth is-info" href="${path1 }/qna/list.do">글 목록</a>
-					</div>
-					<c:if test='${sid eq "admin" || sid eq dto.author }'>
-					<div class="column is-2">
-						<a class="button is-fullwidth is-primary" href="${path1 }/qna/edit.do?qno=${dto.qno}&lev=${dto.lev }">글 수정</a>
-					</div>
-					<div class="column is-2">
-						<a class="button is-fullwidth is-danger" href="${path1 }/qna/delete.do?qno=${dto.qno}&lev=${dto.lev }">글 삭제</a>
-					</div>
-					<c:if test='${dto.lev == 0 && !empty sid}'>
-						<div class="column is-2">
-							<a class="button is-fullwidth submission" href="${path1 }/qna/insert.do?lev=1&par=${dto.qno}" style="background-color: #2B3A55; color: #ffffff">답변하기</a>
-						</div>
-					</c:if>
-					</c:if>
-					<div class="column is-3"></div>
+					<c:choose>
+						<c:when test="${(sid eq 'admin' || sid eq dto.author) && dto.lev == 0 }">
+							<div class="column is-2"></div>
+							<div class="column is-2">
+								<a class="button is-fullwidth is-info" href="${path1 }/qna/list.do" style="background-color: #2B3A55;">글 목록</a>
+							</div>
+							<div class="column is-2">
+								<a class="button is-fullwidth is-info" href="${path1 }/qna/edit.do?qno=${dto.qno}&lev=${dto.lev }" style="background-color: #2B3A55;">글 수정</a>
+							</div>
+							<div class="column is-2">
+								<a class="button is-fullwidth is-danger" href="${path1 }/qna/delete.do?qno=${dto.qno}&lev=${dto.lev }">글 삭제</a>
+							</div>
+							<div class="column is-2">
+								<a class="button is-fullwidth submission" href="${path1 }/qna/insert.do?lev=1&par=${dto.qno}" style="background-color: #2B3A55; color: #ffffff">답변하기</a>
+							</div>
+							<div class="column is-2"></div>
+						</c:when>
+						<c:when test="${(sid eq 'admin' || sid eq dto.author) && dto.lev == 1 }">
+							<div class="column is-3"></div>
+							<div class="column is-2">
+								<a class="button is-fullwidth is-info" href="${path1 }/qna/list.do" style="background-color: #2B3A55;">글 목록</a>
+							</div>
+							<div class="column is-2">
+								<a class="button is-fullwidth is-info" href="${path1 }/qna/edit.do?qno=${dto.qno}&lev=${dto.lev }" style="background-color: #2B3A55;">글 수정</a>
+							</div>
+							<div class="column is-2">
+								<a class="button is-fullwidth is-danger" href="${path1 }/qna/delete.do?qno=${dto.qno}&lev=${dto.lev }">글 삭제</a>
+							</div>
+							<div class="column is-3"></div>
+						</c:when>
+						<c:when test="${!empty sid }">
+							<div class="column is-4"></div>
+							<div class="column is-2">
+								<a class="button is-fullwidth is-info" href="${path1 }/qna/list.do" style="background-color: #2B3A55;">글 목록</a>
+							</div>
+							<div class="column is-2">
+								<a class="button is-fullwidth submission" href="${path1 }/qna/insert.do?lev=1&par=${dto.qno}" style="background-color: #2B3A55; color: #ffffff">답변하기</a>
+							</div>
+							<div class="column is-4"></div>
+						</c:when>
+						<c:otherwise>
+							<div class="column is-5"></div>
+							<div class="column is-2">
+								<a class="button is-fullwidth is-info" href="${path1 }/qna/list.do" style="background-color: #2B3A55;">글 목록</a>
+							</div>
+							<div class="column is-5"></div>
+						</c:otherwise>
+					</c:choose>
 				</div>
 			</div>
+
 			<div class="cmtwrap">
 				<c:if test="${!empty sid}">
+					<div class="column is-12">
 					<form action="${path1 }/qna/detail.do?qno=${dto.qno }&lev=${dto.lev }" method="post" class="columns mt-5">
 						<div class="column is-10">
 							<textarea class="textarea" name="content" id="content" placeholder="댓글을 입력해주세요." rows="2" cols="30" maxlength="800" required></textarea>
@@ -109,13 +159,15 @@
 							<button type="submit" class="button is-fullwidth submission">등록</button>
 						</div>
 					</form>
+					</div>
 				</c:if>
 				<c:if test="${empty sid}">
-					<div class="column is-10">
-						<div class="commentnull">댓글을 작성하려면 로그인을 하세요~!</div>
+					<div class="column is-12">
+						<div class="commentnull">「 댓글을 작성하시려면 로그인을 해주세요 ! 」</div>
 					</div>
 				</c:if>
 			</div>
+			<div class="column is-12">
 			<c:forEach items="${commentList }" var="comment" varStatus="status">
 				<article class="media">
 					<figure class="media-left">
@@ -141,6 +193,7 @@
 					</c:if>
 				</article>
 			</c:forEach>
+			</div>
 		</div>
 	</div>
 </div>
