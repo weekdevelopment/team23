@@ -68,4 +68,9 @@ public class NoticeDAOImpl implements NoticeDAO{
     public List<Notice> commentCount() throws Exception {
         return sqlSession.selectList("notice.commentCount");
     }
+
+    @Override
+    public List<Notice> newNotice() throws Exception {
+        return sqlSession.selectList("notice.newNotice");
+    }
 }

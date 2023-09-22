@@ -49,6 +49,9 @@ public class NoticeController {
 
         List<Notice> commentCount = noticeService.commentCount();
         model.addAttribute("commentCount",commentCount);
+
+        List<Notice> newNotice = noticeService.newNotice();
+        model.addAttribute("newNotice", newNotice);
         return "/notice/noticeList";
     }
 
