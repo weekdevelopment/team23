@@ -39,6 +39,10 @@
 		.select:not(.is-multiple):not(.is-loading)::after {
 			border-color: #2B3A55;
 		}
+		form.field.has-addons.has-addons-right {
+			float: right;
+			padding-top: 3px;
+		}
 	</style>
 </head>
 <body>
@@ -65,28 +69,11 @@
 			</aside>
 		</div>
 		<div class="column is-10">
-			<form action="${path1 }/notice/list.do" method="get" class="field has-addons has-addons-right">
-				<p class="control">
-                <span class="select">
-                    <select id="type" name="type">
-                        <option value="title">제목</option>
-						<option value="content">내용</option>
-                    </select>
-                </span>
-				</p>
-				<p class="control">
-					<input class="input" type="text" id="keyword" name="keyword" placeholder="검색어를 입력하세요" value="${keyword }">
-				</p>
-				<p class="control">
-					<input type="submit" class="button is-mainColor" value="검색" />
-				</p>
-			</form>
 			<div class="conwrap">
 				<div class="box">
 					<%--<h6>자유게시판</h6>--%>
 					<span class="title">공지사항</span>
 				</div>
-
 				<div class="columns">
 					<div class="column is-6">
 						<div class="card events-card">
@@ -111,7 +98,6 @@
 							</div>
 						</div>
 					</div>
-
 					<div class="column is-6">
 						<div class="card events-card">
 							<header class="card-header">
@@ -133,7 +119,6 @@
 					</div>
 				</div>
 			</div>
-
 			<div class="box content">
 				<c:forEach items="${noticeList }" var="notice" varStatus="status">
 					<article class="post">
@@ -188,12 +173,27 @@
 					</c:forEach>
 				</ul>
 			</nav>
-			<c:if test='${sid eq "admin"}'>
 			<div class="button-group">
-				<%--<a class="button is-info is-normal" href="${path1 }/free/insert.do">글쓰기</a>--%>
+				<c:if test='${sid eq "admin"}'>
 				<a class="button post-btn" href="${path1 }/notice/insert.do">글쓰기</a>
+				</c:if>
+				<form action="${path1 }/notice/list.do" method="get" class="field has-addons has-addons-right">
+						<p class="control">
+						<span class="select">
+							<select id="type" name="type">
+								<option value="title">제목</option>
+								<option value="content">내용</option>
+							</select>
+						</span>
+						</p>
+						<p class="control">
+							<input class="input" type="text" id="keyword" name="keyword" placeholder="검색어를 입력하세요" value="${keyword }">
+						</p>
+						<p class="control">
+							<input type="submit" class="button is-mainColor" value="검색" />
+						</p>
+				</form>
 			</div>
-			 </c:if>
 		</div>
 	</div>
 </div>

@@ -1,15 +1,13 @@
 CREATE DATABASE teaspoon;
 USE teaspoon;
 
-INSERT INTO MEMBER VALUES ('admin', '1234', '관리자','admin@buddy.com', '01012341234', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT); 
+INSERT INTO MEMBER VALUES ('so', '1234', '소정환','admin@buddy.com', '01012341234', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT); 
 INSERT INTO MEMBER VALUES ('kang', '1234', '강영현','kang@buddy.com', '01011112222', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT); 
 INSERT INTO MEMBER VALUES ('park', '1234', '박정우','park@buddy.com', '01033334444', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT); 
 
-UPDATE member SET pw='$2a$10$B1eSQwtXQMZIht3sHOWS7.a/wOmnXT9T3EqYwl7qBbOfAuj8YuKvW' WHERE id='admin';
+UPDATE member SET pw='$2a$10$B1eSQwtXQMZIht3sHOWS7.a/wOmnXT9T3EqYwl7qBbOfAuj8YuKvW' WHERE id='so';
 UPDATE member SET pw='$2a$10$B1eSQwtXQMZIht3sHOWS7.a/wOmnXT9T3EqYwl7qBbOfAuj8YuKvW' WHERE id='kang';
 UPDATE member SET pw='$2a$10$B1eSQwtXQMZIht3sHOWS7.a/wOmnXT9T3EqYwl7qBbOfAuj8YuKvW' WHERE id='park';
-
-INSERT INTO MEMBER VALUES ('so', '1234', '소정환','so@buddy.com', '01033334444', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT); 
 
 COMMIT;
 
@@ -163,10 +161,10 @@ INSERT INTO notice_comment(nno, author, content) VALUES(1, 'park', '댓글 기�
 INSERT INTO notice_comment(nno, author, content) VALUES(2, 'park', '댓글 기능 더미데이터2');
 INSERT INTO notice_comment(nno, author, content) VALUES(3, 'kang', '댓글 기능 더미데이터3');
 INSERT INTO notice_comment(nno, author, content) VALUES(4, 'so', '댓글 기능 더미데이터3');
-INSERT INTO notice_comment(nno, author, content) VALUES(5, 'doyouni', '댓글 기능 더미데이터3');
+INSERT INTO notice_comment(nno, author, content) VALUES(5, 'kang', '댓글 기능 더미데이터3');
 INSERT INTO notice_comment(nno, author, content) VALUES(6, 'kang', '댓글 기능 더미데이터3');
-INSERT INTO notice_comment(nno, author, content) VALUES(7, 'doyouni', '댓글 기능 더미데이터3');
-INSERT INTO notice_comment(nno, author, content) VALUES(8, 'admin', '댓글 기능 더미데이터3');
+INSERT INTO notice_comment(nno, author, content) VALUES(7, 'park', '댓글 기능 더미데이터3');
+INSERT INTO notice_comment(nno, author, content) VALUES(8, 'so', '댓글 기능 더미데이터3');
 INSERT INTO notice_comment(nno, author, content) VALUES(1, 'kang', '댓글 기능 더미데이터3');
 INSERT INTO notice_comment(nno, author, content) VALUES(1, 'so', '댓글 기능 더미데이터3');
 ​
@@ -186,18 +184,23 @@ create table qna_comment(
 );
 ​
 -- 더미 데이터 추가
-INSERT INTO qna_comment(qno, author, content) VALUES(35, 'park', '댓글 기능 더미데이터1');
-INSERT INTO qna_comment(qno, author, content) VALUES(35, 'park', '댓글 기능 더미데이터2');
-INSERT INTO qna_comment(qno, author, content) VALUES(36, 'kang', '댓글 기능 더미데이터3');
-INSERT INTO qna_comment(qno, author, content) VALUES(37, 'so', '댓글 기능 더미데이터3');
-INSERT INTO qna_comment(qno, author, content) VALUES(37, 'doyouni', '댓글 기능 더미데이터3');
-INSERT INTO qna_comment(qno, author, content) VALUES(38, 'kang', '댓글 기능 더미데이터3');
-INSERT INTO qna_comment(qno, author, content) VALUES(38, 'doyouni', '댓글 기능 더미데이터3');
-INSERT INTO qna_comment(qno, author, content) VALUES(2, 'admin', '댓글 기능 더미데이터3');
+INSERT INTO qna_comment(qno, author, content) VALUES(1, 'park', '댓글 기능 더미데이터1');
+INSERT INTO qna_comment(qno, author, content) VALUES(3, 'park', '댓글 기능 더미데이터2');
+INSERT INTO qna_comment(qno, author, content) VALUES(3, 'kang', '댓글 기능 더미데이터3');
+INSERT INTO qna_comment(qno, author, content) VALUES(4, 'so', '댓글 기능 더미데이터3');
+INSERT INTO qna_comment(qno, author, content) VALUES(7, 'kang', '댓글 기능 더미데이터3');
+INSERT INTO qna_comment(qno, author, content) VALUES(8, 'kang', '댓글 기능 더미데이터3');
+INSERT INTO qna_comment(qno, author, content) VALUES(8, 'park', '댓글 기능 더미데이터3');
+INSERT INTO qna_comment(qno, author, content) VALUES(2, 'so', '댓글 기능 더미데이터3');
 INSERT INTO qna_comment(qno, author, content) VALUES(1, 'kang', '댓글 기능 더미데이터3');
 INSERT INTO qna_comment(qno, author, content) VALUES(1, 'so', '댓글 기능 더미데이터3');
 ​
 -- qna comment 리스트
 create view qnacommentlist AS (SELECT a.cno AS cno, a.qno as qno, a.content AS content, a.author AS author, a.resdate AS resdate,
        b.name AS name FROM qna_comment a, member b WHERE a.author=b.id ORDER BY a.cno ASC);
-       
+
+
+SELECT n.nno, COUNT(nc.cno) AS count
+        FROM notice n
+            LEFT JOIN notice_comment nc ON n.nno = nc.nno
+        GROUP BY n.nno;

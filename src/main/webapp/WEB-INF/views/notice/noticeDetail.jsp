@@ -18,7 +18,7 @@
 			min-height: 100px;
 			text-align: center;
 			width: 100%;
-			margin: 72px 0px 0px 110px;
+			margin: 72px 0px 0px 5px;
 			font-size: 20px;
 			font-weight: 700;
 		}
@@ -81,10 +81,10 @@
 						<c:when test="${sid eq 'admin'}">
 							<div class="column is-3"></div>
 							<div class="column is-2">
-								<a class="button is-fullwidth is-info" href="${path1 }/notice/list.do">글 목록</a>
+								<a class="button is-fullwidth is-info" href="${path1 }/notice/list.do" style="background-color: #2B3A55;">글 목록</a>
 							</div>
 							<div class="column is-2">
-								<a class="button is-fullwidth is-primary" href="${path1 }/notice/edit.do?nno=${dto.nno}">글 수정</a>
+								<a class="button is-fullwidth is-info" href="${path1 }/notice/edit.do?nno=${dto.nno}" style="background-color: #2B3A55;">글 수정</a>
 							</div>
 							<div class="column is-2">
 								<a class="button is-fullwidth is-danger" href="${path1 }/notice/delete.do?nno=${dto.nno}">글 삭제</a>
@@ -94,13 +94,14 @@
 						<c:otherwise>
 							<div class="column is-5"></div>
 							<div class="column is-2">
-								<a class="button is-fullwidth is-info" href="${path1 }/notice/list.do">글 목록</a>
+								<a class="button is-fullwidth is-info" href="${path1 }/notice/list.do" style="background-color: #2B3A55;">글 목록</a>
 							</div>
 							<div class="column is-5"></div>
 						</c:otherwise>
 					</c:choose>
 				</div>
 			</div>
+
 			<div class="cmtwrap">
 				<c:if test="${!empty sid}">
 				<form action="${path1 }/notice/detail.do?nno=${dto.nno }" method="post" class="columns mt-5">
@@ -115,11 +116,12 @@
 				</form>
 				</c:if>
 				<c:if test="${empty sid}">
-				<div class="column is-10">
-					<div class="commentnull">댓글을 작성하려면 로그인을 하세요~!</div>
+				<div class="column is-12">
+					<div class="commentnull">「 댓글을 작성하시려면 로그인을 해주세요 ! 」</div>
 				</div>
 				</c:if>
 			</div>
+			<div class="column is-12">
 			<c:forEach items="${commentList }" var="comment" varStatus="status">
 			<article class="media">
 				<figure class="media-left">
@@ -145,6 +147,7 @@
 				</c:if>
 			</article>
 			</c:forEach>
+			</div>
 		</div>
 	</div>
 </div>
