@@ -5,6 +5,7 @@ import kr.co.teaspoon.dto.Member;
 import kr.co.teaspoon.dto.Reco;
 import kr.co.teaspoon.service.FreeService;
 import kr.co.teaspoon.service.MemberService;
+import kr.co.teaspoon.util.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,8 +36,26 @@ public class FreeController {
     HttpSession session;
 
     @GetMapping("list.do")        //free/list.do
-    public String getfreeList(Model model) throws Exception {
-        List<Free> freeList = freeService.freeList();
+    public String getNoticeList(HttpServletRequest request, Model model) throws Exception {
+        String type = request.getParameter("type");
+        String keyword = request.getParameter("keyword");
+        int curPage = request.getParameter("page") != null ? Integer.parseInt(request.getParameter("page")) : 1;
+
+        Page page = new Page();
+        page.setSearchType(type);
+        page.setSearchKeyword(keyword);
+        int total = freeService.totalCount(page);
+
+        page.makeBlock(curPage, total);
+        page.makeLastPageNum(total);
+        page.makePostStart(curPage, total);
+
+        model.addAttribute("type", type);
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("page", page);
+        model.addAttribute("curPage", curPage);
+
+        List<Free> freeList = freeService.freeList(page);
         model.addAttribute("freeList", freeList);
         List<Free> freeBestRecList = freeService.freeBestRecList();
         model.addAttribute("freeBestRecList", freeBestRecList);

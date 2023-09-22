@@ -5,15 +5,46 @@
 <mapper namespace="free">
 	<!-- 자유게시판 목록 -->
 	<select id="freeList" resultType="kr.co.teaspoon.dto.Free">
-		select * from free order by regdate desc
+		<![CDATA[
+        select * from free
+        ]]>
+		<where>
+			<if test="searchType != null">
+				<choose>
+					<when test="searchType == 'title'.toString()">
+						title LIKE concat('%', #{searchKeyword}, '%')
+					</when>
+					<when test="searchType == 'content'.toString()">
+						content LIKE concat('%', #{searchKeyword}, '%')
+					</when>
+				</choose>
+			</if>
+		</where>
+		<![CDATA[
+        order by regdate desc LIMIT #{postStart}, #{postCount}
+        ]]>
 	</select>
 	<!-- 글 상세보기 -->
 	<select id="freeDetail" resultType="kr.co.teaspoon.dto.Free">
 		select * from free where bno=#{bno}
 	</select>
 	<!-- 글 수 카운트 -->
-	<select id="totalCount" resultType="integer" >
-		select count(*) from free
+	<select id="totalCount" resultType="integer">
+		<![CDATA[
+        select count(*) from free
+        ]]>
+		<where>
+			<if test="searchType != null">
+				<choose>
+					<when test="searchType == 'title'.toString()">
+						title LIKE concat('%', #{searchKeyword}, '%')
+					</when>
+					<when test="searchType == 'content'.toString()">
+						content LIKE concat('%', #{searchKeyword}, '%')
+					</when>
+				</choose>
+			</if>
+		</where>
 	</select>
 	<insert id="freeInsert">
 		insert into free values (default, #{title}, #{content}, default, 0, #{id}, 0)
@@ -30,6 +61,34 @@
 	<!-- 상위 글 5개 -->
 	<select id="freeBestRecList" resultType="kr.co.teaspoon.dto.Free">
 		select * from free order by rec desc limit 5
+	</select>
+
+	<sql id="criteria">
+		<where>
+			<trim prefixOverrides="OR">
+				<foreach item="type" collection="typeArr">
+					<trim prefixOverrides="OR">
+						<choose>
+							<when test="type == 'T'.toString()">
+								title LIKE '%' || #{keyword} || '%'
+							</when>
+							<when test="type == 'C'.toString()">
+								content LIKE '%' || #{keyword} || '%'
+							</when>
+						</choose>
+					</trim>
+				</foreach>
+			</trim>
+		</where>
+	</sql>
+	<select id="getListWithPaging" resultType="kr.co.teaspoon.dto.Free">
+		<![CDATA[
+        select * from free
+        ]]>
+		<include refid="criteria" />
+		<![CDATA[
+        ORDER BY resdate DESC LIMIT ((#{pageNum} - 1) * #{amount}), #{amount}
+        ]]>
 	</select>
 
 

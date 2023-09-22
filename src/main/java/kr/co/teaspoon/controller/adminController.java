@@ -152,8 +152,9 @@ public class adminController {
     // 자유게시판 게시판 컨트롤러
     @GetMapping("freeList.do")
     public String getFreeList(Model model) throws Exception {
-        List<Free> freeList = freeService.freeList();
-        model.addAttribute("freeList", freeList);
+        // 임시 주석 처리
+        //List<Free> freeList = freeService.freeList();
+        //model.addAttribute("freeList", freeList);
         return "/admin/freeList"; // 관리자 자유게시판 목록 뷰로 이동
     }
 
