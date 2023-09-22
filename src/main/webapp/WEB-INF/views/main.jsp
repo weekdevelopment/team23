@@ -16,6 +16,14 @@
     <!-- head.jsp와 chat.jsp 인클루드 -->
     <jsp:include page="./include/head.jsp" />
     <jsp:include page="./include/chat.jsp" />
+
+    <style>
+        .edumag {
+            margin-top: 20px;
+            font-size: 20px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 <div class="container is-fullhd">
@@ -41,7 +49,7 @@
                                     </c:when>
                                     <c:otherwise>
                                         <c:forEach items="${newNotice}" var="notice" varStatus="status">
-                                            <!-- 첫 5개 공지사항만 표시 -->
+                                            <!-- 첫 3개 공지사항만 표시 -->
                                             <c:if test="${status.index < 3}">
                                                 <a href="${path1}/notice/detail.do?nno=${notice.nno}" style="text-decoration-line: none;">
                                                     <div>
@@ -80,20 +88,17 @@
                     </div>
                     <div class="tile is-parent">
                         <article class="tile is-child notification is-info" style="background: #CBAACB;">
-                            <p class="title">교육 매거진</p>
-                            <p class="subtitle">With an image</p>
+                            <p class="title" style="margin-left: 110px; margin-top: 13px;">교육 매거진</p>
                             <div class="content">
-                                <c:forEach items="${edumagList}" var="edumag" varStatus="status">
-                                    <div class="edumag-item">
-                                        <h3>${edumag.title}</h3>
-                                        <p>${edumag.description}</p>
-                                        <figure class="image is-4by3">
-                                            <img src="${edumag.imageUrl}" alt="${edumag.title} 이미지">
-                                        </figure>
-                                        <p><a href="${path1}/edumag/detail.do?id=${edumag.id}">자세히 보기</a></p>
+                                <!-- 1개만 표시 -->
+                                <a href="${path1 }/edumag/detail.do?no=${newEdumag.no }" style="text-decoration-line: none;">
+                                    <div>
+                                        <img src=" ${newEdumag.imagesLink }" />
+                                        <p class="edumag">
+                                            「 ${newEdumag.title } 」
+                                        </p>
                                     </div>
-                                    <hr style="margin: 0.5rem 0;"/>
-                                </c:forEach>
+                                </a>
                             </div>
                         </article>
                     </div>
