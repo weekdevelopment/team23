@@ -5,6 +5,7 @@ import kr.co.teaspoon.service.*;
 import kr.co.teaspoon.util.Page;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -59,6 +60,9 @@ public class adminController {
     @Autowired
     HttpSession session;
 
+    @Autowired
+    BCryptPasswordEncoder pwEncoder = new BCryptPasswordEncoder();
+
     @RequestMapping(value = "adminList.do", method = RequestMethod.GET)
     public String adminPageGET(Model model) {
         logger.info("메인 페이지 진입");
@@ -78,7 +82,7 @@ public class adminController {
         List<Member> memberList = memberService.memberList();
         model.addAttribute("memberList", memberList);
         model.addAttribute("title", "회원 목록");
-        return "/member/memberList";
+        return "/admin/member/memberList";
     }
 
     // 관리자가 회원 정보 View
@@ -87,6 +91,43 @@ public class adminController {
         Member member = memberService.getMember(id);
         model.addAttribute("member", member);
         return "/admin/member/memberDetail";
+    }
+
+    // 회원 가입 폼 로딩 (GET 요청)
+    @GetMapping("insert-form")
+    public String getMemberInsertForm(Model model) {
+        // 폼을 로딩하는 로직 추가
+        return "/admin/member/memberInsert";
+    }
+
+    // 회원 가입 - 회원 가입 처리 (POST 요청)
+    @PostMapping("memberInsert.do")
+    public String memberWrite(Member member, Model model) throws Exception {
+        String ppw = member.getPw();
+        String pw = pwEncoder.encode(ppw);
+        member.setPw(pw);
+        memberService.memberInsert(member);
+        return "redirect:/";
+    }
+
+    //회원정보 변경
+    @RequestMapping(value="memberUpdate.do", method=RequestMethod.POST)
+    public String memberUpdate(Member mem, Model model) throws Exception {
+        String pwd = "";
+        if(mem.getPw().length()<=16) {
+            pwd = pwEncoder.encode(mem.getPw());
+            mem.setPw(pwd);
+        }
+        memberService.memberEdit(mem);
+        return "redirect:/";
+    }
+
+    //회원 탈퇴
+    @RequestMapping(value="memberDelete.do", method = RequestMethod.GET)
+    public String memberDelete(@RequestParam String id, Model model, HttpSession session) throws Exception {
+        memberService.memberDelete(id);
+        session.invalidate();
+        return "redirect:/";
     }
 
     // 관리자가 공지사항 게시판 View

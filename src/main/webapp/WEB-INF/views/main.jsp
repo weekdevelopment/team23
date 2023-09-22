@@ -4,8 +4,12 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ page import="java.util.*, java.lang.*" %>
 <%@ page import="java.text.*, java.net.InetAddress" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="java.sql.DriverManager" %>
+<%@ page import="java.sql.ResultSet" %>
 <c:set var="path1" value="${pageContext.request.contextPath }" />
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -49,7 +53,7 @@
                                     </c:when>
                                     <c:otherwise>
                                         <c:forEach items="${newNotice}" var="notice" varStatus="status">
-                                            <!-- 첫 3개 공지사항만 표시 -->
+                                            <!-- 첫 5개 공지사항만 표시 -->
                                             <c:if test="${status.index < 3}">
                                                 <a href="${path1}/notice/detail.do?nno=${notice.nno}" style="text-decoration-line: none;">
                                                     <div>
@@ -88,17 +92,20 @@
                     </div>
                     <div class="tile is-parent">
                         <article class="tile is-child notification is-info" style="background: #CBAACB;">
-                            <p class="title" style="margin-left: 110px; margin-top: 13px;">교육 매거진</p>
+                            <p class="title">교육 매거진</p>
+                            <p class="subtitle">With an image</p>
                             <div class="content">
-                                <!-- 1개만 표시 -->
-                                <a href="${path1 }/edumag/detail.do?no=${newEdumag.no }" style="text-decoration-line: none;">
-                                    <div>
-                                        <img src=" ${newEdumag.imagesLink }">
-                                        <p class="edumag">
-                                            「 ${newEdumag.title } 」
-                                        </p>
+                                <c:forEach items="${edumagList}" var="edumag" varStatus="status">
+                                    <div class="edumag-item">
+                                        <h3>${edumag.title}</h3>
+                                        <p>${edumag.description}</p>
+                                        <figure class="image is-4by3">
+                                            <img src="${edumag.imageUrl}" alt="${edumag.title} 이미지">
+                                        </figure>
+                                        <p><a href="${path1}/edumag/detail.do?id=${edumag.id}">자세히 보기</a></p>
                                     </div>
-                                </a>
+                                    <hr style="margin: 0.5rem 0;"/>
+                                </c:forEach>
                             </div>
                         </article>
                     </div>

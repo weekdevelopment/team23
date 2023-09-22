@@ -167,6 +167,27 @@ public class MemberController {
         }
     }
 
+    //회원정보 변경
+    @RequestMapping(value="update.do", method=RequestMethod.POST)
+    public String memberUpdate(Member mem, Model model) throws Exception {
+        String pwd = "";
+        if(mem.getPw().length()<=16) {
+            pwd = pwEncoder.encode(mem.getPw());
+            mem.setPw(pwd);
+        }
+        memberService.memberEdit(mem);
+        return "redirect:/";
+    }
+
+    //회원 탈퇴
+    @RequestMapping(value="delete.do", method = RequestMethod.GET)
+    public String memberDelete(@RequestParam String id, Model model, HttpSession session) throws Exception {
+        memberService.memberDelete(id);
+        session.invalidate();
+        return "redirect:/";
+    }
+
+
     // 비밀번호 찾기 폼 로딩
     @GetMapping("find_pw.do")
     public String findPwForm() {
