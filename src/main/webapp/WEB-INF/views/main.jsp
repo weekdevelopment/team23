@@ -93,7 +93,7 @@
                                 <!-- 1개만 표시 -->
                                 <a href="${path1 }/edumag/detail.do?no=${newEdumag.no }" style="text-decoration-line: none;">
                                     <div>
-                                        <img src=" ${newEdumag.imagesLink }" />
+                                        <img src=" ${newEdumag.imagesLink }">
                                         <p class="edumag">
                                             「 ${newEdumag.title } 」
                                         </p>
