@@ -45,79 +45,6 @@
 <!-- 헤더 부분 인클루드 -->
 <jsp:include page="../include/hd.jsp"></jsp:include>
 <div class="container is-fullhd">
-	<%--	<div class="content" id="content">--%>
-	<%--	    <div class="row column text-center">--%>
-	<%--	      <h2 class="h1">공지사항</h2>--%>
-	<%--	      <hr>--%>
-	<%--	      <div class="container">--%>
-
-	<%--				<section class="main-content columns is-fullheight">--%>
-
-	<%--					<aside class="column is-2 is-narrow-mobile is-fullheight section is-hidden-mobile">--%>
-	<%--						<p class="menu-label is-hidden-touch">고객센터</p>--%>
-	<%--						<ul class="menu-list">--%>
-	<%--							<li>--%>
-	<%--								<a href="${path1 }/notice/list.do" class="is-active" style="background-color: #2B3A55;">--%>
-	<%--									<span class="icon" style="color: #FFFFFF"><i class="fa fa-solid fa-bell"></i></span> 공지사항--%>
-	<%--								</a>--%>
-	<%--							</li>--%>
-	<%--							<li>--%>
-	<%--								<a href="${path1 }/qna/list.do" class="">--%>
-	<%--									<span class="icon"><i class="fa fa-solid fa-question"></i></span> 묻고 답하기--%>
-	<%--								</a>--%>
-	<%--								<ul>--%>
-	<%--									<li>--%>
-	<%--										<a href="#">--%>
-	<%--											<span class="icon is-small"><i class="fa fa-window-maximize"></i></span> Link1--%>
-	<%--										</a>--%>
-	<%--									</li>--%>
-	<%--									<li>--%>
-	<%--										<a href="#">--%>
-	<%--											<span class="icon is-small"><i class="fa fa-link"></i></span> Link2--%>
-	<%--										</a>--%>
-	<%--									</li>--%>
-	<%--								</ul>--%>
-	<%--							</li>--%>
-	<%--							<li>--%>
-	<%--								<a href="${path1 }/faq/list.do" class="">--%>
-	<%--									<span class="icon"><i class="fa fa-window-maximize"></i></span> 자주 묻는 질문--%>
-	<%--								</a>--%>
-	<%--							</li>--%>
-	<%--						</ul>--%>
-	<%--					</aside>--%>
-
-	<%--					<div class="container column is-10">--%>
-	<%--						<div class="section">--%>
-	<%--							<c:forEach items="${noticeList }" var="notice" varStatus="status">--%>
-	<%--								<a href="${path1}/notice/detail.do?nno=${notice.nno }">--%>
-	<%--								<div class="card">--%>
-	<%--									<div class="card-content">--%>
-	<%--										<fmt:parseDate value="${notice.resdate }" var="resdate" pattern="yyyy-MM-dd HH:mm:ss" />--%>
-	<%--										<div class="content"><span style="font-weight:bold;">[공지] ${notice.title }</span> <br>--%>
-	<%--											<span>조회수</span><span style="color:#CE7777 "> ${notice.visit }</span>--%>
-	<%--											<span style="float:right;"><fmt:formatDate value="${resdate }" pattern="yyyy-MM-dd" /> </span>--%>
-	<%--										</div>--%>
-	<%--									</div>--%>
-	<%--								</div>--%>
-	<%--								</a>--%>
-	<%--								<br/>--%>
-	<%--							</c:forEach>--%>
-	<%--							<br />--%>
-	<%--						</div>--%>
-	<%--					</div>--%>
-
-	<%--				</section>--%>
-	<%-- <c:if test='${sid eq "admin"}'>  --%>
-
-	<%--				<div class="button-group">--%>
-	<%--					<a class="button" href="${path1 }/notice/insert.do">글쓰기</a>--%>
-	<%--				</div>--%>
-	<%-- </c:if> --%>
-	<%--	      </div>--%>
-
-	<%--	    </div>--%>
-	<%--	</div>--%>
-
 	<div class="columns">
 		<div class="column is-2">
 			<aside class="menu">
@@ -164,16 +91,16 @@
 					<div class="column is-6">
 						<div class="card events-card">
 							<header class="card-header">
-								<p class="card-header-title">추천 많은 글</p>
+								<p class="card-header-title">주요 공지사항</p>
 							</header>
 							<div class="card-table">
 								<div class="content">
 									<div class="card-table">
 										<div class="content">
 											<div class="table is-fullwidth is-striped">
-												<c:forEach items="${selectComment }" var="commentNotice" varStatus="status">
-													<a href="${path1}/notice/detail.do?nno=${commentNotice.nno }">
-														<div> <i class="fa fa-solid fa-comment-dots" style="color: #2B3A55; margin: 11px 11px;"></i>  ${commentNotice.title }</div>
+												<c:forEach items="${newNotice }" var="newNotice" varStatus="status">
+													<a href="${path1}/notice/detail.do?nno=${newNotice.nno }">
+														<div> <i class="fa fa-solid fa-newspaper" style="color: #2B3A55; margin: 11px 11px;"></i>  ${newNotice.title }</div>
 													</a>
 													<hr style=" margin: 0.5rem 0;"/>
 												</c:forEach>

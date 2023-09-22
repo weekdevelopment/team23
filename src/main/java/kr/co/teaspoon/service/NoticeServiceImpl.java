@@ -69,4 +69,8 @@ public class NoticeServiceImpl implements NoticeService{
         return noticeDAO.commentCount();
     }
 
+    @Override
+    public List<Notice> newNotice() throws Exception {
+        return noticeDAO.newNotice();
+    }
 }

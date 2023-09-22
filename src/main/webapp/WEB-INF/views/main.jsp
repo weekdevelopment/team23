@@ -36,20 +36,19 @@
                             <p class="subtitle">최근 공지사항</p>
                             <div class="table is-fullwidth is-striped" style="background: none">
                                 <c:choose>
-                                    <c:when test="${empty noticeList}">
+                                    <c:when test="${empty newNotice}">
                                         <p>최신 공지사항이 없습니다.</p>
                                     </c:when>
                                     <c:otherwise>
-                                        <c:forEach items="${noticeList}" var="notice" varStatus="status">
+                                        <c:forEach items="${newNotice}" var="notice" varStatus="status">
                                             <!-- 첫 5개 공지사항만 표시 -->
-                                            <c:if test="${status.index < 5}">
-                                                <a href="${path1}/notice/detail.do?nno=${notice.nno}">
+                                            <c:if test="${status.index < 3}">
+                                                <a href="${path1}/notice/detail.do?nno=${notice.nno}" style="text-decoration-line: none;">
                                                     <div>
                                                         <i class="fa fa-solid fa-seedling" style="color: #2B3A55; margin: 11px 11px;"></i>
                                                             ${notice.title}
                                                     </div>
                                                 </a>
-                                                <hr style="margin: 0.5rem 0;"/>
                                             </c:if>
                                         </c:forEach>
                                     </c:otherwise>
