@@ -44,4 +44,9 @@ public class EdumagDAOImpl implements EdumagDAO {
     public void edumagEdit(Edumag dto) throws Exception {
         sqlSession.update("edumag.edumagEdit", dto);
     }
+
+    @Override
+    public Edumag newEdumag() throws Exception {
+        return sqlSession.selectOne("edumag.newEdumag");
+    }
 }
