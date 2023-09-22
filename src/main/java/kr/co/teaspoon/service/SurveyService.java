@@ -11,4 +11,5 @@ public interface SurveyService {
     public void sanswerInsert(Survey dto) throws Exception;
     public void surveyDelete(int sno) throws Exception;
     public void surveyEdit(Survey dto) throws Exception;
+    public Survey ckAuthor(int par, String author) throws Exception;
 }
