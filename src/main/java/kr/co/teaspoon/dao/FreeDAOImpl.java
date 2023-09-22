@@ -1,6 +1,7 @@
 package kr.co.teaspoon.dao;
 
 import kr.co.teaspoon.dto.Free;
+import kr.co.teaspoon.dto.FreeComment;
 import kr.co.teaspoon.dto.Reco;
 import kr.co.teaspoon.util.Page;
 import org.apache.ibatis.session.SqlSession;
@@ -53,6 +54,21 @@ public class FreeDAOImpl implements FreeDAO {
     @Override
     public List<Free> freeBestRecList() throws Exception {
         return sqlSession.selectList("free.freeBestRecList");
+    }
+
+    @Override
+    public List<FreeComment> freeCommentList(int bno) throws Exception {
+        return sqlSession.selectList("free.freeCommentList", bno);
+    }
+
+    @Override
+    public void commentInsert(FreeComment dto) throws Exception {
+        sqlSession.insert("free.commentInsert", dto);
+    }
+
+    @Override
+    public void commentDelete(int cno) throws Exception {
+        sqlSession.delete("free.commentDelete", cno);
     }
 
     @Override

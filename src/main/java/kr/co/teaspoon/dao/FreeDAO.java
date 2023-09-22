@@ -1,6 +1,7 @@
 package kr.co.teaspoon.dao;
 
 import kr.co.teaspoon.dto.Free;
+import kr.co.teaspoon.dto.FreeComment;
 import kr.co.teaspoon.dto.Reco;
 import kr.co.teaspoon.util.Page;
 
@@ -20,6 +21,10 @@ public interface FreeDAO {
     public int totalCount(Page page) throws Exception;
 
     public List<Free> freeBestRecList() throws Exception;
+
+    public List<FreeComment> freeCommentList(int bno) throws Exception;
+    public void commentInsert(FreeComment dto) throws Exception;
+    public void commentDelete(int cno) throws Exception;
 
     
     public Reco findReco(int bno, String id) throws Exception;

@@ -91,7 +91,18 @@
         ]]>
 	</select>
 
-
+	<!-- 댓글 리스트-->
+	<select id="freeCommentList" resultType="kr.co.teaspoon.dto.FreeComment">
+		select * from freecommentlist where bno=#{bno}
+	</select>
+	<!--    댓글 삽입-->
+	<insert id="commentInsert">
+		INSERT INTO free_comment(bno, author, content) VALUES(#{bno}, #{author}, #{content});
+	</insert>
+	<!--    댓글 삭제-->
+	<delete id="commentDelete">
+		delete from free_comment where cno=#{cno}
+	</delete>
 
 
     <select id="findReco" resultType="kr.co.teaspoon.dto.Reco">

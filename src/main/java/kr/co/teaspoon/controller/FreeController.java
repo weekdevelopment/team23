@@ -1,6 +1,7 @@
 package kr.co.teaspoon.controller;
 
 import kr.co.teaspoon.dto.Free;
+import kr.co.teaspoon.dto.FreeComment;
 import kr.co.teaspoon.dto.Member;
 import kr.co.teaspoon.dto.Reco;
 import kr.co.teaspoon.service.FreeService;
@@ -75,7 +76,31 @@ public class FreeController {
         model.addAttribute("recoDTO", recoDTO);
         model.addAttribute("memberDTO", memberDTO);
 
+        List<FreeComment> commentList = freeService.freeCommentList(bno);
+        //System.out.printf("bno : %d, id : %s\n", bno, id);
+        //System.out.println("댓글 목록 : " + commentList);
+
+        model.addAttribute("commentList", commentList);
         return "/free/freeDetail";
+    }
+
+    @PostMapping("detail.do")
+    public String commentInsert(HttpServletRequest request, Model model) throws Exception {
+        int bno = Integer.parseInt(request.getParameter("bno"));
+        FreeComment dto = new FreeComment();
+        dto.setContent(request.getParameter("content"));
+        dto.setBno(bno);
+        dto.setAuthor(request.getParameter("author"));
+        freeService.commentInsert(dto);
+        return "redirect:detail.do?bno="+bno;
+    }
+
+    @GetMapping("commentDelete.do")
+    public String commentDelete(HttpServletRequest request, Model model) throws Exception {
+        int bno = Integer.parseInt(request.getParameter("bno"));
+        int cno = Integer.parseInt(request.getParameter("cno"));
+        freeService.commentDelete(cno);
+        return "redirect:detail.do?bno="+bno;
     }
 
     @GetMapping("insert.do")

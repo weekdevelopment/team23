@@ -207,7 +207,7 @@
 			<p class="control">
 				<input type="submit" class="button is-mainColor" value="검색" />
 			</p>
-		</form>
+			</form>
 
 			<div class="button-group">
                 <c:choose>
