@@ -4,8 +4,29 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ page import="java.util.*, java.lang.*" %>
 <%@ page import="java.text.*, java.net.InetAddress" %>
+<%@ page import="java.sql.Connection" %>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="java.sql.DriverManager" %>
+<%@ page import="java.sql.ResultSet" %>
 <c:set var="path1" value="${pageContext.request.contextPath }" />
-<!DOCTYPE html>
+
+<%-- 데이터베이스 연결 설정 --%>
+<%
+    String dbUrl = "jdbc:mariadb://localhost:3306/teaspoon";
+    String dbUser = "root";
+    String dbPassword = "1234";
+
+    Connection conn = null;
+    PreparedStatement pstmt = null;
+    ResultSet rs = null;
+
+    try {
+        Class.forName("org.mariadb.jdbc.Driver"); // MariaDB JDBC 드라이버 클래스 로드
+        conn = DriverManager.getConnection(dbUrl, dbUser, dbPassword); // 데이터베이스 연결
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -23,105 +44,9 @@
     <jsp:include page="./include/hd.jsp" />
     <!-- main_banner.jsp 인클루드 -->
     <jsp:include page="./include/main_banner.jsp" />
+    <jsp:include page="main/section1.jsp" />
+    <jsp:include page="main/section2.jsp" />
     <br>
-    <br>
-    <div class="tile is-ancestor">
-        <!-- 최신 공지사항 표시 -->
-        <div class="tile is-ancestor">
-            <div class="tile is-vertical is-8">
-                <div class="tile">
-                    <div class="tile is-parent is-vertical">
-                        <article class="tile is-child notification is-primary" style="background: #ABDEE6">
-                            <p class="title">공지사항</p>
-                            <p class="subtitle">최근 공지사항</p>
-                            <div class="table is-fullwidth is-striped" style="background: none">
-                                <c:choose>
-                                    <c:when test="${empty newNotice}">
-                                        <p>최신 공지사항이 없습니다.</p>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <c:forEach items="${newNotice}" var="notice" varStatus="status">
-                                            <!-- 첫 5개 공지사항만 표시 -->
-                                            <c:if test="${status.index < 3}">
-                                                <a href="${path1}/notice/detail.do?nno=${notice.nno}" style="text-decoration-line: none;">
-                                                    <div>
-                                                        <i class="fa fa-solid fa-seedling" style="color: #2B3A55; margin: 11px 11px;"></i>
-                                                            ${notice.title}
-                                                    </div>
-                                                </a>
-                                            </c:if>
-                                        </c:forEach>
-                                    </c:otherwise>
-                                </c:choose>
-                            </div>
-                        </article>
-                        <article class="tile is-child notification is-warning" style="background: #FEE1E8;">
-                            <p class="title">자유게시판</p>
-                            <p class="subtitle">Best 게시물</p>
-                            <c:choose>
-                                <c:when test="${empty freeRecList}">
-                                    <p>Best 게시물이 없습니다.</p>
-                                </c:when>
-                                <c:otherwise>
-                                    <c:forEach items="${freeRecList}" var="free" varStatus="status">
-                                        <!-- 첫 5개 Best 게시물만 표시 -->
-                                        <c:if test="${status.index < 5}">
-                                            <a href="${path1}/free/detail.do?fno=${free.fno}">
-                                                <div>
-                                                        ${free.title}
-                                                </div>
-                                            </a>
-                                            <hr style="margin: 0.5rem 0;"/>
-                                        </c:if>
-                                    </c:forEach>
-                                </c:otherwise>
-                            </c:choose>
-                        </article>
-                    </div>
-                    <div class="tile is-parent">
-                        <article class="tile is-child notification is-info" style="background: #CBAACB;">
-                            <p class="title">교육 매거진</p>
-                            <p class="subtitle">With an image</p>
-                            <div class="content">
-                                <c:forEach items="${edumagList}" var="edumag" varStatus="status">
-                                    <div class="edumag-item">
-                                        <h3>${edumag.title}</h3>
-                                        <p>${edumag.description}</p>
-                                        <figure class="image is-4by3">
-                                            <img src="${edumag.imageUrl}" alt="${edumag.title} 이미지">
-                                        </figure>
-                                        <p><a href="${path1}/edumag/detail.do?id=${edumag.id}">자세히 보기</a></p>
-                                    </div>
-                                    <hr style="margin: 0.5rem 0;"/>
-                                </c:forEach>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-                <div class="tile is-parent">
-                    <article class="tile is-child notification is-danger" style="background: #FFCCB6;">
-                        <p class="title">슬로건</p>
-                        <p class="subtitle">윜 캔 두잇! Week Can Do It!!!!</p>
-                        <div class="content">
-                            <!-- Content -->
-                        </div>
-                    </article>
-                </div>
-            </div>
-            <div class="tile is-parent">
-                <article class="tile is-child notification is-success" style="background: #F3B0C3;">
-                    <div class="content">
-                        <p class="title">교재 신간</p>
-                        <p class="subtitle">이번 달 출시된 교재</p>
-                        <div class="content">
-                            <!-- Content -->
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </div>
-</div>
 <br>
 <br>
 <!-- ft.jsp 인클루드 -->
