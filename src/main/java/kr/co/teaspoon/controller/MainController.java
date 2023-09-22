@@ -1,8 +1,6 @@
 package kr.co.teaspoon.controller;
 
-import kr.co.teaspoon.dto.Edumag;
 import kr.co.teaspoon.dto.Notice;
-import kr.co.teaspoon.service.EdumagService;
 import kr.co.teaspoon.service.NoticeService;
 import kr.co.teaspoon.util.Page;
 import org.slf4j.Logger;
@@ -24,9 +22,6 @@ public class MainController {
     @Autowired
     private NoticeService noticeService;
 
-    @Autowired
-    private EdumagService edumagService;
-
     // 메인 페이지 이동
     @RequestMapping(value = "/main", method = RequestMethod.GET)
     public String mainPageGET(Model model) throws Exception {
@@ -39,12 +34,7 @@ public class MainController {
 
         List<Notice> newNotice = noticeService.newNotice();
         model.addAttribute("newNotice", newNotice);
-
-        Edumag newEdumag = edumagService.newEdumag();
-        model.addAttribute("newEdumag", newEdumag);
-        System.out.println("newEdumag"+newEdumag);
-
-        return "/main";
+        return "/main"; // main.jsp로 이동
     }
 
 }

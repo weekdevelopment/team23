@@ -43,9 +43,4 @@ public class EdumagServiceImpl implements  EdumagService{
     public void edumagEdit(Edumag dto) throws Exception {
         edumagDAO.edumagEdit(dto);
     }
-
-    @Override
-    public Edumag newEdumag() throws Exception {
-        return edumagDAO.newEdumag();
-    }
 }

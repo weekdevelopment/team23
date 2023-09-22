@@ -12,5 +12,4 @@ public interface EdumagService {
     public void edumagInsert(Edumag dto) throws Exception;
     public void edumagDelete(int no) throws Exception;
     public void edumagEdit(Edumag dto) throws Exception;
-    public Edumag newEdumag() throws Exception;
 }

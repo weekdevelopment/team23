@@ -54,9 +54,4 @@
         update edumag set visited=visited+1 where no=#{no}
     </update>
 
-    <!--    리스트에 최신 글 불러오기-->
-    <select id="newEdumag" resultType="kr.co.teaspoon.dto.Edumag">
-        SELECT * FROM edumag ORDER BY resdate desc LIMIT 1;
-    </select>
-
 </mapper>
