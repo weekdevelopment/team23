@@ -2,6 +2,7 @@ package kr.co.teaspoon.service;
 
 import kr.co.teaspoon.dto.Free;
 import kr.co.teaspoon.dto.FreeComment;
+import kr.co.teaspoon.dto.Notice;
 import kr.co.teaspoon.dto.Reco;
 import kr.co.teaspoon.util.Page;
 
@@ -22,11 +23,15 @@ public interface FreeService {
 
     public List<Free> freeBestRecList() throws Exception;
 
+    public List<Free> freeBestCmtList() throws Exception;
+
     public List<FreeComment> freeCommentList(int bno) throws Exception;
 
     public void commentInsert(FreeComment dto) throws Exception;
 
     public void commentDelete(int cno) throws Exception;
+
+    public List<Free> commentCount() throws Exception;
 
 
     public Reco findReco(int bno, String id) throws Exception;

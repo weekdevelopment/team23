@@ -39,6 +39,10 @@
 		.select:not(.is-multiple):not(.is-loading)::after {
 			border-color: #2B3A55;
 		}
+		form.field.has-addons.has-addons-right {
+			float: right;
+			padding-top: 3px;
+		}
 	</style>
 </head>
 <body>
@@ -120,19 +124,25 @@
 							<header class="card-header">
 								<p class="card-header-title">댓글 많은 글</p>
 							</header>
-							<div class="card-table">
-								<div class="content">
-									<table class="table is-fullwidth is-striped">
-										<tbody>
-										<tr>
-											<td width="5%"><i class="fa fa-bell-o"></i></td>
-											<td>Lorum ipsum dolem aire</td>
-											<td class="level-right"><a class="button is-small is-primary" href="#">Action</a></td>
-										</tr>
-										</tbody>
-									</table>
+							<c:forEach items="${freeBestCmtList }" var="free" varStatus="status">
+								<div class="card-table">
+									<div class="content">
+										<table class="table is-fullwidth">
+											<tbody>
+											<tr>
+												<td>
+													&#${9311+status.count} <a href="${path1}/free/detail.do?bno=${free.bno }">${free.title }</a>
+												</td>
+												<td class="level-right">
+													&#x1F44D; ${free.rec }
+												</td>
+											</tr>
+											</tbody>
+										</table>
+									</div>
 								</div>
-							</div>
+							</c:forEach>
+
 						</div>
 					</div>
 				</div>
@@ -141,8 +151,13 @@
 			<div class="box content">
 				<c:forEach items="${freeList }" var="free" varStatus="status">
 					<article class="post">
-						<%--<h4>${free.title }</h4>--%>
 						<h4><a href="${path1}/free/detail.do?bno=${free.bno }">${free.title }</a></h4>
+						<%--<c:forEach items="${commentCount }" var="count" varStatus="status">
+							<c:if test="${count.bno eq free.bno }">
+								&lt;%&ndash;<h4>${count.count }</h4>&ndash;%&gt;
+								<span>${count.count }</span>
+							</c:if>
+						</c:forEach>--%>
 						<div class="media">
 							<div class="media-content">
 								<div class="content">
@@ -155,6 +170,14 @@
 										<span>${free.visited }</span>
 										| 추천수
 										<span>${free.rec }</span>
+
+										<c:forEach items="${commentCount }" var="count" varStatus="status">
+											<c:if test="${count.bno eq free.bno }">
+												<i class="fa fa-solid fa-comment-dots" style="color: #2B3A55; margin: 11px 2px 11px 11px;"></i>
+												<span>${count.count }</span>
+											</c:if>
+										</c:forEach>
+
 									</p>
 								</div>
 							</div>
@@ -192,7 +215,7 @@
 				</ul>
 			</nav>
 
-			<form action="${path1 }/free/list.do" method="get" class="field has-addons has-addons-centered">
+			<%--<form action="${path1 }/free/list.do" method="get" class="field has-addons has-addons-centered">
 			<p class="control">
 			<span class="select">
 				<select id="type" name="type">
@@ -207,7 +230,7 @@
 			<p class="control">
 				<input type="submit" class="button is-mainColor" value="검색" />
 			</p>
-			</form>
+			</form>--%>
 
 			<div class="button-group">
                 <c:choose>
@@ -218,6 +241,23 @@
                         <a class="button post-btn" href="javascript:checkLogin()">글쓰기</a>
                     </c:otherwise>
                 </c:choose>
+
+				<form action="${path1 }/free/list.do" method="get" class="field has-addons has-addons-right">
+					<p class="control">
+			<span class="select">
+				<select id="type" name="type">
+					<option value="title">제목</option>
+					<option value="content">내용</option>
+				</select>
+			</span>
+					</p>
+					<p class="control">
+						<input class="input" type="text" id="keyword" name="keyword" placeholder="검색어를 입력하세요" value="${keyword }">
+					</p>
+					<p class="control">
+						<input type="submit" class="button is-mainColor" value="검색" />
+					</p>
+				</form>
 			</div>
 		</div>
 	</div>

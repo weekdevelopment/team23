@@ -57,6 +57,11 @@ public class FreeDAOImpl implements FreeDAO {
     }
 
     @Override
+    public List<Free> freeBestCmtList() throws Exception {
+        return sqlSession.selectList("free.freeBestCmtList");
+    }
+
+    @Override
     public List<FreeComment> freeCommentList(int bno) throws Exception {
         return sqlSession.selectList("free.freeCommentList", bno);
     }
@@ -69,6 +74,11 @@ public class FreeDAOImpl implements FreeDAO {
     @Override
     public void commentDelete(int cno) throws Exception {
         sqlSession.delete("free.commentDelete", cno);
+    }
+
+    @Override
+    public List<Free> commentCount() throws Exception {
+        return sqlSession.selectList("free.commentCount");
     }
 
     @Override

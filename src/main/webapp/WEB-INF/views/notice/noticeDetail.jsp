@@ -77,19 +77,28 @@
 					</div>
 				</div>
 				<div class="columns">
-					<div class="column is-3"></div>
-					<div class="column is-2">
-						<a class="button is-fullwidth is-info" href="${path1 }/notice/list.do">글 목록</a>
-					</div>
-					 <c:if test='${sid eq "admin"}'>
-					<div class="column is-2">
-						<a class="button is-fullwidth is-primary" href="${path1 }/notice/edit.do?nno=${dto.nno}">글 수정</a>
-					</div>
-					<div class="column is-2">
-						<a class="button is-fullwidth is-danger" href="${path1 }/notice/delete.do?nno=${dto.nno}">글 삭제</a>
-					</div>
-					 </c:if>
-					<div class="column is-3"></div>
+					<c:choose>
+						<c:when test="${sid eq 'admin'}">
+							<div class="column is-3"></div>
+							<div class="column is-2">
+								<a class="button is-fullwidth is-info" href="${path1 }/notice/list.do">글 목록</a>
+							</div>
+							<div class="column is-2">
+								<a class="button is-fullwidth is-primary" href="${path1 }/notice/edit.do?nno=${dto.nno}">글 수정</a>
+							</div>
+							<div class="column is-2">
+								<a class="button is-fullwidth is-danger" href="${path1 }/notice/delete.do?nno=${dto.nno}">글 삭제</a>
+							</div>
+							<div class="column is-3"></div>
+						</c:when>
+						<c:otherwise>
+							<div class="column is-5"></div>
+							<div class="column is-2">
+								<a class="button is-fullwidth is-info" href="${path1 }/notice/list.do">글 목록</a>
+							</div>
+							<div class="column is-5"></div>
+						</c:otherwise>
+					</c:choose>
 				</div>
 			</div>
 			<div class="cmtwrap">

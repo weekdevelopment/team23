@@ -58,10 +58,24 @@
 	<update id="visitCount">
 		update free set visited=visited+1 where bno=#{bno}
 	</update>
-	<!-- 상위 글 5개 -->
+	<!-- 상위 추천 5개 -->
 	<select id="freeBestRecList" resultType="kr.co.teaspoon.dto.Free">
 		select * from free order by rec desc limit 5
 	</select>
+	<!-- 상위 댓글 5개 -->
+	<select id="freeBestCmtList" resultType="kr.co.teaspoon.dto.Free">
+		SELECT f.title, f.bno
+		FROM free f
+				 JOIN (
+			SELECT bno, COUNT(*) AS comment_count
+			FROM free_comment
+			GROUP BY bno
+			ORDER BY comment_count DESC
+				LIMIT 5 -- 댓글이 많은 게시글 중에서 5개만 가져옵니다.
+		) AS top_commented
+					  ON f.bno = top_commented.bno;
+	</select>
+
 
 	<sql id="criteria">
 		<where>
@@ -103,6 +117,14 @@
 	<delete id="commentDelete">
 		delete from free_comment where cno=#{cno}
 	</delete>
+
+	<!--    리스트에 댓글 수 불러오기-->
+	<select id="commentCount" resultType="kr.co.teaspoon.dto.Free">
+		SELECT f.bno, COUNT(fc.bno) AS count
+		FROM free f
+			LEFT JOIN free_comment fc ON f.bno = fc.bno
+		GROUP BY f.bno;
+	</select>
 
 
     <select id="findReco" resultType="kr.co.teaspoon.dto.Reco">

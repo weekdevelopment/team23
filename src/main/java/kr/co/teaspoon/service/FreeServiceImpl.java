@@ -52,6 +52,11 @@ public class FreeServiceImpl implements FreeService {
     }
 
     @Override
+    public List<Free> freeBestCmtList() throws Exception {
+        return freeDAO.freeBestCmtList();
+    }
+
+    @Override
     public List<FreeComment> freeCommentList(int bno) throws Exception {
         return freeDAO.freeCommentList(bno);
     }
@@ -64,6 +69,11 @@ public class FreeServiceImpl implements FreeService {
     @Override
     public void commentDelete(int cno) throws Exception {
         freeDAO.commentDelete(cno);
+    }
+
+    @Override
+    public List<Free> commentCount() throws Exception {
+        return freeDAO.commentCount();
     }
 
     @Override

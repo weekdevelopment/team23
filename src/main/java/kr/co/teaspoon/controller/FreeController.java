@@ -1,9 +1,6 @@
 package kr.co.teaspoon.controller;
 
-import kr.co.teaspoon.dto.Free;
-import kr.co.teaspoon.dto.FreeComment;
-import kr.co.teaspoon.dto.Member;
-import kr.co.teaspoon.dto.Reco;
+import kr.co.teaspoon.dto.*;
 import kr.co.teaspoon.service.FreeService;
 import kr.co.teaspoon.service.MemberService;
 import kr.co.teaspoon.util.Page;
@@ -60,6 +57,13 @@ public class FreeController {
         model.addAttribute("freeList", freeList);
         List<Free> freeBestRecList = freeService.freeBestRecList();
         model.addAttribute("freeBestRecList", freeBestRecList);
+        List<Free> freeBestCmtList = freeService.freeBestCmtList();
+        model.addAttribute("freeBestCmtList", freeBestCmtList);
+
+        List<Free> commentCount = freeService.commentCount();
+        model.addAttribute("commentCount", commentCount);
+        System.out.println("commentCount : " + commentCount);
+
         return "/free/freeList";
     }
 

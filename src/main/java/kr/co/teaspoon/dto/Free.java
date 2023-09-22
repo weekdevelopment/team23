@@ -15,4 +15,5 @@ public class Free {
     private int visited;
     private String id;
     private int rec;
+    private int count;
 }

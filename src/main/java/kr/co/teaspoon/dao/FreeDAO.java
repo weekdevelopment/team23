@@ -22,11 +22,17 @@ public interface FreeDAO {
 
     public List<Free> freeBestRecList() throws Exception;
 
+    public List<Free> freeBestCmtList() throws Exception;
+
     public List<FreeComment> freeCommentList(int bno) throws Exception;
+
     public void commentInsert(FreeComment dto) throws Exception;
+
     public void commentDelete(int cno) throws Exception;
 
-    
+    public List<Free> commentCount() throws Exception;
+
+
     public Reco findReco(int bno, String id) throws Exception;
 
     public Reco memberFindReco(Reco reco) throws Exception;
