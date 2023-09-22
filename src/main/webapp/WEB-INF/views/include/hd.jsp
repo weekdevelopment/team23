@@ -23,7 +23,7 @@
         <div class="container">
             <nav class="navbar" style="background: #f0f0f0;">
                 <div class="navbar-brand" style="height: 80px;">
-                    <a class="navbar-item" href="${path1}/" style="height: 80px; padding-top: 10px">
+                    <a class="navbar-item" href="${path1}/main" style="height: 80px; padding-top: 10px">
                         <img src="${path1}/resources/img/logo.png" alt="Bulma Hotel" style="width: 160px; height: 100%;" />
                     </a>
                     <a class="navbar-item is-hidden-desktop" href="tel:+302109849583">

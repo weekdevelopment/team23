@@ -75,41 +75,41 @@
 						<input type="text" name="q3" id="q3" placeholder="설문 3" class="input" >
 					</div>
 					<div class="field">
-						<label class="label" for="content">설문 1 내용</label>
+						<label class="label" for="content">설문 4 내용</label>
 						<input type="text" name="q4" id="q4" placeholder="설문 4" class="input" >
 					</div>
 					<div class="field">
-						<label class="label" for="content">설문 1 내용</label>
+						<label class="label" for="content">설문 5 내용</label>
 						<input type="text" name="q5" id="q5" placeholder="설문 5" class="input" >
 					</div>
 					<div class="field">
-						<label class="label" for="content">설문 1 내용</label>
+						<label class="label" for="content">설문 6 내용</label>
 						<input type="text" name="q6" id="q6" placeholder="설문 6" class="input" >
 					</div>
 					<div class="field">
-						<label class="label" for="content">설문 1 내용</label>
+						<label class="label" for="content">설문 7 내용</label>
 						<input type="text" name="q7" id="q7" placeholder="설문 7" class="input" >
 					</div>
 					<div class="field">
-						<label class="label" for="content">설문 1 내용</label>
+						<label class="label" for="content">설문 8 내용</label>
 						<input type="text" name="q8" id="q8" placeholder="설문 8" class="input" >
 					</div>
 					<div class="field">
-						<label class="label" for="content">설문 1 내용</label>
+						<label class="label" for="content">설문 9 내용</label>
 						<input type="text" name="q9" id="q9" placeholder="설문 9" class="input" >
 					</div>
 					<div class="field">
-						<label class="label" for="content">설문 1 내용</label>
+						<label class="label" for="content">설문 10 내용</label>
 						<input type="text" name="q10" id="q10" placeholder="설문 10" class="input" >
 					</div>
 
 					<div class="columns">
 						<div class="column is-3"></div>
 						<div class="column is-2">
-							<a class="button is-fullwidth is-info" href="${path1 }/suvey/list.do">글 목록</a>
+							<a class="button is-fullwidth is-primary" href="${path1 }/suvey/list.do">글 목록</a>
 						</div>
 						<div class="column is-2">
-							<button type="submit" class="button is-fullwidth is-primary">설문 등록</button>
+							<button type="submit" class="button is-fullwidth is-success">설문 등록</button>
 						</div>
 						<div class="column is-2">
 							<button type="reset" class="button is-fullwidth is-danger">취소</button>
@@ -118,7 +118,6 @@
 					</div>
 				</form>
 			</div>
-
 		</div>
 	</div>
 </div>

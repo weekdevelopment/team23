@@ -1,6 +1,7 @@
 package kr.co.teaspoon.service;
 
 import kr.co.teaspoon.dao.SurveyDAO;
+import kr.co.teaspoon.dto.Reco;
 import kr.co.teaspoon.dto.Survey;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,24 @@ public class SurveyServiceImpl implements SurveyService{
 
     @Override
     public void sanswerInsert(Survey dto) throws Exception {
+
+//        int result = 0;
+//        // 추천이 이미 있는지 확인하는 코드
+//        Reco find = freeDAO.memberFindReco(reco);
+//
+//        // find가 null이면 추천이 없는 상태이므로 정보 저장
+//        // find가 null이 아니면 추천이 있는 상태이므로 정보 삭제
+//        System.out.println("find:" + find);
+//
+//        if (find == null) {
+//            result = freeDAO.insertReco(reco);
+//            freeDAO.increaseRec(reco);
+//        } /*else {
+//            freeDAO.deleteReco(reco);
+//            freeDAO.decreaseRec(reco);
+//        }*/
+//        return result;
+
         surveyDAO.sanswerInsert(dto);
     }
 
@@ -40,5 +59,10 @@ public class SurveyServiceImpl implements SurveyService{
     @Override
     public void surveyEdit(Survey dto) throws Exception {
         surveyDAO.surveyEdit(dto);
+    }
+
+    @Override
+    public Survey ckAuthor(int par, String author) throws Exception {
+        return surveyDAO.ckAuthor(par, author);
     }
 }

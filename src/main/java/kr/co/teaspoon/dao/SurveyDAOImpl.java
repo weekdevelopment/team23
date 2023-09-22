@@ -5,7 +5,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class SurveyDAOImpl implements SurveyDAO {
@@ -41,5 +43,13 @@ public class SurveyDAOImpl implements SurveyDAO {
     @Override
     public void surveyEdit(Survey dto) throws Exception {
         sqlSession.update("survey.surveyEdit", dto);
+    }
+
+    @Override
+    public Survey ckAuthor(int par, String author) throws Exception {
+        Map<String, Object> map = new HashMap<>();
+        map.put("par", par);
+        map.put("author", author);
+        return sqlSession.selectOne("survey.ckAuthor",map);
     }
 }

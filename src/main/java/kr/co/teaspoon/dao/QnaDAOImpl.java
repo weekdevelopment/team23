@@ -76,4 +76,6 @@ public class QnaDAOImpl implements QnaDAO {
     public List<Qna> commentCount() throws Exception {
         return sqlSession.selectList("qna.commentCount");
     }
+
+
 }

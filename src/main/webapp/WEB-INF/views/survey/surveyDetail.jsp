@@ -43,91 +43,88 @@
                 <div class="row column text-center">
                     <h2 class="h1">설문 게시판 상세 보기</h2>
                     <hr>
-                    <div class="container">
-                        <form id="frm1" name="frm1" action="${path1 }/survey/sanswerInsert.do" method="post">
-                            <table id="table1">
-                                <tbody>
-                                <tr>
-                                    <th style="background-color:#dcdcdc">글 번호</th>
-                                    <td >${dto.sno }</td>
-                                </tr>
-                                <tr>
-                                    <th style="background-color:#dcdcdc">글 제목</th>
-                                    <td>${dto.title }</td>
-                                    <input type="hidden" id="title" name="title" value="${dto.title }" >
-                                </tr>
-                                <tr>
-                                    <th style="background-color:#dcdcdc">글 내용</th>
-                                    <td>
-                                        <input type="hidden" id="sno" name="sno" value="${dto.sno }">
-                                        <input type="hidden" id="sid" name="sid" value="${sid }">
-                                        <input type="radio" id="q1" name="ans" value="1">
-                                        <label for="q1">${dto.q1 }</label><br>
-                                        <c:if test="${not empty dto.q2 }">
-                                            <input type="radio" id="q2" name="ans" value="2">
-                                            <label for="q2">${dto.q2 }</label><br>
-                                        </c:if>
-                                        <c:if test="${not empty dto.q3 }">
-                                            <input type="radio" id="q3" name="ans" value="3">
-                                            <label for="q3">${dto.q3 }</label><br>
-                                        </c:if>
-                                        <c:if test="${not empty dto.q4 }">
-                                            <input type="radio" id="q4" name="ans" value="4">
-                                            <label for="q4">${dto.q4 }</label><br>
-                                        </c:if>
-                                        <c:if test="${not empty dto.q5 }">
-                                            <input type="radio" id="q5" name="ans" value="5">
-                                            <label for="q5">${dto.q5 }</label><br>
-                                        </c:if>
-                                        <c:if test="${not empty dto.q6 }">
-                                            <input type="radio" id="q6" name="ans" value="6">
-                                            <label for="q6">${dto.q6 }</label><br>
-                                        </c:if>
-                                        <c:if test="${not empty dto.q7 }">
-                                            <input type="radio" id="q7" name="ans" value="7">
-                                            <label for="q7">${dto.q7 }</label><br>
-                                        </c:if>
-                                        <c:if test="${not empty dto.q8 }">
-                                            <input type="radio" id="q8" name="ans" value="8">
-                                            <label for="q8">${dto.q8 }</label><br>
-                                        </c:if>
-                                        <c:if test="${not empty dto.q9 }">
-                                            <input type="radio" id="q9" name="ans" value="9">
-                                            <label for="q9">${dto.q9 }</label><br>
-                                        </c:if>
-                                        <c:if test="${not empty dto.q10 }">
-                                            <input type="radio" id="q10" name="ans" value="10">
-                                            <label for="q10">${dto.q10 }</label><br>
-                                        </c:if>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th style="background-color:#dcdcdc">작성자</th>
-                                    <td>${dto.author}</td>
-                                </tr>
-                                <tr>
-                                    <th style="background-color:#dcdcdc">작성일시</th>
-                                    <td>${dto.regdate }</td>
-                                </tr>
-                                <tr>
-                                    <th style="background-color:#dcdcdc">읽은 횟수</th>
-                                    <td>${dto.visited }</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="3">
-                                        <a class="button is-info" href="${path1 }/survey/list.do">글 목록</a>
-                                        <input type="submit" class="submit success button" value="설문 답변 등록" >
-                                        <input type="reset" class="reset button" value="취소" >
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </form>
-                        <div class="button-group">
-                            <c:if test="${sid.equals('admin')}">
-                                <a class="button is-primary" href="${path1 }/survey/delete.do?sno=${dto.sno}">글 삭제</a>
-                                <a class="button is-danger" href="${path1 }/survey/edit.do?sno=${dto.sno}">글 수정</a>
-                            </c:if>
+                    <div class="card article">
+                        <div class="card-content">
+                            <form id="frm1" name="frm1" action="${path1 }/survey/sanswerInsert.do" method="post" onsubmit="return ckAuthor(this)>
+                                <table id="table1">
+                                    <tbody>
+                                    <tr>
+                                        <td class="title">${dto.title }</td>
+                                        <input type="hidden" id="title" name="title" value="${dto.title }" >
+                                    </tr>
+                                    <tr>
+                                        <td class="content">${dto.content }</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-size: 1.5em;">
+                                            <input type="hidden" id="sno" name="sno" value="${dto.sno }">
+                                            <input type="hidden" id="sid" name="sid" value="${sid }">
+                                            <input type="radio" id="q1" name="ans" value="1">
+                                            <label for="q1">${dto.q1 }</label><br>
+                                            <c:if test="${not empty dto.q2 }">
+                                                <input type="radio" id="q2" name="ans" value="2">
+                                                <label for="q2">${dto.q2 }</label><br>
+                                            </c:if>
+                                            <c:if test="${not empty dto.q3 }">
+                                                <input type="radio" id="q3" name="ans" value="3">
+                                                <label for="q3">${dto.q3 }</label><br>
+                                            </c:if>
+                                            <c:if test="${not empty dto.q4 }">
+                                                <input type="radio" id="q4" name="ans" value="4">
+                                                <label for="q4">${dto.q4 }</label><br>
+                                            </c:if>
+                                            <c:if test="${not empty dto.q5 }">
+                                                <input type="radio" id="q5" name="ans" value="5">
+                                                <label for="q5">${dto.q5 }</label><br>
+                                            </c:if>
+                                            <c:if test="${not empty dto.q6 }">
+                                                <input type="radio" id="q6" name="ans" value="6">
+                                                <label for="q6">${dto.q6 }</label><br>
+                                            </c:if>
+                                            <c:if test="${not empty dto.q7 }">
+                                                <input type="radio" id="q7" name="ans" value="7">
+                                                <label for="q7">${dto.q7 }</label><br>
+                                            </c:if>
+                                            <c:if test="${not empty dto.q8 }">
+                                                <input type="radio" id="q8" name="ans" value="8">
+                                                <label for="q8">${dto.q8 }</label><br>
+                                            </c:if>
+                                            <c:if test="${not empty dto.q9 }">
+                                                <input type="radio" id="q9" name="ans" value="9">
+                                                <label for="q9">${dto.q9 }</label><br>
+                                            </c:if>
+                                            <c:if test="${not empty dto.q10 }">
+                                                <input type="radio" id="q10" name="ans" value="10">
+                                                <label for="q10">${dto.q10 }</label><br>
+                                            </c:if>
+                                        </td>
+                                    </tr>
+                                    <c:if test="${empty sid}">
+                                    <tr>
+                                        <td>
+                                            <p>설문은 로그인을 한 후에 참여할 수 있습니다.</p>
+                                        </td>
+                                    </tr>
+                                    </c:if>
+                                    <c:if test="${not empty sid && !sid.equals('admin')}">
+                                        <tr>
+                                            <td colspan="3">
+                                                <a class="button is-info" href="${path1 }/survey/list.do">글 목록</a>
+                                                <input type="submit" class="submit success button" value="설문 답변 등록" >
+                                                <input type="reset" class="reset button" value="취소" >
+                                            </td>
+                                        </tr>
+                                    </c:if>
+                                    </tbody>
+                                </table>
+                            </form>
+                            <div class="button-group">
+                                <c:if test="${sid.equals('admin')}">
+                                    <br>
+                                    <a class="button is-primary" href="${path1 }/survey/delete.do?sno=${dto.sno}">글 삭제(관리자)</a>
+                                    <a class="button is-danger" href="${path1 }/survey/edit.do?sno=${dto.sno}">글 수정(관리자)</a>
+                                </c:if>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -137,5 +134,13 @@
     <!-- 푸터 부분 인클루드 -->
     <jsp:include page="../include/ft.jsp"></jsp:include>
 </div>
+<script>
+    function ckAuthor(){
+        if(${msg}){
+            alert(${msg});
+            return false;
+        }
+    }
+</script>
 </body>
 </html>
