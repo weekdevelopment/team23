@@ -2,7 +2,9 @@ package kr.co.teaspoon.service;
 
 import kr.co.teaspoon.dao.FreeDAO;
 import kr.co.teaspoon.dto.Free;
+import kr.co.teaspoon.dto.FreeComment;
 import kr.co.teaspoon.dto.Reco;
+import kr.co.teaspoon.util.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +17,8 @@ public class FreeServiceImpl implements FreeService {
     private FreeDAO freeDAO;
 
     @Override
-    public List<Free> freeList() throws Exception {
-        return freeDAO.freeList();
+    public List<Free> freeList(Page page) throws Exception {
+        return freeDAO.freeList(page);
     }
 
     @Override
@@ -40,8 +42,38 @@ public class FreeServiceImpl implements FreeService {
     }
 
     @Override
+    public int totalCount(Page page) throws Exception {
+        return freeDAO.totalCount(page);
+    }
+
+    @Override
     public List<Free> freeBestRecList() throws Exception {
         return freeDAO.freeBestRecList();
+    }
+
+    @Override
+    public List<Free> freeBestCmtList() throws Exception {
+        return freeDAO.freeBestCmtList();
+    }
+
+    @Override
+    public List<FreeComment> freeCommentList(int bno) throws Exception {
+        return freeDAO.freeCommentList(bno);
+    }
+
+    @Override
+    public void commentInsert(FreeComment dto) throws Exception {
+        freeDAO.commentInsert(dto);
+    }
+
+    @Override
+    public void commentDelete(int cno) throws Exception {
+        freeDAO.commentDelete(cno);
+    }
+
+    @Override
+    public List<Free> commentCount() throws Exception {
+        return freeDAO.commentCount();
     }
 
     @Override

@@ -13,6 +13,16 @@
 	<title>자유게시판 글 보기</title>
     <!-- 헤드 부분 인클루드 -->
     <jsp:include page="../include/head.jsp"></jsp:include>
+    <style>
+        .commentnull {
+            min-height: 100px;
+            text-align: center;
+            width: 100%;
+            margin: 72px 0px 0px 110px;
+            font-size: 20px;
+            font-weight: 700;
+        }
+    </style>
 </head>
 <body>
 <!-- 헤더 부분 인클루드 -->
@@ -71,7 +81,7 @@
                 </p>
 
                 <div class="columns mt-5">
-                    <div class="column is-3"></div>
+                    <%--<div class="column is-3"></div>
                     <div class="column is-2">
                         <a class="button is-fullwidth is-info" href="${path1 }/free/list.do">글 목록</a>
                     </div>
@@ -81,20 +91,77 @@
                     <div class="column is-2">
                         <a class="button is-fullwidth is-danger" href="${path1 }/free/delete.do?bno=${freeDTO.bno}">글 삭제</a>
                     </div>
-                    <div class="column is-3"></div>
+                    <div class="column is-3"></div>--%>
+                    <c:choose>
+                        <c:when test="${not empty sid && (sid eq 'admin' || sid eq freeDTO.id)}">
+                            <div class="column is-3"></div>
+                            <div class="column is-2">
+                                <a class="button is-fullwidth is-info" href="${path1 }/free/list.do">글 목록</a>
+                            </div>
+                            <div class="column is-2">
+                                <a class="button is-fullwidth is-primary" href="${path1 }/free/edit.do?bno=${freeDTO.bno}">글 수정</a>
+                            </div>
+                            <div class="column is-2">
+                                <a class="button is-fullwidth is-danger" href="${path1 }/free/delete.do?nno=${freeDTO.bno}">글 삭제</a>
+                            </div>
+                            <div class="column is-3"></div>
+                        </c:when>
+                        <c:otherwise>
+                            <div class="column is-5"></div>
+                            <div class="column is-2">
+                                <a class="button is-fullwidth is-info" href="${path1 }/free/list.do">글 목록</a>
+                            </div>
+                            <div class="column is-5"></div>
+                        </c:otherwise>
+                    </c:choose>
+
                 </div>
             </div>
 
             <div class="cmtwrap">
-                <form action="/" method="post" class="columns mt-5">
+                <c:if test="${!empty sid}">
+                    <form action="${path1 }/free/detail.do?bno=${freeDTO.bno }" method="post" class="columns mt-5">
+                        <div class="column is-10">
+                            <textarea class="textarea" name="content" id="content" placeholder="댓글을 입력해주세요." rows="2" cols="30" maxlength="800" required></textarea>
+                            <input type="hidden" name="author" id="author" value="${sid }">
+                            <input type="hidden" name="bno" id="bno" value="${freeDTO.bno }">
+                        </div>
+                        <div class="column is-2">
+                            <button type="submit" class="button is-fullwidth submission">등록</button>
+                        </div>
+                    </form>
+                </c:if>
+                <c:if test="${empty sid}">
                     <div class="column is-10">
-                        <textarea class="textarea" name="content" id="content" placeholder="댓글을 입력해주세요."  rows="2" cols="30" maxlength="800" required></textarea>
+                        <div class="commentnull">댓글을 작성하려면 로그인을 하세요~!</div>
                     </div>
-                    <div class="column is-2">
-                        <button type="submit" class="button is-fullwidth submission">등록</button>
-                    </div>
-                </form>
+                </c:if>
             </div>
+            <c:forEach items="${commentList }" var="comment" varStatus="status">
+                <article class="media">
+                    <figure class="media-left">
+                        <div class="image is-64x64" style="border-radius: 50%; background-color: #2B3A55; color: #FFFFFF; ">
+                            <p style=" color: #FFFFFF; text-align: center; padding: 20px 0px;">
+                                    ${comment.name }
+                            </p>
+                        </div>
+                    </figure>
+                    <div class="media-content">
+                        <div class="content">
+                            <p style="line-height: 1.3;">
+                                <strong>${comment.name }</strong> <small> ${comment.author }</small> <small> ${comment.resdate }</small>
+                                <br>
+                            <p style="color: black; line-height: 1.3;">${comment.content }</p>
+                            </p>
+                        </div>
+                    </div>
+                    <c:if test='${sid eq comment.author }'>
+                        <div class="media-right">
+                            <a class="delete" style="background-color: #2B3A55" href="${path1 }/free/commentDelete.do?bno=${freeDTO.bno }&cno=${comment.cno }">x</a>
+                        </div>
+                    </c:if>
+                </article>
+            </c:forEach>
 
         </div>
     </div>

@@ -1,10 +1,9 @@
 package kr.co.teaspoon.controller;
 
-import kr.co.teaspoon.dto.Free;
-import kr.co.teaspoon.dto.Member;
-import kr.co.teaspoon.dto.Reco;
+import kr.co.teaspoon.dto.*;
 import kr.co.teaspoon.service.FreeService;
 import kr.co.teaspoon.service.MemberService;
+import kr.co.teaspoon.util.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +17,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.*;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Controller
@@ -35,11 +36,45 @@ public class FreeController {
     HttpSession session;
 
     @GetMapping("list.do")        //free/list.do
-    public String getfreeList(Model model) throws Exception {
-        List<Free> freeList = freeService.freeList();
+    public String getNoticeList(HttpServletRequest request, Model model) throws Exception {
+        String type = request.getParameter("type");
+        String keyword = request.getParameter("keyword");
+        int curPage = request.getParameter("page") != null ? Integer.parseInt(request.getParameter("page")) : 1;
+
+        Page page = new Page();
+        page.setSearchType(type);
+        page.setSearchKeyword(keyword);
+        int total = freeService.totalCount(page);
+
+        page.makeBlock(curPage, total);
+        page.makeLastPageNum(total);
+        page.makePostStart(curPage, total);
+
+        model.addAttribute("type", type);
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("page", page);
+        model.addAttribute("curPage", curPage);
+
+        List<Free> commentCount = freeService.commentCount();
+        Map<Integer, Integer> commentMap = new HashMap<>();
+        for (Free fr : commentCount) {
+            commentMap.put(fr.getBno(), fr.getCount());
+        }
+
+        List<Free> freeList = freeService.freeList(page);
         model.addAttribute("freeList", freeList);
         List<Free> freeBestRecList = freeService.freeBestRecList();
         model.addAttribute("freeBestRecList", freeBestRecList);
+        List<Free> freeBestCmtList = freeService.freeBestCmtList();
+        model.addAttribute("freeBestCmtList", freeBestCmtList);
+        //System.out.println("최다 댓글 리스트 : " + freeBestCmtList);
+        for (Free fr :freeBestCmtList) {
+            fr.setCount(commentMap.get(fr.getBno()));
+        }
+        for (Free free : freeList) {
+            int bno = free.getBno();
+            free.setCount(commentMap.get(bno));
+        }
         return "/free/freeList";
     }
 
@@ -56,7 +91,31 @@ public class FreeController {
         model.addAttribute("recoDTO", recoDTO);
         model.addAttribute("memberDTO", memberDTO);
 
+        List<FreeComment> commentList = freeService.freeCommentList(bno);
+        //System.out.printf("bno : %d, id : %s\n", bno, id);
+        //System.out.println("댓글 목록 : " + commentList);
+
+        model.addAttribute("commentList", commentList);
         return "/free/freeDetail";
+    }
+
+    @PostMapping("detail.do")
+    public String commentInsert(HttpServletRequest request, Model model) throws Exception {
+        int bno = Integer.parseInt(request.getParameter("bno"));
+        FreeComment dto = new FreeComment();
+        dto.setContent(request.getParameter("content"));
+        dto.setBno(bno);
+        dto.setAuthor(request.getParameter("author"));
+        freeService.commentInsert(dto);
+        return "redirect:detail.do?bno="+bno;
+    }
+
+    @GetMapping("commentDelete.do")
+    public String commentDelete(HttpServletRequest request, Model model) throws Exception {
+        int bno = Integer.parseInt(request.getParameter("bno"));
+        int cno = Integer.parseInt(request.getParameter("cno"));
+        freeService.commentDelete(cno);
+        return "redirect:detail.do?bno="+bno;
     }
 
     @GetMapping("insert.do")
