@@ -21,6 +21,9 @@
 <link rel="stylesheet" href="${path0}/resources/css/forum.css" />
 <link rel="stylesheet" href="${path0}/resources/css/blog.css" />
 
+
 <script defer src="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.4/dist/js/bulma-carousel.min.js"></script>
 <script defer src="${path0}/resources/js/scripts.js"></script>
-<script src="${path0}/resources/js/jquery-3.7.1.js"></script>
+<script defer src="${path0}/resources/js/animation.js"></script>
+<script defer src="${path0}/resources/js/common.js"></script>
+<script defer src="${path0}/resources/js/jquery-3.7.1.js"></script>
