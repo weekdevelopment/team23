@@ -26,4 +26,4 @@
 <script defer src="${path0}/resources/js/scripts.js"></script>
 <script defer src="${path0}/resources/js/animation.js"></script>
 <script defer src="${path0}/resources/js/common.js"></script>
-<script defer src="${path0}/resources/js/jquery-3.7.1.js"></script>
+<script src="${path0}/resources/js/jquery-3.7.1.js"></script>
