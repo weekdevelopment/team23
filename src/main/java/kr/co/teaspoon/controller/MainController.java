@@ -1,8 +1,10 @@
 package kr.co.teaspoon.controller;
 
 import kr.co.teaspoon.dto.Edumag;
+import kr.co.teaspoon.dto.Free;
 import kr.co.teaspoon.dto.Notice;
 import kr.co.teaspoon.service.EdumagService;
+import kr.co.teaspoon.service.FreeService;
 import kr.co.teaspoon.service.NoticeService;
 import kr.co.teaspoon.util.Page;
 import org.slf4j.Logger;
@@ -25,6 +27,9 @@ public class MainController {
     private NoticeService noticeService;
 
     @Autowired
+    private FreeService freeService;
+
+    @Autowired
     private EdumagService edumagService;
 
     // 메인 페이지 이동
@@ -44,6 +49,8 @@ public class MainController {
         model.addAttribute("newEdumag", newEdumag);
         System.out.println("newEdumag"+newEdumag);
 
+        List<Free> freeBestRecList = freeService.freeBestRecList();
+        model.addAttribute("freeBestRecList", freeBestRecList);
         return "/main";
     }
 
