@@ -26,9 +26,6 @@
 		.icon {
 			color: #2B3A55;
 		}
-		.menu-list a {
-			min-width: 159px;
-		}
 		.pagination-link.is-current {
 			background-color:#2B3A55;
 			border-color: #2B3A55;
@@ -115,7 +112,7 @@
                                                 </td>
                                                 <%--<td class="level-right"><a class="button is-small is-primary" href="#">Action</a></td>--%>
                                                 <td class="level-right">
-                                                    &#x1F44D; ${free.rec }
+													<i class="fa fa-regular fa-thumbs-up" style="font-weight: normal"> ${free.rec }</i>
                                                 </td>
                                             </tr>
                                             </tbody>
@@ -142,7 +139,8 @@
 													&#${9311+status.count} <a href="${path1}/free/detail.do?bno=${free.bno }">${free.title }</a>
 												</td>
 												<td class="level-right">
-													&#x1F5E8; ${free.count }
+													<%--&#x1F5E8; ${free.count }--%>
+														<i class="fa fa-regular fa-comment" style="font-weight: normal"> ${free.count }</i>
 												</td>
 											</tr>
 											</tbody>

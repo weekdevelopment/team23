@@ -96,10 +96,10 @@
                         <c:when test="${not empty sid && (sid eq 'admin' || sid eq freeDTO.id)}">
                             <div class="column is-3"></div>
                             <div class="column is-2">
-                                <a class="button is-fullwidth is-info" href="${path1 }/free/list.do">글 목록</a>
+                                <a class="button is-fullwidth" style="background-color: #2B3A55; color: #fff" href="${path1 }/free/list.do">글 목록</a>
                             </div>
                             <div class="column is-2">
-                                <a class="button is-fullwidth is-primary" href="${path1 }/free/edit.do?bno=${freeDTO.bno}">글 수정</a>
+                                <a class="button is-fullwidth is-info" href="${path1 }/free/edit.do?bno=${freeDTO.bno}">글 수정</a>
                             </div>
                             <div class="column is-2">
                                 <a class="button is-fullwidth is-danger" href="${path1 }/free/delete.do?nno=${freeDTO.bno}">글 삭제</a>
@@ -132,7 +132,7 @@
                     </form>
                 </c:if>
                 <c:if test="${empty sid}">
-                    <div class="column is-10">
+                    <div class="column is-10 mb-5">
                         <div class="commentnull">댓글을 작성하려면 로그인을 하세요~!</div>
                     </div>
                 </c:if>
