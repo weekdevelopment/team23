@@ -66,20 +66,19 @@
                             <p class="title">자유게시판</p>
                             <p class="subtitle">Best 게시물</p>
                             <c:choose>
-                                <c:when test="${empty freeRecList}">
+                                <c:when test="${empty freeBestRecList}">
                                     <p>Best 게시물이 없습니다.</p>
                                 </c:when>
                                 <c:otherwise>
-                                    <c:forEach items="${freeRecList}" var="free" varStatus="status">
+                                    <c:forEach items="${freeBestRecList}" var="free" varStatus="status">
                                         <!-- 첫 5개 Best 게시물만 표시 -->
-                                        <c:if test="${status.index < 5}">
-                                            <a href="${path1}/free/detail.do?fno=${free.fno}">
-                                                <div>
-                                                        ${free.title}
-                                                </div>
-                                            </a>
-                                            <hr style="margin: 0.5rem 0;"/>
-                                        </c:if>
+                                        <a href="${path1}/free/detail.do?fno=${free.bno}" style="text-decoration-line: none;">
+                                            <div>
+                                                <i class="fa fa-regular fa-thumbs-up" style="color: #2B3A55; margin: 11px 11px;"></i>
+                                                    ${free.title}
+                                            </div>
+                                        </a>
+                                        <hr style="margin: 0.5rem 0;"/>
                                     </c:forEach>
                                 </c:otherwise>
                             </c:choose>

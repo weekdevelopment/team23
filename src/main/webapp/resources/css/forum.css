@@ -136,6 +136,21 @@ article.post:last-child {
     color: #666666;
 }
 
+.img-container {
+    display: flex;
+    justify-content: center;
+    margin: 1px 1px 1px 1px;
+    /*align-items: center;*/
+}
+
+.img-container img {
+    transition: transform 0.2s;
+}
+
+.img-container img:hover {
+    transform: scale(1.1);
+}
+
 /*.menu-list li:first-child{
     border-top: none;
     margin-top: 3px;
