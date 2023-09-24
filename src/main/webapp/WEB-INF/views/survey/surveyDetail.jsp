@@ -45,7 +45,7 @@
                     <hr>
                     <div class="card article">
                         <div class="card-content">
-                            <form id="frm1" name="frm1" action="${path1 }/survey/sanswerInsert.do" method="post" onsubmit="return ckAuthor(this)>
+                            <form id="frm1" name="frm1" action="${path1 }/survey/sanswerInsert.do" method="post" onsubmit="return ckAuthor()">
                                 <table id="table1">
                                     <tbody>
                                     <tr>
@@ -100,6 +100,7 @@
                                         </td>
                                     </tr>
                                     <c:if test="${empty sid}">
+                                    <br>
                                     <tr>
                                         <td>
                                             <p>설문은 로그인을 한 후에 참여할 수 있습니다.</p>
@@ -136,9 +137,11 @@
 </div>
 <script>
     function ckAuthor(){
-        if(${msg}){
-            alert(${msg});
-            return false;
+        if(${check != null}) {
+            alert("이미 설문을 작성하셨습니다. + ${check}");
+        }
+        if(${check == null}) {
+            alert("설문 등록이 완료되었습니다. + ${check}");
         }
     }
 </script>

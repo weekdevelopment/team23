@@ -62,7 +62,7 @@ public class SurveyServiceImpl implements SurveyService{
     }
 
     @Override
-    public Survey ckAuthor(int par, String author) throws Exception {
-        return surveyDAO.ckAuthor(par, author);
+    public Survey ckAuthor(Survey dto) throws Exception {
+        return surveyDAO.ckAuthor(dto);
     }
 }
