@@ -26,6 +26,7 @@
 <!--    <resources mapping="/sample/**" location="/WEB-INF/views/sample" />-->
 <!--    <resources mapping="/sample2/**" location="/WEB-INF/views/sample2" />-->
     <resources mapping="/test/**" location="/WEB-INF/views/test" />
+    <resources mapping="/booktalk/**" location="/WEB-INF/views/booktalk" />
 
     <!-- 컨트롤러에서 던진 URL : /notice/noticeList -->
     <!-- 실제 존재하는 URL : /WEB-INF/views/notice/noticeList.jsp -->

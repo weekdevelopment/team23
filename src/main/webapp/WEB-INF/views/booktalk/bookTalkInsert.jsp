@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-		 pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri = "http://java.sun.com/jsp/jstl/functions"%>
@@ -7,12 +7,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>글 수정하기</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>자유 게시판 글쓰기</title>
 	<!-- 헤드 부분 인클루드 -->
-	<jsp:include page="../include/head.jsp"></jsp:include>
+    <jsp:include page="../include/head.jsp"></jsp:include>
 	<!-- <script src="https://cdn.ckeditor.com/4.20.0/standard/ckeditor.js"></script> -->
 	<script type="text/javascript" src="${path1 }/resources/ckeditor/ckeditor.js"></script>
 </head>
@@ -39,29 +39,26 @@
 		<div class="column is-10">
 			<div class="conwrap">
 				<div class="box">
-					<span class="title">자유게시판</span>
+					<span class="title">교재게시판</span>
 				</div>
 			</div>
 
 			<div class="formwrap">
-				<form action="${path1 }/free/edit.do" method="post">
+				<form action="${path1 }/booktalk/insert.do" method="post">
 					<div class="field">
 						<label class="label" for="title">제목</label>
 						<div class="control">
-							<input type="hidden" name="bno" id="bno" value="${dto.bno }" >
-							<input type="text" name="title" id="title" class="input" value="${dto.title }" maxlength="98" required>
+							<input type="text" name="title" id="title" class="input" maxlength="98" required>
 						</div>
 					</div>
 					<div class="field">
 						<label class="label" for="content">내용</label>
-						<textarea name="content" class="textarea" id="content" placeholder="내용 입력" rows="8" cols="100" maxlength="800" required>
-							${dto.content }
-						</textarea>
+						<textarea name="content" id="content" class="textarea" rows="8" cols="100" maxlength="1400" required></textarea>
 						<script>
-							CKEDITOR.replace('content',	{filebrowserUploadUrl:'${path1}/free/imageUpload.do'});
+							CKEDITOR.replace('content',	{filebrowserUploadUrl:'${path1}/booktalk/imageUpload.do'});
 						</script>
 					</div>
-					<button type="submit" class="button post-btn">글 수정</button>
+					<button type="submit" class="button post-btn">글 등록</button>
 				</form>
 			</div>
 		</div>

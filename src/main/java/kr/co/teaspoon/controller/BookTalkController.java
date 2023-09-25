@@ -1,7 +1,10 @@
 package kr.co.teaspoon.controller;
 
-import kr.co.teaspoon.dto.*;
-import kr.co.teaspoon.service.FreeService;
+import kr.co.teaspoon.dto.BookTalk;
+import kr.co.teaspoon.dto.BookTalkComment;
+import kr.co.teaspoon.dto.Member;
+import kr.co.teaspoon.dto.Reco;
+import kr.co.teaspoon.service.BookTalkService;
 import kr.co.teaspoon.service.MemberService;
 import kr.co.teaspoon.util.Page;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +26,10 @@ import java.util.Map;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/free/*")
-public class FreeController {
-
+@RequestMapping("/booktalk/*")
+public class BookTalkController {
     @Autowired
-    private FreeService freeService;
+    private BookTalkService bookTalkService;
 
     @Autowired
     private MemberService memberService;
@@ -35,8 +37,8 @@ public class FreeController {
     @Autowired
     HttpSession session;
 
-    @GetMapping("list.do")        //free/list.do
-    public String getFreeList(HttpServletRequest request, Model model) throws Exception {
+    @GetMapping("list.do")        //booktalk/list.do
+    public String getBookTalkList(HttpServletRequest request, Model model) throws Exception {
         String type = request.getParameter("type");
         String keyword = request.getParameter("keyword");
         int curPage = request.getParameter("page") != null ? Integer.parseInt(request.getParameter("page")) : 1;
@@ -44,7 +46,7 @@ public class FreeController {
         Page page = new Page();
         page.setSearchType(type);
         page.setSearchKeyword(keyword);
-        int total = freeService.totalCount(page);
+        int total = bookTalkService.totalCount(page);
 
         page.makeBlock(curPage, total);
         page.makeLastPageNum(total);
@@ -55,107 +57,110 @@ public class FreeController {
         model.addAttribute("page", page);
         model.addAttribute("curPage", curPage);
 
-        List<Free> commentCount = freeService.commentCount();
+        List<BookTalk> commentCount = bookTalkService.commentCount();
         Map<Integer, Integer> commentMap = new HashMap<>();
-        for (Free fr : commentCount) {
-            commentMap.put(fr.getBno(), fr.getCount());
+        for (BookTalk bt : commentCount) {
+            commentMap.put(bt.getBno(), bt.getCount());
         }
 
-        List<Free> freeList = freeService.freeList(page);
-        model.addAttribute("freeList", freeList);
-        List<Free> freeBestRecList = freeService.freeBestRecList();
-        model.addAttribute("freeBestRecList", freeBestRecList);
-        List<Free> freeBestCmtList = freeService.freeBestCmtList();
-        model.addAttribute("freeBestCmtList", freeBestCmtList);
-        //System.out.println("최다 댓글 리스트 : " + freeBestCmtList);
-        for (Free fr :freeBestCmtList) {
-            fr.setCount(commentMap.get(fr.getBno()));
+        List<BookTalk> bookTalkList = bookTalkService.bookTalkList(page);
+        model.addAttribute("bookTalkList", bookTalkList);
+        List<BookTalk> bookTalkBestRecList = bookTalkService.bookTalkBestRecList();
+        model.addAttribute("bookTalkBestRecList", bookTalkBestRecList);
+        List<BookTalk> bookTalkBestCmtList = bookTalkService.bookTalkBestCmtList();
+        model.addAttribute("bookTalkBestCmtList", bookTalkBestCmtList);
+        //System.out.println("최다 댓글 리스트 : " + bookTalkBestCmtList);
+        for (BookTalk bt : bookTalkBestCmtList) {
+            bt.setCount(commentMap.get(bt.getBno()));
         }
-        for (Free free : freeList) {
-            int bno = free.getBno();
-            free.setCount(commentMap.get(bno));
+        for (BookTalk bt : bookTalkList) {
+            int bno = bt.getBno();
+            bt.setCount(commentMap.get(bno));
         }
-        return "/free/freeList";
+        return "/booktalk/bookTalkList";
     }
 
-    @GetMapping("detail.do")    //free/detail.do?bno=1
-    public String getfreeDetail(HttpServletRequest request, Model model) throws Exception {
+    @GetMapping("detail.do")    //booktalk/detail.do?bno=1
+    public String getbookTalkDetail(HttpServletRequest request, Model model) throws Exception {
         int bno = Integer.parseInt(request.getParameter("bno"));
         String id = (String) session.getAttribute("sid");
 
-        Free freeDTO = freeService.freeDetail(bno);
-        Reco recoDTO = freeService.findReco(bno, id);
+        BookTalk bookTalkDTO = bookTalkService.bookTalkDetail(bno);
+        Reco recoDTO = bookTalkService.findReco(bno, id);
         Member memberDTO = memberService.getMember(id);
 
-        model.addAttribute("freeDTO", freeDTO);
+        model.addAttribute("bookTalkDTO", bookTalkDTO);
         model.addAttribute("recoDTO", recoDTO);
         model.addAttribute("memberDTO", memberDTO);
 
-        List<FreeComment> commentList = freeService.freeCommentList(bno);
+        List<BookTalkComment> commentList = bookTalkService.bookTalkCommentList(bno);
         //System.out.printf("bno : %d, id : %s\n", bno, id);
         //System.out.println("댓글 목록 : " + commentList);
 
         model.addAttribute("commentList", commentList);
-        return "/free/freeDetail";
+
+        System.out.printf("bno : %d, id : %s\n", bno, id);
+        System.out.println("북토크 : " + bookTalkDTO);
+        return "/booktalk/bookTalkDetail";
     }
 
     @PostMapping("detail.do")
     public String commentInsert(HttpServletRequest request, Model model) throws Exception {
         int bno = Integer.parseInt(request.getParameter("bno"));
-        FreeComment dto = new FreeComment();
+        BookTalkComment dto = new BookTalkComment();
         dto.setContent(request.getParameter("content"));
         dto.setBno(bno);
         dto.setAuthor(request.getParameter("author"));
-        freeService.commentInsert(dto);
-        return "redirect:detail.do?bno="+bno;
+        bookTalkService.commentInsert(dto);
+        return "redirect:detail.do?bno=" + bno;
     }
 
     @GetMapping("commentDelete.do")
     public String commentDelete(HttpServletRequest request, Model model) throws Exception {
         int bno = Integer.parseInt(request.getParameter("bno"));
         int cno = Integer.parseInt(request.getParameter("cno"));
-        freeService.commentDelete(cno);
-        return "redirect:detail.do?bno="+bno;
+        bookTalkService.commentDelete(cno);
+        return "redirect:detail.do?bno=" + bno;
     }
 
     @GetMapping("insert.do")
     public String insertForm(HttpServletRequest request, Model model) throws Exception {
-        return "/free/freeInsert";
+        return "/booktalk/bookTalkInsert";
     }
 
     @PostMapping("insert.do")
-    public String freeInsert(HttpServletRequest request, Model model) throws Exception {
-        Free dto = new Free();
+    public String bookTalkInsert(HttpServletRequest request, Model model) throws Exception {
+        BookTalk dto = new BookTalk();
         dto.setTitle(request.getParameter("title"));
         dto.setContent(request.getParameter("content"));
         dto.setId((String) session.getAttribute("sid"));
-        freeService.freeInsert(dto);
+        bookTalkService.bookTalkInsert(dto);
         return "redirect:list.do";
     }
 
     @GetMapping("delete.do")
-    public String freeDelete(HttpServletRequest request, Model model) throws Exception {
+    public String bookTalkDelete(HttpServletRequest request, Model model) throws Exception {
         int bno = Integer.parseInt(request.getParameter("bno"));
-        freeService.freeDelete(bno);
+        bookTalkService.bookTalkDelete(bno);
         return "redirect:list.do";
     }
 
     @GetMapping("edit.do")
     public String editForm(HttpServletRequest request, Model model) throws Exception {
         int bno = Integer.parseInt(request.getParameter("bno"));
-        Free dto = freeService.freeDetail(bno);
+        BookTalk dto = bookTalkService.bookTalkDetail(bno);
         model.addAttribute("dto", dto);
-        return "/free/freeEdit";
+        return "/booktalk/bookTalkEdit";
     }
 
     @PostMapping("edit.do")
-    public String freeEdit(HttpServletRequest request, Model model) throws Exception {
+    public String bookTalkEdit(HttpServletRequest request, Model model) throws Exception {
         int bno = Integer.parseInt(request.getParameter("bno"));
-        Free dto = new Free();
+        BookTalk dto = new BookTalk();
         dto.setBno(bno);
         dto.setTitle(request.getParameter("title"));
         dto.setContent(request.getParameter("content"));
-        freeService.freeEdit(dto);
+        bookTalkService.bookTalkEdit(dto);
         return "redirect:list.do";
     }
 
@@ -199,7 +204,7 @@ public class FreeController {
 
             String callback = request.getParameter("CKEditorFuncNum");
             printWriter = response.getWriter();
-            String fileUrl = "/team23_war/free/ckImgSubmit.do?uid=" + uid + "&fileName=" + fileName; // 작성화면
+            String fileUrl = "/team23_war/booktalk/ckImgSubmit.do?uid=" + uid + "&fileName=" + fileName; // 작성화면
 
             // 업로드시 메시지 출력
             printWriter.println("{\"filename\" : \"" + fileName + "\", \"uploaded\" : 1, \"url\":\"" + fileUrl + "\"}");
@@ -272,16 +277,10 @@ public class FreeController {
         }
     }
 
-//    @RequestMapping(value="rec", method=RequestMethod.POST)
-//    public @ResponseBody int rec(@ModelAttribute Reco reco) throws Exception {
-//        //int result = bs.insertLike(like);
-//        int result = freeService.insertReco(reco);
-//        return result;
-//    }
     @PostMapping("rec")
     @ResponseBody
     public int rec(@ModelAttribute Reco reco) throws Exception {
-        int result = freeService.insertReco(reco);
+        int result = bookTalkService.insertReco(reco);
         System.out.println("result : " + result);
         //reco.
 

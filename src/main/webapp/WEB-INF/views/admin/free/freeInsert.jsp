@@ -31,7 +31,7 @@
 						<a href="#">자유게시판</a>
 					</li>
 					<li>
-						<a href="#">교재게시판</a>
+						<a href="${path1}/booktalk/list.do">교재게시판</a>
 					</li>
 				</ul>
 			</aside>
