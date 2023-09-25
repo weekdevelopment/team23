@@ -64,18 +64,13 @@
 	</select>
 	<!-- 상위 댓글 5개 -->
 	<select id="freeBestCmtList" resultType="kr.co.teaspoon.dto.Free">
-		SELECT f.title, f.bno
+		SELECT f.bno, f.title, COUNT(c.bno) AS comment_count
 		FROM free f
-				 JOIN (
-			SELECT bno, COUNT(*) AS comment_count
-			FROM free_comment
-			GROUP BY bno
-			ORDER BY comment_count DESC
-				LIMIT 5 -- 댓글이 많은 게시글 중에서 5개만 가져옵니다.
-		) AS top_commented
-					  ON f.bno = top_commented.bno;
+				 JOIN free_comment c ON f.bno = c.bno
+		GROUP BY f.bno, f.title, f.content
+		ORDER BY comment_count DESC
+			LIMIT 5;
 	</select>
-
 
 	<sql id="criteria">
 		<where>
