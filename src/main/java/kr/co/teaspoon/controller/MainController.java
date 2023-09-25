@@ -3,9 +3,11 @@ package kr.co.teaspoon.controller;
 import kr.co.teaspoon.dto.Edumag;
 import kr.co.teaspoon.dto.Free;
 import kr.co.teaspoon.dto.Notice;
+import kr.co.teaspoon.dto.Survey;
 import kr.co.teaspoon.service.EdumagService;
 import kr.co.teaspoon.service.FreeService;
 import kr.co.teaspoon.service.NoticeService;
+import kr.co.teaspoon.service.SurveyService;
 import kr.co.teaspoon.util.Page;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,6 +34,9 @@ public class MainController {
     @Autowired
     private EdumagService edumagService;
 
+    @Autowired
+    private SurveyService surveyService;
+
     // 메인 페이지 이동
     @RequestMapping(value = "/main", method = RequestMethod.GET)
     public String mainPageGET(Model model) throws Exception {
@@ -51,6 +56,10 @@ public class MainController {
 
         List<Free> freeBestRecList = freeService.freeBestRecList();
         model.addAttribute("freeBestRecList", freeBestRecList);
+
+        Survey lastSurvey = new Survey();
+        lastSurvey = surveyService.lastSurvey();
+        model.addAttribute("lastSurvey",lastSurvey);
         return "/main";
     }
 

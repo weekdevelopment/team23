@@ -11,6 +11,11 @@
 	<select id="surveyDetail" resultType="kr.co.teaspoon.dto.Survey">
 		select * from survey where sno=#{sno}
 	</select>
+	<!-- 최신 글 1개 조회 -->
+	<select id="lastSurvey" resultType="kr.co.teaspoon.dto.Survey">
+		SELECT * FROM survey WHERE LEV=0 ORDER BY regdate desc LIMIT 1;
+	</select>
+
 	<!-- 답변 수 카운트 -->
 	<select id="totalCount" resultType="integer" >
 		select count(*) from survey where sno=#{sno}
