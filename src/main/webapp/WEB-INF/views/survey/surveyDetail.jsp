@@ -137,11 +137,10 @@
 </div>
 <script>
     function ckAuthor(){
-        if(${check != null}) {
-            alert("이미 설문을 작성하셨습니다. + ${check}");
-        }
-        if(${check == null}) {
-            alert("설문 등록이 완료되었습니다. + ${check}");
+        if(${result != null}) {
+            alert("이미 답변을 작성하신 설문입니다.");
+        } else {
+            alert("설문 등록이 완료되었습니다.");
         }
     }
 </script>
