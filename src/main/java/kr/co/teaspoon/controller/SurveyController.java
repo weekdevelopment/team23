@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.util.List;
 import java.util.UUID;
@@ -24,6 +25,9 @@ public class SurveyController {
     @Autowired
     private SurveyService surveyService;
 
+    @Autowired
+    HttpSession session;
+
     @GetMapping("list.do")
     public String getsurveyList(Model model) throws Exception {
         List<Survey> surveyList = surveyService.surveyList();
@@ -33,8 +37,16 @@ public class SurveyController {
 
     @GetMapping("detail.do")
     public String getsurveyDetail(HttpServletRequest request, Model model) throws Exception {
+        Survey dto = new Survey();
         int sno = Integer.parseInt(request.getParameter("sno"));
-        Survey dto = surveyService.surveyDetail(sno);
+        String sid = (String) session.getAttribute("sid");
+        dto.setPar(sno);
+        dto.setAuthor(sid);
+        Survey check = surveyService.ckAuthor(dto);
+
+        System.out.println("detail check : " + sno + sid + check);
+
+        dto = surveyService.surveyDetail(sno);
         model.addAttribute("dto", dto);
         return ("/survey/surveyDetail");
     }
@@ -65,27 +77,29 @@ public class SurveyController {
 
    @PostMapping("sanswerInsert.do")
     public String getsanserInsert(HttpServletRequest request, Model model) throws Exception {
-       String msg = "";
-       int par = Integer.parseInt(request.getParameter("sno"));
-       String author = request.getParameter("author");
-       Survey dto = surveyService.ckAuthor(par, author);
+       Survey dto = new Survey();
+       dto.setPar(Integer.parseInt(request.getParameter("sno")));
+       dto.setAuthor((String) session.getAttribute("sid"));
+       Survey check = surveyService.ckAuthor(dto);
 
-       model.addAttribute("dto", dto);
+       System.out.println("sanswer check : "+check);
 
-       if(model == null) {
+       if(check == null) {
            dto.setPar(Integer.parseInt(request.getParameter("sno")));
-           dto.setAuthor(request.getParameter("sid"));
+           dto.setAuthor((String) session.getAttribute("sid"));
            dto.setTitle(request.getParameter("title"));
            dto.setAns(Integer.parseInt(request.getParameter("ans")));
            surveyService.sanswerInsert(dto);
        }
-
-       if(model != null) {
-            msg = "이미 설문에 답변 하셨습니다.";
-       }
-
        return "redirect:list.do";
    }
+
+    @GetMapping("delete.do")
+    public String surveyDelete(HttpServletRequest request, Model model) throws Exception {
+        int sno = Integer.parseInt(request.getParameter("sno"));
+        surveyService.surveyDelete(sno);
+        return "redirect:list.do";
+    }
 
     //ckeditor를 이용한 이미지 업로드
     @RequestMapping(value="imageUpload.do", method = RequestMethod.POST)

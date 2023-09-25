@@ -71,7 +71,7 @@
                                             <tr>
                                                 <%--<td width="1%"><i class="fa fa-bell-o"></i></td>--%>
                                                 <td>
-                                                    &#${9311+status.count} <a href="${path1}/survey/detail.do?bno=${survey.bno }">${survey.title }</a>
+                                                    &#${9311+status.count} <a href="${path1}/survey/detail.do?sno=${survey.sno }">${survey.title }</a>
                                                 </td>
                                                 <%--<td class="level-right"><a class="button is-small is-primary" href="#">Action</a></td>--%>
                                                 <td class="level-right">

@@ -46,10 +46,7 @@ public class SurveyDAOImpl implements SurveyDAO {
     }
 
     @Override
-    public Survey ckAuthor(int par, String author) throws Exception {
-        Map<String, Object> map = new HashMap<>();
-        map.put("par", par);
-        map.put("author", author);
-        return sqlSession.selectOne("survey.ckAuthor",map);
+    public Survey ckAuthor(Survey dto) throws Exception {
+        return sqlSession.selectOne("survey.ckAuthor", dto);
     }
 }
