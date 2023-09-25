@@ -71,15 +71,17 @@
                                 </c:when>
                                 <c:otherwise>
                                     <c:forEach items="${freeBestRecList}" var="free" varStatus="status">
-                                        <!-- 첫 5개 Best 게시물만 표시 -->
-                                        <a href="${path1}/free/detail.do?fno=${free.bno}" style="text-decoration-line: none;">
-                                            <div>
-                                                <i class="fa fa-regular fa-thumbs-up" style="color: #2B3A55; margin: 11px 11px;"></i>
-                                                    ${free.title}
-                                            </div>
-                                        </a>
-                                        <hr style="margin: 0.5rem 0;"/>
+                                        <!-- 첫 3개 Best 게시물만 표시 -->
+                                        <c:if test="${status.index < 3}">
+                                            <a href="${path1}/free/detail.do?bno=${free.bno}" style="text-decoration-line: none;">
+                                                <div>
+                                                    <i class="fa fa-regular fa-thumbs-up" style="color: #2B3A55; margin: 11px 11px;"></i>
+                                                        ${free.title}
+                                                </div>
+                                            </a>
+                                        </c:if>
                                     </c:forEach>
+
                                 </c:otherwise>
                             </c:choose>
                         </article>

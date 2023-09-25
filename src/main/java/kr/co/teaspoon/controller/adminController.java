@@ -75,7 +75,6 @@ public class adminController {
         return "/admin/adminDashboard"; // main.jsp로 이동
     }
 
-
     // 관리자가 회원 리스트 View
     @RequestMapping(value = "memberList.do", method = RequestMethod.GET)
     public String memberList(Model model) throws Exception {

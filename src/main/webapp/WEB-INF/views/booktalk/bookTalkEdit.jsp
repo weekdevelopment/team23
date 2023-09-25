@@ -39,12 +39,12 @@
 		<div class="column is-10">
 			<div class="conwrap">
 				<div class="box">
-					<span class="title">자유게시판</span>
+					<span class="title">교재게시판</span>
 				</div>
 			</div>
 
 			<div class="formwrap">
-				<form action="${path1 }/free/edit.do" method="post">
+				<form action="${path1 }/booktalk/edit.do" method="post">
 					<div class="field">
 						<label class="label" for="title">제목</label>
 						<div class="control">
@@ -58,7 +58,7 @@
 							${dto.content }
 						</textarea>
 						<script>
-							CKEDITOR.replace('content',	{filebrowserUploadUrl:'${path1}/free/imageUpload.do'});
+							CKEDITOR.replace('content',	{filebrowserUploadUrl:'${path1}/booktalk/imageUpload.do'});
 						</script>
 					</div>
 					<button type="submit" class="button post-btn">글 수정</button>

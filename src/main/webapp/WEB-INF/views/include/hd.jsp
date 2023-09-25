@@ -66,7 +66,7 @@
 
                                 <div class="navbar-dropdown">
                                     <a class="navbar-item" href="${path1}/free/list.do" style="font-size: 30px;">자유게시판</a>
-                                    <a class="navbar-item" href="${path1}" style="font-size: 30px;">교재게시판</a>
+                                    <a class="navbar-item" href="${path1}/booktalk/list.do" style="font-size: 30px;">교재게시판</a>
                                 </div>
                             </div>
 
