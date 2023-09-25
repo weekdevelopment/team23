@@ -116,10 +116,57 @@
             <div class="tile is-parent">
                 <article class="tile is-child notification is-success" style="background: #F3B0C3;">
                     <div class="content">
-                        <p class="title">교재 신간</p>
-                        <p class="subtitle">이번 달 출시된 교재</p>
+                        <p class="title">윜 이슈!(설문)</p>
+                        <p class="subtitle"></p>
                         <div class="content">
-                            <!-- Content -->
+                            <div>
+                                <a href="${path1}/survey/detail.do?sno=${lastSurvey.sno }" style="color: #2B3A55; margin: 11px 11px;">
+                                    <div>
+                                        <h2>${lastSurvey.title }</h2>
+                                        ${lastSurvey.content}
+                                        <div>
+                                            <input type="radio" id="q1" name="ans" value="1">
+                                            <label for="q1">${lastSurvey.q1 }</label><br>
+                                            <c:if test="${not empty lastSurvey.q2 }">
+                                                <input type="radio" id="q2" name="ans" value="2">
+                                                <label for="q2">${lastSurvey.q2 }</label><br>
+                                            </c:if>
+                                            <c:if test="${not empty lastSurvey.q3 }">
+                                                <input type="radio" id="q3" name="ans" value="3">
+                                                <label for="q3">${lastSurvey.q3 }</label><br>
+                                            </c:if>
+                                            <c:if test="${not empty lastSurvey.q4 }">
+                                                <input type="radio" id="q4" name="ans" value="4">
+                                                <label for="q4">${lastSurvey.q4 }</label><br>
+                                            </c:if>
+                                            <c:if test="${not empty lastSurvey.q5 }">
+                                                <input type="radio" id="q5" name="ans" value="5">
+                                                <label for="q5">${lastSurvey.q5 }</label><br>
+                                            </c:if>
+                                            <c:if test="${not empty lastSurvey.q6 }">
+                                                <input type="radio" id="q6" name="ans" value="6">
+                                                <label for="q6">${lastSurvey.q6 }</label><br>
+                                            </c:if>
+                                            <c:if test="${not empty lastSurvey.q7 }">
+                                                <input type="radio" id="q7" name="ans" value="7">
+                                                <label for="q7">${lastSurvey.q7 }</label><br>
+                                            </c:if>
+                                            <c:if test="${not empty lastSurvey.q8 }">
+                                                <input type="radio" id="q8" name="ans" value="8">
+                                                <label for="q8">${lastSurvey.q8 }</label><br>
+                                            </c:if>
+                                            <c:if test="${not empty lastSurvey.q9 }">
+                                                <input type="radio" id="q9" name="ans" value="9">
+                                                <label for="q9">${lastSurvey.q9 }</label><br>
+                                            </c:if>
+                                            <c:if test="${not empty lastSurvey.q10 }">
+                                                <input type="radio" id="q10" name="ans" value="10">
+                                                <label for="q10">${lastSurvey.q10 }</label><br>
+                                            </c:if>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </article>

@@ -24,6 +24,11 @@ public class SurveyServiceImpl implements SurveyService{
     }
 
     @Override
+    public Survey lastSurvey() throws Exception {
+        return surveyDAO.lastSurvey();
+    }
+
+    @Override
     public void surveyInsert(Survey dto) throws Exception {
         surveyDAO.surveyInsert(dto);
     }

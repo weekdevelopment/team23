@@ -26,6 +26,11 @@ public class SurveyDAOImpl implements SurveyDAO {
     }
 
     @Override
+    public Survey lastSurvey() throws Exception {
+        return sqlSession.selectOne("survey.lastSurvey");
+    }
+
+    @Override
     public void surveyInsert(Survey dto) throws Exception {
         sqlSession.insert("survey.surveyInsert", dto);
     }
