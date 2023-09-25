@@ -152,14 +152,5 @@
 </div>
 <!-- 푸터 부분 인클루드 -->
 <jsp:include page="../include/ft.jsp"></jsp:include>
-
-<script>
-    function checkLogin() {
-        var confirmLogin = confirm("글 작성은 로그인이 필요합니다. 로그인하시겠습니까?");
-        if (confirmLogin) {
-            location.href = '${path1 }/member/login.do';
-        }
-    }
-</script>
 </body>
 </html>

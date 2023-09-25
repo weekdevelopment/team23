@@ -38,16 +38,18 @@ public class SurveyController {
     @GetMapping("detail.do")
     public String getsurveyDetail(HttpServletRequest request, Model model) throws Exception {
         Survey dto = new Survey();
+        Survey ck = new Survey();
+        Survey result = new Survey();
         int sno = Integer.parseInt(request.getParameter("sno"));
         String sid = (String) session.getAttribute("sid");
-        dto.setPar(sno);
-        dto.setAuthor(sid);
-        Survey check = surveyService.ckAuthor(dto);
-
-        System.out.println("detail check : " + sno + sid + check);
-
+        ck.setPar(sno);
+        ck.setAuthor(sid);
+        result = surveyService.ckAuthor(ck);
+        model.addAttribute("result", result);
+        System.out.println("result : "+result);
         dto = surveyService.surveyDetail(sno);
         model.addAttribute("dto", dto);
+        System.out.println("dto : "+dto);
         return ("/survey/surveyDetail");
     }
 
@@ -78,17 +80,20 @@ public class SurveyController {
    @PostMapping("sanswerInsert.do")
     public String getsanserInsert(HttpServletRequest request, Model model) throws Exception {
        Survey dto = new Survey();
-       dto.setPar(Integer.parseInt(request.getParameter("sno")));
-       dto.setAuthor((String) session.getAttribute("sid"));
-       Survey check = surveyService.ckAuthor(dto);
+       Survey ck = new Survey();
+       Survey result = new Survey();
+       ck.setPar(Integer.parseInt(request.getParameter("sno")));
+       ck.setAuthor((String) session.getAttribute("sid"));
+       result = surveyService.ckAuthor(ck);
+       model.addAttribute("result", result);
+       System.out.println("result : "+result);
 
-       System.out.println("sanswer check : "+check);
-
-       if(check == null) {
+       if(result == null) {
            dto.setPar(Integer.parseInt(request.getParameter("sno")));
            dto.setAuthor((String) session.getAttribute("sid"));
            dto.setTitle(request.getParameter("title"));
            dto.setAns(Integer.parseInt(request.getParameter("ans")));
+           System.out.println("dto : "+dto);
            surveyService.sanswerInsert(dto);
        }
        return "redirect:list.do";
