@@ -99,10 +99,10 @@
 						<c:when test="${(sid eq 'admin' || sid eq dto.author) && dto.lev == 0 }">
 							<div class="column is-2"></div>
 							<div class="column is-2">
-								<a class="button is-fullwidth is-info" href="${path1 }/qna/list.do" style="background-color: #2B3A55;">글 목록</a>
+								<a class="button is-fullwidth" style="background-color: #2B3A55; color: #fff;" href="${path1 }/qna/list.do" >글 목록</a>
 							</div>
 							<div class="column is-2">
-								<a class="button is-fullwidth is-info" href="${path1 }/qna/edit.do?qno=${dto.qno}&lev=${dto.lev }" style="background-color: #2B3A55;">글 수정</a>
+								<a class="button is-fullwidth is-info" href="${path1 }/qna/edit.do?qno=${dto.qno}&lev=${dto.lev }">글 수정</a>
 							</div>
 							<div class="column is-2">
 								<a class="button is-fullwidth is-danger" href="${path1 }/qna/delete.do?qno=${dto.qno}&lev=${dto.lev }">글 삭제</a>

@@ -22,6 +22,9 @@
             font-size: 20px;
             font-weight: 700;
         }
+        .article-body p {
+            font-size: min(2vw, 18px);
+        }
     </style>
 </head>
 <body>
@@ -96,7 +99,7 @@
                         <c:when test="${not empty sid && (sid eq 'admin' || sid eq freeDTO.id)}">
                             <div class="column is-3"></div>
                             <div class="column is-2">
-                                <a class="button is-fullwidth" style="background-color: #2B3A55; color: #fff" href="${path1 }/free/list.do">글 목록</a>
+                                <a class="button is-fullwidth" style="background-color: #2B3A55; color: #fff;" href="${path1 }/free/list.do">글 목록</a>
                             </div>
                             <div class="column is-2">
                                 <a class="button is-fullwidth is-info" href="${path1 }/free/edit.do?bno=${freeDTO.bno}">글 수정</a>
