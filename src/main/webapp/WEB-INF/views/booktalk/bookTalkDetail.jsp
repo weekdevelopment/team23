@@ -10,7 +10,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>자유게시판 글 보기</title>
+	<title>교재게시판 글 보기</title>
     <!-- 헤드 부분 인클루드 -->
     <jsp:include page="../include/head.jsp"></jsp:include>
     <style>
@@ -21,6 +21,9 @@
             margin: 72px 0px 0px 110px;
             font-size: 20px;
             font-weight: 700;
+        }
+        .article-body p {
+            font-size: min(2vw, 18px);
         }
     </style>
 </head>
@@ -39,7 +42,7 @@
                         <a href="${path1}/free/list.do">자유게시판</a>
                     </li>
                     <li>
-                        <a href="#">교재게시판</a>
+                        <a href="${path1}/booktalk/list.do">교재게시판</a>
                     </li>
                 </ul>
             </aside>
@@ -47,8 +50,7 @@
         <div class="column is-10">
             <div class="conwrap">
                 <div class="box">
-                    <%--<h6>자유게시판</h6>--%>
-                    <span class="title">자유게시판</span>
+                    <span class="title">교재게시판</span>
                 </div>
             </div>
 
@@ -56,9 +58,9 @@
                 <div class="card-content">
                     <div class="media">
                         <div class="media-content has-text-centered">
-                            <h1 class="title article-title">${freeDTO.title }</h1>
+                            <h1 class="title article-title">${bookTalkDTO.title }</h1>
                             <h6 class="subtitle is-6 article-subtitle">
-                                ${freeDTO.id } | ${freeDTO.regdate } | 조회수:${freeDTO.visited }
+                                ${bookTalkDTO.id } | ${bookTalkDTO.regdate } | 조회수:${bookTalkDTO.visited }
                             </h6>
                         </div>
                     </div>
@@ -66,7 +68,7 @@
 
                     <div class="content article-body">
                         <p>
-                            ${freeDTO.content }
+                            ${bookTalkDTO.content }
                         </p>
                     </div>
                 </div>
@@ -77,39 +79,28 @@
                     <img src="${path1}/resources/img/before_rec.png" id="recimg" width="70px" height="70px">
                 </div>
                 <p class="has-text-centered has-text-info has-text-weight-bold is-size-5 is-large" id='thumbCnt'>
-                    ${freeDTO.rec }
+                    ${bookTalkDTO.rec }
                 </p>
 
                 <div class="columns mt-5">
-                    <%--<div class="column is-3"></div>
-                    <div class="column is-2">
-                        <a class="button is-fullwidth is-info" href="${path1 }/free/list.do">글 목록</a>
-                    </div>
-                    <div class="column is-2">
-                        <a class="button is-fullwidth is-primary" href="${path1 }/free/edit.do?bno=${freeDTO.bno}">글 수정</a>
-                    </div>
-                    <div class="column is-2">
-                        <a class="button is-fullwidth is-danger" href="${path1 }/free/delete.do?bno=${freeDTO.bno}">글 삭제</a>
-                    </div>
-                    <div class="column is-3"></div>--%>
                     <c:choose>
-                        <c:when test="${not empty sid && (sid eq 'admin' || sid eq freeDTO.id)}">
+                        <c:when test="${not empty sid && (sid eq 'admin' || sid eq bookTalkDTO.id)}">
                             <div class="column is-3"></div>
                             <div class="column is-2">
-                                <a class="button is-fullwidth" style="background-color: #2B3A55; color: #fff" href="${path1 }/free/list.do">글 목록</a>
+                                <a class="button is-fullwidth" style="background-color: #2B3A55; color: #fff;" href="${path1 }/booktalk/list.do">글 목록</a>
                             </div>
                             <div class="column is-2">
-                                <a class="button is-fullwidth is-info" href="${path1 }/free/edit.do?bno=${freeDTO.bno}">글 수정</a>
+                                <a class="button is-fullwidth is-info" href="${path1 }/booktalk/edit.do?bno=${bookTalkDTO.bno}">글 수정</a>
                             </div>
                             <div class="column is-2">
-                                <a class="button is-fullwidth is-danger" href="${path1 }/free/delete.do?nno=${freeDTO.bno}">글 삭제</a>
+                                <a class="button is-fullwidth is-danger" href="${path1 }/booktalk/delete.do?bno=${bookTalkDTO.bno}">글 삭제</a>
                             </div>
                             <div class="column is-3"></div>
                         </c:when>
                         <c:otherwise>
                             <div class="column is-5"></div>
                             <div class="column is-2">
-                                <a class="button is-fullwidth is-info" href="${path1 }/free/list.do">글 목록</a>
+                                <a class="button is-fullwidth is-info" href="${path1 }/booktalk/list.do">글 목록</a>
                             </div>
                             <div class="column is-5"></div>
                         </c:otherwise>
@@ -120,11 +111,11 @@
 
             <div class="cmtwrap">
                 <c:if test="${!empty sid}">
-                    <form action="${path1 }/free/detail.do?bno=${freeDTO.bno }" method="post" class="columns mt-5">
+                    <form action="${path1 }/booktalk/detail.do?bno=${bookTalkDTO.bno }" method="post" class="columns mt-5">
                         <div class="column is-10">
                             <textarea class="textarea" name="content" id="content" placeholder="댓글을 입력해주세요." rows="2" cols="30" maxlength="800" required></textarea>
                             <input type="hidden" name="author" id="author" value="${sid }">
-                            <input type="hidden" name="bno" id="bno" value="${freeDTO.bno }">
+                            <input type="hidden" name="bno" id="bno" value="${bookTalkDTO.bno }">
                         </div>
                         <div class="column is-2">
                             <button type="submit" class="button is-fullwidth submission">등록</button>
@@ -157,7 +148,7 @@
                     </div>
                     <c:if test='${sid eq comment.author }'>
                         <div class="media-right">
-                            <a class="delete" style="background-color: #2B3A55" href="${path1 }/free/commentDelete.do?bno=${freeDTO.bno }&cno=${comment.cno }">x</a>
+                            <a class="delete" style="background-color: #2B3A55" href="${path1 }/booktalk/commentDelete.do?bno=${bookTalkDTO.bno }&cno=${comment.cno }">x</a>
                         </div>
                     </c:if>
                 </article>
@@ -171,15 +162,13 @@
 
 <script>
     $(document).ready(function () {
-        const bno = '${freeDTO.bno }';
+        const bno = '${bookTalkDTO.bno }';
         const id = "${sid }";
-        let recoCnt = Number("${freeDTO.rec }"); // 임시
+        let recoCnt = Number("${bookTalkDTO.rec }"); // 임시
 
         console.log('bno:'+bno);
-        console.log('id:'+id);
+        console.log('아이디:'+id);
         const recImage = document.getElementById("recimg")
-
-
 
         console.log('recImage:'+recImage.src);
         let recval = document.getElementById('rec_check').value;
@@ -198,7 +187,7 @@
             }
 
             $.ajax({
-                url: '${path1}/free/rec',
+                url: '${path1}/booktalk/rec',
                 type: 'POST',
                 data: { 'bno': bno, 'id': id, 'recoCnt': recoCnt},
                 success: function (data) {
@@ -207,9 +196,7 @@
                         $("#thumbCnt").html(recoCnt + 1);
                         //location.reload();
                     } else {
-                        //$("#recimg").attr("src", "${path1}/resources/img/before_rec.png");
                         alert("이미 추천한 게시물입니다.");
-                        //location.reload();
                     }
                 }, error: function () {
                     $("#recimg").attr("src", "${path1}/resources/img/after_rec.png");

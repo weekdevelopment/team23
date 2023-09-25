@@ -28,7 +28,7 @@
 				</span>
 				<ul class="menu-list">
 					<li>
-						<a href="#">자유게시판</a>
+						<a href="${path1}/free/list.do">자유게시판</a>
 					</li>
 					<li>
 						<a href="#">교재게시판</a>
@@ -39,7 +39,6 @@
 		<div class="column is-10">
 			<div class="conwrap">
 				<div class="box">
-					<%--<h6>자유게시판</h6>--%>
 					<span class="title">자유게시판</span>
 				</div>
 			</div>

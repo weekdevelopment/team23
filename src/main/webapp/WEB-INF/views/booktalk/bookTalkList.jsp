@@ -65,16 +65,32 @@
 						<a href="${path1}/free/list.do">자유게시판</a>
 					</li>
 					<li>
-						<a href="#">교재게시판</a>
+						<a href="${path1}/booktalk/list.do">교재게시판</a>
 					</li>
 				</ul>
 			</aside>
 		</div>
 		<div class="column is-10">
+			<%--<form action="${path1 }/booktalk/list.do" method="get" class="field has-addons has-addons-right">
+				<p class="control">
+                <span class="select">
+                    <select id="type" name="type">
+                        <option value="title">제목</option>
+						<option value="content">내용</option>
+                    </select>
+                </span>
+				</p>
+				<p class="control">
+					<input class="input" type="text" id="keyword" name="keyword" placeholder="검색어를 입력하세요" value="${keyword }">
+				</p>
+				<p class="control">
+					<input type="submit" class="button is-mainColor" value="검색" />
+				</p>
+			</form>--%>
+
 			<div class="conwrap">
 				<div class="box">
-					<%--<h6>자유게시판</h6>--%>
-					<span class="title">자유게시판</span>
+					<span class="title">교재게시판</span>
 				</div>
 
 				<div class="columns">
@@ -83,7 +99,7 @@
 							<header class="card-header">
 								<p class="card-header-title">추천 많은 글</p>
 							</header>
-                            <c:forEach items="${freeBestRecList }" var="free" varStatus="status">
+                            <c:forEach items="${bookTalkBestRecList }" var="bt" varStatus="status">
                                 <div class="card-table">
                                     <div class="content">
                                         <table class="table is-fullwidth">
@@ -91,11 +107,11 @@
                                             <tr>
                                                 <%--<td width="1%"><i class="fa fa-bell-o"></i></td>--%>
                                                 <td>
-                                                    &#${9311+status.count} <a href="${path1}/free/detail.do?bno=${free.bno }">${free.title }</a>
+                                                    &#${9311+status.count} <a href="${path1}/booktalk/detail.do?bno=${bt.bno }">${bt.title }</a>
                                                 </td>
                                                 <%--<td class="level-right"><a class="button is-small is-primary" href="#">Action</a></td>--%>
                                                 <td class="level-right">
-													<i class="fa fa-regular fa-thumbs-up" style="font-weight: normal"> ${free.rec }</i>
+													<i class="fa fa-regular fa-thumbs-up" style="font-weight: normal"> ${bt.rec }</i>
                                                 </td>
                                             </tr>
                                             </tbody>
@@ -112,18 +128,18 @@
 							<header class="card-header">
 								<p class="card-header-title">댓글 많은 글</p>
 							</header>
-							<c:forEach items="${freeBestCmtList }" var="free" varStatus="status">
+							<c:forEach items="${bookTalkBestCmtList }" var="bt" varStatus="status">
 								<div class="card-table">
 									<div class="content">
 										<table class="table is-fullwidth">
 											<tbody>
 											<tr>
 												<td>
-													&#${9311+status.count} <a href="${path1}/free/detail.do?bno=${free.bno }">${free.title }</a>
+													&#${9311+status.count} <a href="${path1}/booktalk/detail.do?bno=${bt.bno }">${bt.title }</a>
 												</td>
 												<td class="level-right">
-													<%--&#x1F5E8; ${free.count }--%>
-														<i class="fa fa-regular fa-comment" style="font-weight: normal"> ${free.count }</i>
+													<%--&#x1F5E8; ${bt.count }--%>
+														<i class="fa fa-regular fa-comment" style="font-weight: normal"> ${bt.count }</i>
 												</td>
 											</tr>
 											</tbody>
@@ -138,35 +154,31 @@
 			</div>
 
 			<div class="box content">
-				<c:forEach items="${freeList }" var="free" varStatus="status">
+				<c:forEach items="${bookTalkList }" var="bt" varStatus="status">
 					<article class="post">
 						<h4>
-							<a href="${path1}/free/detail.do?bno=${free.bno }">${free.title }</a>
+							<a href="${path1}/booktalk/detail.do?bno=${bt.bno }">${bt.title }</a>
 
-							<c:if test="${free.count != 0}">
-								<span class="cmtNum">(${free.count})</span>
+							<c:if test="${bt.count != 0}">
+								<span class="cmtNum">(${bt.count})</span>
 							</c:if>
 						</h4>
 
 						<div class="media">
 							<div class="media-content">
 								<div class="content">
-									<%--<p>
-										<a href="#">@jsmith</a> replied 34 minutes ago &nbsp;
-										<span class="tag">Question</span>
-									</p>--%>
 									<p>
 										조회수
-										<span>${free.visited }</span>
+										<span>${bt.visited }</span>
 										| 추천수
-										<span>${free.rec }</span>
+										<span>${bt.rec }</span>
 									</p>
 								</div>
 							</div>
 							<div class="media-right">
 								<%--<span class="has-text-grey-light"><i class="fa fa-comments"></i> 1</span>--%>
-									<p class="has-text-grey">${free.id }</p>
-									<p class="has-text-grey">${free.regdate }</p>
+									<p class="has-text-grey">${bt.id }</p>
+									<p class="has-text-grey">${bt.regdate }</p>
 							</div>
 						</div>
 					</article>
@@ -175,10 +187,10 @@
 
 			<nav class="pagination is-rounded is-centered mb-6" role="navigation" aria-label="pagination">
 				<c:if test="${curPage > page.pageCount }">
-					<a href="${path1 }/free/list.do?page=${page.blockStartNum - 1 }<c:if test="${!empty keyword }">&type=${type }&keyword=${keyword }</c:if>" class="pagination-previous">Previous</a>
+					<a href="${path1 }/booktalk/list.do?page=${page.blockStartNum - 1 }<c:if test="${!empty keyword }">&type=${type }&keyword=${keyword }</c:if>" class="pagination-previous">Previous</a>
 				</c:if>
 				<c:if test="${page.blockLastNum < page.totalPageCount }">
-					<a href="${path1 }/free/list.do?page=${page.blockLastNum + 1 }<c:if test="${!empty keyword }">&type=${type }&keyword=${keyword }</c:if>" class="pagination-next">Next page</a>
+					<a href="${path1 }/booktalk/list.do?page=${page.blockLastNum + 1 }<c:if test="${!empty keyword }">&type=${type }&keyword=${keyword }</c:if>" class="pagination-next">Next page</a>
 				</c:if>
 
 				<ul class="pagination-list">
@@ -186,12 +198,12 @@
 						<c:choose>
 							<c:when test="${i == curPage }">
 								<li>
-									<a href="${path1 }/free/list.do?page=${i }<c:if test="${!empty keyword }">&type=${type }&keyword=${keyword }</c:if>" class="pagination-link is-current" aria-label="Page ${i }" aria-current="page" >${i }</a>
+									<a href="${path1 }/booktalk/list.do?page=${i }<c:if test="${!empty keyword }">&type=${type }&keyword=${keyword }</c:if>" class="pagination-link is-current" aria-label="Page ${i }" aria-current="page" >${i }</a>
 								</li>
 							</c:when>
 							<c:otherwise>
 								<li>
-									<a href="${path1 }/free/list.do?page=${i }<c:if test="${!empty keyword }">&type=${type }&keyword=${keyword }</c:if>" class="pagination-link" aria-label="Page ${i }" aria-current="page">${i }</a>
+									<a href="${path1 }/booktalk/list.do?page=${i }<c:if test="${!empty keyword }">&type=${type }&keyword=${keyword }</c:if>" class="pagination-link" aria-label="Page ${i }" aria-current="page">${i }</a>
 								</li>
 							</c:otherwise>
 						</c:choose>
@@ -199,7 +211,7 @@
 				</ul>
 			</nav>
 
-			<%--<form action="${path1 }/free/list.do" method="get" class="field has-addons has-addons-centered">
+			<%--<form action="${path1 }/booktalk/list.do" method="get" class="field has-addons has-addons-centered">
 			<p class="control">
 			<span class="select">
 				<select id="type" name="type">
@@ -219,14 +231,14 @@
 			<div class="button-group">
                 <c:choose>
                     <c:when test="${not empty sid }">
-                        <a class="button post-btn" href="${path1 }/free/insert.do">글쓰기</a>
+                        <a class="button post-btn" href="${path1 }/booktalk/insert.do">글쓰기</a>
                     </c:when>
                     <c:otherwise>
                         <a class="button post-btn" href="javascript:checkLogin()">글쓰기</a>
                     </c:otherwise>
                 </c:choose>
 
-				<form action="${path1 }/free/list.do" method="get" class="field has-addons has-addons-right">
+				<form action="${path1 }/booktalk/list.do" method="get" class="field has-addons has-addons-right">
 					<p class="control">
 			<span class="select">
 				<select id="type" name="type">

@@ -68,6 +68,9 @@
         <bean id="noticeService" class="kr.co.teaspoon.service.NoticeServiceImpl" />
         <bean id="qnaDAO" class="kr.co.teaspoon.dao.QnaDAOImpl" />
         <bean id="qnaService" class="kr.co.teaspoon.service.QnaServiceImpl" />
+        <bean id="bookTalkDAO" class="kr.co.teaspoon.dao.BookTalkDAOImpl" />
+        <bean id="bookTalkService" class="kr.co.teaspoon.service.BookTalkServiceImpl" />
+
 
         <!-- @Transactional 어노테이션 처리 -->
         <tx:annotation-driven transaction-manager="transactionManager" />
