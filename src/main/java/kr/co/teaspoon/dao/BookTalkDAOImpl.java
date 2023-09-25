@@ -2,7 +2,7 @@ package kr.co.teaspoon.dao;
 
 import kr.co.teaspoon.dto.BookTalk;
 import kr.co.teaspoon.dto.BookTalkComment;
-import kr.co.teaspoon.dto.Reco;
+import kr.co.teaspoon.dto.BookReco;
 import kr.co.teaspoon.util.Page;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,35 +82,35 @@ public class BookTalkDAOImpl implements BookTalkDAO {
     }
 
     @Override
-    public Reco findReco(int bno, String id) throws Exception {
+    public BookReco findBookReco(int bno, String id) throws Exception {
         Map<String, Object> map = new HashMap<>();
         map.put("bno", bno);
         map.put("id", id);
-        return sqlSession.selectOne("booktalk.findReco",map);
+        return sqlSession.selectOne("booktalk.findBookReco",map);
     }
 
     @Override
-    public Reco memberFindReco(Reco reco) throws Exception {
-        return sqlSession.selectOne("booktalk.memberFindReco", reco);
+    public BookReco memberFindBookReco(BookReco reco) throws Exception {
+        return sqlSession.selectOne("booktalk.memberFindBookReco", reco);
     }
 
     @Override
-    public int insertReco(Reco reco) throws Exception {
-        return sqlSession.insert("booktalk.insertReco", reco);
+    public int insertBookReco(BookReco reco) throws Exception {
+        return sqlSession.insert("booktalk.insertBookReco", reco);
     }
 
     @Override
-    public void deleteReco(Reco reco) throws Exception {
-        sqlSession.delete("booktalk.deleteReco", reco);
+    public void deleteBookReco(BookReco reco) throws Exception {
+        sqlSession.delete("booktalk.deleteBookReco", reco);
     }
 
     @Override
-    public void increaseRec(Reco reco) throws Exception {
+    public void increaseRec(BookReco reco) throws Exception {
         sqlSession.update("booktalk.increaseRec", reco);
     }
 
     @Override
-    public void decreaseRec(Reco reco) throws Exception {
+    public void decreaseRec(BookReco reco) throws Exception {
         sqlSession.update("booktalk.decreaseRec", reco);
     }
 }

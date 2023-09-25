@@ -1,9 +1,6 @@
 package kr.co.teaspoon.controller;
 
-import kr.co.teaspoon.dto.BookTalk;
-import kr.co.teaspoon.dto.BookTalkComment;
-import kr.co.teaspoon.dto.Member;
-import kr.co.teaspoon.dto.Reco;
+import kr.co.teaspoon.dto.*;
 import kr.co.teaspoon.service.BookTalkService;
 import kr.co.teaspoon.service.MemberService;
 import kr.co.teaspoon.util.Page;
@@ -69,7 +66,7 @@ public class BookTalkController {
         model.addAttribute("bookTalkBestRecList", bookTalkBestRecList);
         List<BookTalk> bookTalkBestCmtList = bookTalkService.bookTalkBestCmtList();
         model.addAttribute("bookTalkBestCmtList", bookTalkBestCmtList);
-        //System.out.println("최다 댓글 리스트 : " + bookTalkBestCmtList);
+        System.out.println("최다 댓글 리스트 : " + bookTalkBestCmtList);
         for (BookTalk bt : bookTalkBestCmtList) {
             bt.setCount(commentMap.get(bt.getBno()));
         }
@@ -86,7 +83,7 @@ public class BookTalkController {
         String id = (String) session.getAttribute("sid");
 
         BookTalk bookTalkDTO = bookTalkService.bookTalkDetail(bno);
-        Reco recoDTO = bookTalkService.findReco(bno, id);
+        BookReco recoDTO = bookTalkService.findBookReco(bno, id);
         Member memberDTO = memberService.getMember(id);
 
         model.addAttribute("bookTalkDTO", bookTalkDTO);
@@ -279,8 +276,10 @@ public class BookTalkController {
 
     @PostMapping("rec")
     @ResponseBody
-    public int rec(@ModelAttribute Reco reco) throws Exception {
-        int result = bookTalkService.insertReco(reco);
+    public int rec(@ModelAttribute BookReco reco) throws Exception {
+        System.out.println("test~~~~!!!!");
+
+        int result = bookTalkService.insertBookReco(reco);
         System.out.println("result : " + result);
         //reco.
 

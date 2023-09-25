@@ -2,7 +2,7 @@ package kr.co.teaspoon.service;
 
 import kr.co.teaspoon.dto.BookTalk;
 import kr.co.teaspoon.dto.BookTalkComment;
-import kr.co.teaspoon.dto.Reco;
+import kr.co.teaspoon.dto.BookReco;
 import kr.co.teaspoon.util.Page;
 
 import java.util.List;
@@ -33,7 +33,7 @@ public interface BookTalkService {
     public List<BookTalk> commentCount() throws Exception;
 
 
-    public Reco findReco(int bno, String id) throws Exception;
+    public BookReco findBookReco(int bno, String id) throws Exception;
 
-    public int insertReco(Reco reco) throws Exception;
+    public int insertBookReco(BookReco reco) throws Exception;
 }

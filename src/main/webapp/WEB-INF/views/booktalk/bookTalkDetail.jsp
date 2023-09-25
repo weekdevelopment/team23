@@ -93,7 +93,7 @@
                                 <a class="button is-fullwidth is-info" href="${path1 }/booktalk/edit.do?bno=${bookTalkDTO.bno}">글 수정</a>
                             </div>
                             <div class="column is-2">
-                                <a class="button is-fullwidth is-danger" href="${path1 }/booktalk/delete.do?nno=${bookTalkDTO.bno}">글 삭제</a>
+                                <a class="button is-fullwidth is-danger" href="${path1 }/booktalk/delete.do?bno=${bookTalkDTO.bno}">글 삭제</a>
                             </div>
                             <div class="column is-3"></div>
                         </c:when>
@@ -167,10 +167,8 @@
         let recoCnt = Number("${bookTalkDTO.rec }"); // 임시
 
         console.log('bno:'+bno);
-        console.log('id:'+id);
+        console.log('아이디:'+id);
         const recImage = document.getElementById("recimg")
-
-
 
         console.log('recImage:'+recImage.src);
         let recval = document.getElementById('rec_check').value;
@@ -198,9 +196,7 @@
                         $("#thumbCnt").html(recoCnt + 1);
                         //location.reload();
                     } else {
-                        //$("#recimg").attr("src", "${path1}/resources/img/before_rec.png");
                         alert("이미 추천한 게시물입니다.");
-                        //location.reload();
                     }
                 }, error: function () {
                     $("#recimg").attr("src", "${path1}/resources/img/after_rec.png");

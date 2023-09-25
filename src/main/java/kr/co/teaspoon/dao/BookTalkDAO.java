@@ -2,7 +2,7 @@ package kr.co.teaspoon.dao;
 
 import kr.co.teaspoon.dto.BookTalk;
 import kr.co.teaspoon.dto.BookTalkComment;
-import kr.co.teaspoon.dto.Reco;
+import kr.co.teaspoon.dto.BookReco;
 import kr.co.teaspoon.util.Page;
 
 import java.util.List;
@@ -34,15 +34,15 @@ public interface BookTalkDAO {
     public List<BookTalk> commentCount() throws Exception;
 
 
-    public Reco findReco(int bno, String id) throws Exception;
+    public BookReco findBookReco(int bno, String id) throws Exception;
 
-    public Reco memberFindReco(Reco reco) throws Exception;
+    public BookReco memberFindBookReco(BookReco reco) throws Exception;
 
-    public int insertReco(Reco reco) throws Exception;
+    public int insertBookReco(BookReco reco) throws Exception;
 
-    public void deleteReco(Reco reco) throws Exception;
+    public void deleteBookReco(BookReco reco) throws Exception;
 
-    public void increaseRec(Reco reco) throws Exception;
+    public void increaseRec(BookReco reco) throws Exception;
 
-    public void decreaseRec(Reco reco) throws Exception;
+    public void decreaseRec(BookReco reco) throws Exception;
 }
