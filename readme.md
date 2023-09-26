@@ -23,3 +23,6 @@ maked by Rosie Oh by Team Weekitalk's FullStack Developer
 
 ## Guest 기능 영상
 ![예제 GIF](./functionRecord/team23_1.gif)
+
+## Member 기능 영상
+![예제 GIF](./functionRecord/team23_2.gif)
