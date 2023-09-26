@@ -81,10 +81,10 @@
 						<c:when test="${sid eq 'admin'}">
 							<div class="column is-3"></div>
 							<div class="column is-2">
-								<a class="button is-fullwidth is-info" href="${path1 }/notice/list.do" style="background-color: #2B3A55;">글 목록</a>
+								<a class="button is-fullwidth" style="background-color: #2B3A55; color: #fff;" href="${path1 }/notice/list.do" style="background-color: #2B3A55;">글 목록</a>
 							</div>
 							<div class="column is-2">
-								<a class="button is-fullwidth is-info" href="${path1 }/notice/edit.do?nno=${dto.nno}" style="background-color: #2B3A55;">글 수정</a>
+								<a class="button is-fullwidth is-info" href="${path1 }/notice/edit.do?nno=${dto.nno}">글 수정</a>
 							</div>
 							<div class="column is-2">
 								<a class="button is-fullwidth is-danger" href="${path1 }/notice/delete.do?nno=${dto.nno}">글 삭제</a>

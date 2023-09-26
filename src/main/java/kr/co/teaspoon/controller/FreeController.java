@@ -36,7 +36,7 @@ public class FreeController {
     HttpSession session;
 
     @GetMapping("list.do")        //free/list.do
-    public String getNoticeList(HttpServletRequest request, Model model) throws Exception {
+    public String getFreeList(HttpServletRequest request, Model model) throws Exception {
         String type = request.getParameter("type");
         String keyword = request.getParameter("keyword");
         int curPage = request.getParameter("page") != null ? Integer.parseInt(request.getParameter("page")) : 1;
@@ -199,7 +199,7 @@ public class FreeController {
 
             String callback = request.getParameter("CKEditorFuncNum");
             printWriter = response.getWriter();
-            String fileUrl = "/Weekitalk_war/free/ckImgSubmit.do?uid=" + uid + "&fileName=" + fileName; // 작성화면
+            String fileUrl = "/team23_war/free/ckImgSubmit.do?uid=" + uid + "&fileName=" + fileName; // 작성화면
 
             // 업로드시 메시지 출력
             printWriter.println("{\"filename\" : \"" + fileName + "\", \"uploaded\" : 1, \"url\":\"" + fileUrl + "\"}");

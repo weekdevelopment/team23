@@ -7,6 +7,7 @@ import java.util.List;
 public interface SurveyService {
     public List<Survey> surveyList() throws Exception;
     public Survey surveyDetail(int sno) throws Exception;
+    public Survey lastSurvey() throws Exception;
     public void surveyInsert(Survey dto) throws Exception;
     public void sanswerInsert(Survey dto) throws Exception;
     public void surveyDelete(int sno) throws Exception;
