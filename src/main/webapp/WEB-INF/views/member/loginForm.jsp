@@ -26,6 +26,9 @@
                     <br>
                     <br/>
                     <form action="${path1}/member/loginpro.do" method="post" name="loginForm">
+                        <c:if test="${not empty loginError}">
+                            <p class="has-text-danger">${loginError}</p>
+                        </c:if>
                         <div class="field">
                             <p class="control has-icons-left has-icons-right">
                                 <input class="input is-medium" class="form-control" id="id" name="id"

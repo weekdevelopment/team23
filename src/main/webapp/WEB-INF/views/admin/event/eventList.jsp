@@ -37,60 +37,8 @@
 					<%--<h6>이벤트 게시판</h6>--%>
 					<span class="title">이벤트 게시판</span>
 				</div>
-
-				<div class="columns">
-					<div class="column is-6">
-						<div class="card events-card">
-							<header class="card-header">
-								<p class="card-header-title">추천 많은 글</p>
-							</header>
-                            <c:forEach items="${freeRecList }" var="free" varStatus="status">
-                                <div class="card-table">
-                                    <div class="content">
-                                        <table class="table is-fullwidth">
-                                            <tbody>
-                                            <tr>
-                                                <%--<td width="1%"><i class="fa fa-bell-o"></i></td>--%>
-                                                <td>
-                                                    &#${9311+status.count} <a href="${path1}/free/detail.do?bno=${free.bno }">${free.title }</a>
-                                                </td>
-                                                <%--<td class="level-right"><a class="button is-small is-primary" href="#">Action</a></td>--%>
-                                                <td class="level-right">
-                                                    &#x1F44D; ${free.rec }
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </c:forEach>
-
-						</div>
-					</div>
-
-					<div class="column is-6">
-						<div class="card events-card">
-							<header class="card-header">
-								<p class="card-header-title">댓글 많은 글</p>
-							</header>
-							<div class="card-table">
-								<div class="content">
-									<table class="table is-fullwidth is-striped">
-										<tbody>
-										<tr>
-											<td width="5%"><i class="fa fa-bell-o"></i></td>
-											<td>Lorum ipsum dolem aire</td>
-											<td class="level-right"><a class="button is-small is-primary" href="#">Action</a></td>
-										</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
+				<br>
+				<br>
 			<div class="box content">
 
 				<div class="content" id="contents">
@@ -107,6 +55,13 @@
 										<c:forEach var="event" items="${eventList }" varStatus="status">
 											<li style="overflow: hidden">
 												<a href="${path1}/event/detail.do?bno=${event.bno }">
+													<!-- 수정 및 삭제 버튼 -->
+													<c:if test="${sid.equals('admin')}">
+														<div class="button-group" style="float: right;">
+															<a href="${path1}/event/edit.do?bno=${event.bno}" class="button is-link">수정</a>
+															<a href="${path1}/event/delete.do?bno=${event.bno}" class="button is-danger">삭제</a>
+														</div>
+													</c:if>
 													<div style="width: 600px;">
 														<div>
 															<h3 style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${event.title }</h3>
@@ -130,6 +85,7 @@
 			</div>
 		</div>
 	</div>
+</div>
 </div>
 <!-- 푸터 부분 인클루드 -->
 <jsp:include page="../../include/ft.jsp"></jsp:include>

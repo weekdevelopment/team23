@@ -113,31 +113,34 @@ public class MemberController {
     }
 
     //로그인을 컨트롤러에서 처리
+    // 로그인 처리
     @PostMapping("signin.do")
     public String memberSignIn(@RequestParam String id, @RequestParam String pw, Model model) throws Exception {
         Member mem = memberService.signIn(id);
-        if(mem!=null){
+
+        if (mem != null) {
             boolean loginSuccess = pwEncoder.matches(pw, mem.getPw());
-            if(loginSuccess){
-                session.setAttribute("member", mem);
-                session.setAttribute("sid", id);
-                return "redirect:/";
-            } else {
-                return "redirect:login.do";
+            if (loginSuccess) {
+                session.setAttribute("sid", id); // 로그인 세션 설정
+                return "redirect:/"; // 로그인 성공 시 메인 페이지로 리다이렉트
             }
-        } else {
-            return "redirect:login.do";
         }
+
+        // 로그인 실패 시 에러 메시지를 모델에 추가하고 로그인 페이지로 이동
+        model.addAttribute("loginError", "아이디 또는 비밀번호가 일치하지 않습니다.");
+        return "/member/loginForm";
     }
     //서비스에서 로그인 로직 처리
     @RequestMapping(value = "loginpro.do", method = RequestMethod.POST)
     public String memberLogin(@RequestParam String id, @RequestParam String pw, Model model) throws Exception {
         boolean ps = memberService.loginCheck(id, pw);
-        if(ps){
+        if (ps) {
             session.setAttribute("sid", id);
             return "redirect:/main";
         } else {
-            return "redirect:login.do";
+            // 로그인 실패 시 메시지를 모델에 추가
+            model.addAttribute("loginError", "아이디와 비밀번호가 일치하지 않습니다.");
+            return "/member/loginForm"; // 로그인 실패 시 다시 로그인 페이지로 이동
         }
     }
 
@@ -168,6 +171,7 @@ public class MemberController {
     }
 
     //회원정보 변경
+    //회원정보 변경
     @RequestMapping(value="update.do", method=RequestMethod.POST)
     public String memberUpdate(Member mem, Model model) throws Exception {
         String pwd = "";
@@ -178,7 +182,6 @@ public class MemberController {
         memberService.memberEdit(mem);
         return "redirect:/";
     }
-
     //회원 탈퇴
     @RequestMapping(value="delete.do", method = RequestMethod.GET)
     public String memberDelete(@RequestParam String id, Model model, HttpSession session) throws Exception {
@@ -186,7 +189,6 @@ public class MemberController {
         session.invalidate();
         return "redirect:/";
     }
-
 
     // 비밀번호 찾기 폼 로딩
     @GetMapping("find_pw.do")

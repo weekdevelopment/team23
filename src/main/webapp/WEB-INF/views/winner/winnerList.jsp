@@ -18,7 +18,7 @@
 </head>
 <body>
 <!-- 헤더 부분 인클루드 -->
-<div class="container is-fullhd">
+<div class="container is-fullhd" style="min-height: 100vh;" > <!-- 푸터 아래 여백 남는거 수정 -->
 	<jsp:include page="../include/hd.jsp"></jsp:include>
 	<div class="columns">
 		<div class="column is-2">
