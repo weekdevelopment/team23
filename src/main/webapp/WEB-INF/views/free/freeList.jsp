@@ -71,23 +71,6 @@
 			</aside>
 		</div>
 		<div class="column is-10">
-			<%--<form action="${path1 }/free/list.do" method="get" class="field has-addons has-addons-right">
-				<p class="control">
-                <span class="select">
-                    <select id="type" name="type">
-                        <option value="title">제목</option>
-						<option value="content">내용</option>
-                    </select>
-                </span>
-				</p>
-				<p class="control">
-					<input class="input" type="text" id="keyword" name="keyword" placeholder="검색어를 입력하세요" value="${keyword }">
-				</p>
-				<p class="control">
-					<input type="submit" class="button is-mainColor" value="검색" />
-				</p>
-			</form>--%>
-
 			<div class="conwrap">
 				<div class="box">
 					<%--<h6>자유게시판</h6>--%>

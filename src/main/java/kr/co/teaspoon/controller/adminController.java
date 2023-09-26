@@ -19,7 +19,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.*;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Controller
@@ -31,10 +33,10 @@ public class adminController {
     private MemberService memberService;
 
     @Autowired
-    private BoardService boardService;
+    private FreeService freeService;
 
     @Autowired
-    private FreeService freeService;
+    private BookTalkService bookTalkService;
 
     @Autowired
     private EdumagService edumagService;
@@ -56,6 +58,9 @@ public class adminController {
 
     @Autowired
     private WinnerService winnerService;
+
+    @Autowired
+    private SurveyService surveyService;
 
     @Autowired
     HttpSession session;
@@ -129,73 +134,48 @@ public class adminController {
         return "redirect:/";
     }
 
-    // 관리자가 공지사항 게시판 View
-    @GetMapping("boardList.do")
-    public String getBoardList(Model model) throws Exception {
-        logger.info("관리자 게시판 페이지 진입");
-        List<Board> boardList = boardService.boardList();
-        model.addAttribute("boardList", boardList);
-        return "/admin/board/boardList"; // 관리자 게시판 목록 뷰로 이동
-    }
-
-
-    @GetMapping("boardDetail.do")
-    public String getBoardDetail(HttpServletRequest request, Model model) throws Exception {
-        logger.info("관리자 게시판 페이지 진입");
-        int seq = Integer.parseInt(request.getParameter("seq"));
-        Board dto = boardService.boardDetail(seq);
-        model.addAttribute("dto", dto);
-        return "/admin/board/boardDetail"; // 관리자 게시판 상세보기 뷰로 이동
-    }
-
-    @GetMapping("boardInsert.do")
-    public String boardInsertForm(HttpServletRequest request, Model model) throws Exception {
-        return "/admin/board/boardInsert";
-    }
-
-    @PostMapping("boardInsert.do")
-    public String boardInsert(HttpServletRequest request, Model model) throws Exception {
-        Board dto = new Board();
-        dto.setTitle(request.getParameter("title"));
-        dto.setContent(request.getParameter("content"));
-        boardService.boardInsert(dto);
-        return "redirect:boardList.do";
-    }
-
-    @GetMapping("boardDelete.do")
-    public String boardDelete(HttpServletRequest request, Model model) throws Exception {
-        int seq = Integer.parseInt(request.getParameter("seq"));
-        boardService.boardDelete(seq);
-        return "redirect:boardList.do";
-    }
-
-    @GetMapping("boardEdit.do")
-    public String boardEditForm(HttpServletRequest request, Model model) throws Exception {
-        int seq = Integer.parseInt(request.getParameter("seq"));
-        Board dto = boardService.boardDetail(seq);
-        model.addAttribute("dto", dto);
-        return "/admin/board/boardEdit"; // 게시판 수정 폼 뷰로 이동
-    }
-
-
-    @PostMapping("boardEdit.do")
-    public String boardEdit(HttpServletRequest request, Model model) throws Exception {
-        int seq = Integer.parseInt(request.getParameter("seq"));
-        Board dto = new Board();
-        dto.setSeq(seq);
-        dto.setTitle(request.getParameter("title"));
-        dto.setContent(request.getParameter("content"));
-        boardService.boardEdit(dto);
-        return "redirect:boardList.do"; // 수정 후 게시판 목록으로 리다이렉트
-    }
-
     // 자유게시판 게시판 컨트롤러
-    @GetMapping("freeList.do")
-    public String getFreeList(Model model) throws Exception {
-        // 임시 주석 처리
-        //List<Free> freeList = freeService.freeList();
-        //model.addAttribute("freeList", freeList);
-        return "/admin/freeList"; // 관리자 자유게시판 목록 뷰로 이동
+    @GetMapping("freeList.do")        //free/list.do
+    public String getfreeList(HttpServletRequest request, Model model) throws Exception {
+        String type = request.getParameter("type");
+        String keyword = request.getParameter("keyword");
+        int curPage = request.getParameter("page") != null ? Integer.parseInt(request.getParameter("page")) : 1;
+
+        Page page = new Page();
+        page.setSearchType(type);
+        page.setSearchKeyword(keyword);
+        int total = freeService.totalCount(page);
+
+        page.makeBlock(curPage, total);
+        page.makeLastPageNum(total);
+        page.makePostStart(curPage, total);
+
+        model.addAttribute("type", type);
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("page", page);
+        model.addAttribute("curPage", curPage);
+
+        List<Free> commentCount = freeService.commentCount();
+        Map<Integer, Integer> commentMap = new HashMap<>();
+        for (Free fr : commentCount) {
+            commentMap.put(fr.getBno(), fr.getCount());
+        }
+
+        List<Free> freeList = freeService.freeList(page);
+        model.addAttribute("freeList", freeList);
+        List<Free> freeBestRecList = freeService.freeBestRecList();
+        model.addAttribute("freeBestRecList", freeBestRecList);
+        List<Free> freeBestCmtList = freeService.freeBestCmtList();
+        model.addAttribute("freeBestCmtList", freeBestCmtList);
+        //System.out.println("최다 댓글 리스트 : " + freeBestCmtList);
+        for (Free fr :freeBestCmtList) {
+            fr.setCount(commentMap.get(fr.getBno()));
+        }
+        for (Free free : freeList) {
+            int bno = free.getBno();
+            free.setCount(commentMap.get(bno));
+        }
+        return "/admin/free/freeList";
     }
 
     @GetMapping("freeDetail.do")
@@ -246,7 +226,131 @@ public class adminController {
         return "redirect:freeList.do"; // 수정 후 자유게시판 목록으로 리다이렉트
     }
 
-    // Edumag 게시판 컨트롤러
+    @GetMapping("bookTalkList.do")        //booktalk/list.do
+    public String getBookTalkList(HttpServletRequest request, Model model) throws Exception {
+        String type = request.getParameter("type");
+        String keyword = request.getParameter("keyword");
+        int curPage = request.getParameter("page") != null ? Integer.parseInt(request.getParameter("page")) : 1;
+
+        Page page = new Page();
+        page.setSearchType(type);
+        page.setSearchKeyword(keyword);
+        int total = bookTalkService.totalCount(page);
+
+        page.makeBlock(curPage, total);
+        page.makeLastPageNum(total);
+        page.makePostStart(curPage, total);
+
+        model.addAttribute("type", type);
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("page", page);
+        model.addAttribute("curPage", curPage);
+
+        List<BookTalk> commentCount = bookTalkService.commentCount();
+        Map<Integer, Integer> commentMap = new HashMap<>();
+        for (BookTalk bt : commentCount) {
+            commentMap.put(bt.getBno(), bt.getCount());
+        }
+
+        List<BookTalk> bookTalkList = bookTalkService.bookTalkList(page);
+        model.addAttribute("bookTalkList", bookTalkList);
+        List<BookTalk> bookTalkBestRecList = bookTalkService.bookTalkBestRecList();
+        model.addAttribute("bookTalkBestRecList", bookTalkBestRecList);
+        List<BookTalk> bookTalkBestCmtList = bookTalkService.bookTalkBestCmtList();
+        model.addAttribute("bookTalkBestCmtList", bookTalkBestCmtList);
+        System.out.println("최다 댓글 리스트 : " + bookTalkBestCmtList);
+        for (BookTalk bt : bookTalkBestCmtList) {
+            bt.setCount(commentMap.get(bt.getBno()));
+        }
+        for (BookTalk bt : bookTalkList) {
+            int bno = bt.getBno();
+            bt.setCount(commentMap.get(bno));
+        }
+        return "/admin/booktalk/bookTalkList";
+    }
+
+    @GetMapping("bookTalkDetail.do")    //booktalk/detail.do?bno=1
+    public String getbookTalkDetail(HttpServletRequest request, Model model) throws Exception {
+        int bno = Integer.parseInt(request.getParameter("bno"));
+        String id = (String) session.getAttribute("sid");
+
+        BookTalk bookTalkDTO = bookTalkService.bookTalkDetail(bno);
+        BookReco recoDTO = bookTalkService.findBookReco(bno, id);
+        Member memberDTO = memberService.getMember(id);
+
+        model.addAttribute("bookTalkDTO", bookTalkDTO);
+        model.addAttribute("recoDTO", recoDTO);
+        model.addAttribute("memberDTO", memberDTO);
+
+        List<BookTalkComment> commentList = bookTalkService.bookTalkCommentList(bno);
+
+        model.addAttribute("commentList", commentList);
+
+        System.out.printf("bno : %d, id : %s\n", bno, id);
+        System.out.println("북토크 : " + bookTalkDTO);
+        return "/admin/booktalk/bookTalkDetail";
+    }
+
+    @PostMapping("bookTalkDetail.do")
+    public String commentInsert(HttpServletRequest request, Model model) throws Exception {
+        int bno = Integer.parseInt(request.getParameter("bno"));
+        BookTalkComment dto = new BookTalkComment();
+        dto.setContent(request.getParameter("content"));
+        dto.setBno(bno);
+        dto.setAuthor(request.getParameter("author"));
+        bookTalkService.commentInsert(dto);
+        return "redirect:detail.do?bno=" + bno;
+    }
+
+    @GetMapping("bookTalkCommentDelete.do")
+    public String commentDelete(HttpServletRequest request, Model model) throws Exception {
+        int bno = Integer.parseInt(request.getParameter("bno"));
+        int cno = Integer.parseInt(request.getParameter("cno"));
+        bookTalkService.commentDelete(cno);
+        return "redirect:detail.do?bno=" + bno;
+    }
+
+    @GetMapping("bookTalkInsert.do")
+    public String insertForm(HttpServletRequest request, Model model) throws Exception {
+        return "/admin/booktalk/bookTalkInsert";
+    }
+
+    @PostMapping("bookTalkInsert.do")
+    public String bookTalkInsert(HttpServletRequest request, Model model) throws Exception {
+        BookTalk dto = new BookTalk();
+        dto.setTitle(request.getParameter("title"));
+        dto.setContent(request.getParameter("content"));
+        dto.setId((String) session.getAttribute("sid"));
+        bookTalkService.bookTalkInsert(dto);
+        return "redirect:list.do";
+    }
+
+    @GetMapping("bookTalkDelete.do")
+    public String bookTalkDelete(HttpServletRequest request, Model model) throws Exception {
+        int bno = Integer.parseInt(request.getParameter("bno"));
+        bookTalkService.bookTalkDelete(bno);
+        return "redirect:list.do";
+    }
+
+    @GetMapping("bookTalkEdit.do")
+    public String bookTalkEditForm(HttpServletRequest request, Model model) throws Exception {
+        int bno = Integer.parseInt(request.getParameter("bno"));
+        BookTalk dto = bookTalkService.bookTalkDetail(bno);
+        model.addAttribute("dto", dto);
+        return "/admin/booktalk/bookTalkEdit";
+    }
+
+    @PostMapping("bookTalkEdit.do")
+    public String bookTalkEdit(HttpServletRequest request, Model model) throws Exception {
+        int bno = Integer.parseInt(request.getParameter("bno"));
+        BookTalk dto = new BookTalk();
+        dto.setBno(bno);
+        dto.setTitle(request.getParameter("title"));
+        dto.setContent(request.getParameter("content"));
+        bookTalkService.bookTalkEdit(dto);
+        return "redirect:list.do";
+    }
+
     @GetMapping("edumagList.do")
     public String getedumagList(HttpServletRequest request, Model model) throws Exception {
         String type = request.getParameter("type");
@@ -272,7 +376,7 @@ public class adminController {
         model.addAttribute("curPage", curPage);
         //로그인 한 아이디
         model.addAttribute("edumagList", edumagList);
-        return "/edumag/edumagList";
+        return "/admin/edumag/edumagList";
     }
 
     @GetMapping("edumagDetail.do")
@@ -414,7 +518,7 @@ public class adminController {
 
         List<Notice> noticeList = noticeService.noticeList(page);
         model.addAttribute("noticeList", noticeList);
-        return "/notice/noticeList";
+        return "/admin/notice/noticeList";
     }
 
     @GetMapping("noticeDetail.do")	//board/detail.do?seq=1
@@ -493,7 +597,7 @@ public class adminController {
         List<Qna> selectVisit = qnaService.selectVisit();
         model.addAttribute("selectVisit",selectVisit);
 
-        return "/qna/qnaList";
+        return "/admin/qna/qnaList";
     }
 
     @GetMapping("qnaDetail.do")	//board/detail.do?seq=1
@@ -503,7 +607,7 @@ public class adminController {
         Qna dto = qnaService.qnaDetail(qno);
         model.addAttribute("dto", dto);
         model.addAttribute("lev",lev);
-        return "admin/qna/qnaDetail";
+        return "/admin/qna/qnaDetail";
     }
 
     @GetMapping("qnaInsert.do")
@@ -567,7 +671,7 @@ public class adminController {
     public String getwinnerList(Model model) throws Exception {
         List<Winner> winnerList = winnerService.winnerList();
         model.addAttribute("winnerList", winnerList);
-        return "/winner/winnerList";
+        return "/admin/winner/winnerList";
     }
 
     @GetMapping("winnerDetail.do")	//winner/detail.do?bno=1
@@ -580,7 +684,7 @@ public class adminController {
 
     @GetMapping("winnerInsert.do")
     public String winnerInsertForm(HttpServletRequest request, Model model) throws Exception {
-        return "admin/winner/winnerInsert";
+        return "/admin/winner/winnerInsert";
     }
 
     @PostMapping("winnerInsert.do")
@@ -618,6 +722,84 @@ public class adminController {
         return "redirect:winnerList.do";
     }
 
+    // 설문조사 관리자 게시판
+    @GetMapping("surveyList.do")
+    public String getsurveyList(Model model) throws Exception {
+        List<Survey> surveyList = surveyService.surveyList();
+        model.addAttribute("surveyList", surveyList);
+        return ("/admin/survey/surveyList");
+    }
+
+    @GetMapping("surveyDetail.do")
+    public String getsurveyDetail(HttpServletRequest request, Model model) throws Exception {
+        Survey dto = new Survey();
+        Survey ck = new Survey();
+        Survey result = new Survey();
+        int sno = Integer.parseInt(request.getParameter("sno"));
+        String sid = (String) session.getAttribute("sid");
+        ck.setPar(sno);
+        ck.setAuthor(sid);
+        result = surveyService.ckAuthor(ck);
+        model.addAttribute("result", result);
+        System.out.println("result : "+result);
+        dto = surveyService.surveyDetail(sno);
+        model.addAttribute("dto", dto);
+        System.out.println("dto : "+dto);
+        return ("/admin/survey/surveyDetail");
+    }
+
+    @GetMapping("surveyInsert.do")
+    public String getsurveyInsertForm(Model model) throws Exception {
+        return "/admin/survey/surveyInsert";
+    }
+
+    @PostMapping("surveyInsert.do")
+    public String getsurveyWrite(HttpServletRequest request, Model model) throws Exception {
+        Survey dto = new Survey();
+        dto.setTitle(request.getParameter("title"));
+        dto.setQ1(request.getParameter("q1"));
+        dto.setQ2(request.getParameter("q2"));
+        dto.setQ3(request.getParameter("q3"));
+        dto.setQ4(request.getParameter("q4"));
+        dto.setQ5(request.getParameter("q5"));
+        dto.setQ6(request.getParameter("q6"));
+        dto.setQ7(request.getParameter("q7"));
+        dto.setQ8(request.getParameter("q8"));
+        dto.setQ9(request.getParameter("q9"));
+        dto.setQ10(request.getParameter("q10"));
+        dto.setContent(request.getParameter("content"));
+        surveyService.surveyInsert(dto);
+        return "redirect:list.do";
+    }
+
+    @PostMapping("sanswerInsert.do")
+    public String getsanserInsert(HttpServletRequest request, Model model) throws Exception {
+        Survey dto = new Survey();
+        Survey ck = new Survey();
+        Survey result = new Survey();
+        ck.setPar(Integer.parseInt(request.getParameter("sno")));
+        ck.setAuthor((String) session.getAttribute("sid"));
+        result = surveyService.ckAuthor(ck);
+        model.addAttribute("result", result);
+        System.out.println("result : "+result);
+
+        if(result == null) {
+            dto.setPar(Integer.parseInt(request.getParameter("sno")));
+            dto.setAuthor((String) session.getAttribute("sid"));
+            dto.setTitle(request.getParameter("title"));
+            dto.setAns(Integer.parseInt(request.getParameter("ans")));
+            System.out.println("dto : "+dto);
+            surveyService.sanswerInsert(dto);
+        }
+        return "redirect:list.do";
+    }
+
+    @GetMapping("surveyDelete.do")
+    public String surveyDelete(HttpServletRequest request, Model model) throws Exception {
+        int sno = Integer.parseInt(request.getParameter("sno"));
+        surveyService.surveyDelete(sno);
+        return "redirect:list.do";
+    }
 
     //ckeditor를 이용한 이미지 업로드
     @RequestMapping(value="imageUpload.do", method = RequestMethod.POST)

@@ -36,6 +36,14 @@ public class EdumagController {
         String keyword = request.getParameter("keyword");
         int curPage = request.getParameter("page") != null ? Integer.parseInt(request.getParameter("page")) : 1;
 
+        // null 문자열을 안전하게 처리
+        if (type == null) {
+            type = "";
+        }
+        if (keyword == null) {
+            keyword = "";
+        }
+
         System.out.println(type + ", " + keyword + ", " + curPage);
 
         Page page = new Page();

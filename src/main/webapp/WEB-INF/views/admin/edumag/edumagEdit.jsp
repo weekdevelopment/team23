@@ -15,12 +15,45 @@
   <jsp:include page="../include/head.jsp"></jsp:include>
   <script type="text/javascript" src="${path1 }/resources/ckeditor/ckeditor.js"></script>
 </head>
+<style>
+  .button {
+    text-decoration: none;
+    border-radius: 20px;
+    margin: 15px;
+    padding: 10px;
+    float: right;
+    background-color: #1D7151;
+    border-color: #1D7151;
+    color: #ffffff;
+  }
+
+  .button3 {
+    text-decoration: none;
+    border-radius: 20px;
+    margin: 15px;
+    padding: 10px;
+    float: right;
+    background-color: #FFA500;
+    border-color: #FFA500;
+    color: #ffffff;
+  }
+
+  .column1 {
+    text-align: center;
+    display: block;
+    flex-basis: 0;
+    flex-grow: 1;
+    flex-shrink: 1;
+    padding: 0.75rem;
+  }
+
+</style>
 <body>
 <div class="container is-fullhd">
   <!-- 헤더 부분 인클루드 -->
   <jsp:include page="../include/hd.jsp"></jsp:include>
   <div class="content" id="contents">
-    <div class="row column text-center">
+    <div class="row column1 text-center">
       <h2 class="h1">수정</h2>
       <hr>
       <div class="container">
@@ -35,7 +68,7 @@
               </td>
             </tr>
             <tr>
-              <th style="background-color:#dcdcdc">내용<br>이미지</th>
+              <th style="background-color:#dcdcdc">내용</th>
               <td>
                 <textarea name="content" class="textarea" id="content" placeholder="이미지와 내용 입력" rows="8" cols="100" maxlength="800"
                           required>
@@ -46,15 +79,22 @@
                 </script>
               </td>
             </tr>
-              <th style="background-color:#dcdcdc">유튜브 링크</th>
+              <th style="background-color:#dcdcdc">유튜브<br> 링크</th>
               <td>
                 <input type="text" name="link" id="link" value="${dto.link }"
                        style="width: 1200px; height: 50px;">
               </td>
             </tr>
             <tr>
+              <th style="background-color:#dcdcdc">썸네일<br>이미지</th>
+              <td>
+                <input type="text" name="imagesLink" id="imagesLink" class="textarea" placeholder="썸네일 이미지 주소 등록" value="${dto.imagesLink }"
+                       style="width: 1200px; height: 50px;">
+              </td>
+            </tr>
+            <tr>
               <td colspan="2">
-                <input type="submit" class="submit" value="수정" >
+                <input type="submit" class="button3" value="수정" >
                 <a class="button" href="${path1 }/edumag/list.do">목록으로</a>
               </td>
             </tr>
