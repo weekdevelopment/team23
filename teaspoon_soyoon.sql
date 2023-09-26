@@ -22,11 +22,15 @@ CREATE TABLE faq (
 COMMIT;
 
 -- 자주 묻는 질문 더미 데이터 
-INSERT INTO faq VALUES (DEFAULT, '질문1', '답변1입니다', DEFAULT);
-INSERT INTO faq VALUES (DEFAULT, '질문2', '답변2입니다', DEFAULT);
-INSERT INTO faq VALUES (DEFAULT, '질문3', '답변3입니다', DEFAULT);
-INSERT INTO faq VALUES (DEFAULT, '질문4', '답변4입니다', DEFAULT);
-INSERT INTO faq VALUES (DEFAULT, '질문5', '답변5입니다', DEFAULT);
+INSERT INTO faq VALUES (DEFAULT, '화면이 정상적으로 나오지 않습니다. 어떻게 해야 하나요?', 'PC 및 브라우저 환경에 따라 화면이 정상적으로 나오지 않을 수 있습니다. 
+맘앤톡 사이트는 인터넷 익스플로러 9 이상, 크롬 브라우저에 최적화되어있습니다. 
+인터넷 익스플로러 8 이하 사용자는 브라우저를 업데이트 하거나 크롬 브라우저로 이용해주시길 바랍니다. ', DEFAULT);
+INSERT INTO faq VALUES (DEFAULT, '회원 탈퇴 후 이전에 작성한 게시글 및 댓글을 삭제할 수 있나요? ', '작성한 게시글 및 댓글은 탈퇴 후에도 삭제되지 않고 유지됩니다. 
+게시글 및 댓글 삭제를 원하시는 경우에는 반드시 삭제하신 후 탈퇴하시기 바랍니다. ', DEFAULT);
+INSERT INTO faq VALUES (DEFAULT, '회원정보를 수정하고 싶습니다. ', '로그인 후 우측 상단에 있는 마이페이지를 클릭해주세요. ', DEFAULT);
+INSERT INTO faq VALUES (DEFAULT, '원하는 정보 또는 콘텐츠는 어떻게 찾아볼 수 있나요?', '우측 상단 돋보기 아이콘을 클릭하시어 원하는 정보의 키워드를 입력하시면 메뉴별 검색 결과를 확인하실 수 있습니다. 
+또는 메인 화면에서 맞춤추천정보를 클릭 후 키워드를 검색하여 콘텐츠를 검색할 수 있으며, 맘앤톡이 추천하는 키워드도 확인할 수 있습니다. ', DEFAULT);
+INSERT INTO faq VALUES (DEFAULT, '교육게시판  전문가의 정보를 알고 싶어요. ', '휴대폰 번호, 이메일 주소등의 개인 연락처는 개인정보 보호를 위해 알려드릴 수 없으니 양해부탁드립니다. ', DEFAULT);
 
 -- 공지사항 테이블 생성 
 create table notice(
@@ -204,3 +208,43 @@ SELECT n.nno, COUNT(nc.cno) AS count
         FROM notice n
             LEFT JOIN notice_comment nc ON n.nno = nc.nno
         GROUP BY n.nno;
+        
+CREATE TABLE survey(
+  sno int auto_increment primary key,
+  title VARCHAR(200) NOT NULL,
+  q1 varchar(200) NOT null,
+  q2 varchar(200),
+  q3 varchar(200),
+  q4 varchar(200),
+  q5 varchar(200),
+  q6 varchar(200),
+  q7 varchar(200),
+  q8 varchar(200),
+  q9 varchar(200),
+  q10 varchar(200),
+  regdate timestamp default current_timestamp,
+  ans int default 0,
+  lev int default 0,
+  par INT DEFAULT 0,
+  author VARCHAR(100),
+  visited INT(11) DEFAULT 0,
+  content VARCHAR(1500)
+);
+create table EVENT(
+bno INT AUTO_INCREMENT PRIMARY KEY,  -- 글번호
+title VARCHAR(100) not null,   -- 글제목
+content VARCHAR(1500) not null,    -- 글내용
+regdate DATETIME DEFAULT CURRENT_TIMESTAMP(),   -- 작성일
+visited INT DEFAULT 0,    -- 조회수
+id VARCHAR(20),    -- 작성자
+rec INT DEFAULT 0 -- 추천수
+);
+create table winner(
+bno INT AUTO_INCREMENT PRIMARY KEY,  -- 글번호
+title VARCHAR(100) not null,   -- 글제목
+content VARCHAR(1500) not null,    -- 글내용
+regdate DATETIME DEFAULT CURRENT_TIMESTAMP(),   -- 작성일
+visited INT DEFAULT 0,    -- 조회수
+id VARCHAR(20),    -- 작성자
+rec INT DEFAULT 0 -- 추천수
+);
