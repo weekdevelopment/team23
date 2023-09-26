@@ -20,3 +20,6 @@ maked by Rosie Oh by Team Weekitalk's FullStack Developer
 |      Rename      |         파일, 폴더명 이름 수정          |
 |      Remove      |             파일, 폴더 삭제             |
 |      Chore       |            빌드, 패키지 수정            |
+
+## Function.gif
+![예제 GIF](./functionRecord/team23_1.gif)
