@@ -14,9 +14,37 @@
     <!-- 헤드 부분 인클루드 -->
     <jsp:include page="../../include/head.jsp"></jsp:include>
 </head>
+<style>
+	.content ul {
+		list-style-type: none;
+	}
+	.content ul >li {
+		list-style-type: none;
+	}
+	.icon {
+		color: #2B3A55;
+	}
+	.menu-list a {
+		min-width: 159px;
+	}
+	.pagination-link.is-current {
+		background-color:#2B3A55;
+		border-color: #2B3A55;
+	}
+	.pagination-link {
+		background-color: #ffffff;
+	}
+	.select:not(.is-multiple):not(.is-loading)::after {
+		border-color: #2B3A55;
+	}
+	form.field.has-addons.has-addons-right {
+		float: right;
+		padding-top: 3px;
+	}
+</style>
 <body>
 <!-- 헤더 부분 인클루드 -->
-<div class="container is-fullhd">
+<div class="container is-fullhd" style="min-height: 100vh;">	<!-- 푸터 아래 여백 남는거 수정 -->
 	<jsp:include page="../../include/hd.jsp"></jsp:include>
 	<div class="columns">
 		<jsp:include page="../include/admin_eventSideMenu.jsp" />
@@ -26,63 +54,13 @@
 					<span class="title">당첨자 게시판</span>
 				</div>
 
-				<div class="columns">
-					<div class="column is-6">
-						<div class="card events-card">
-							<header class="card-header">
-								<p class="card-header-title">추천 많은 글</p>
-							</header>
-                            <c:forEach items="${winnerRecList }" var="winner" varStatus="status">
-                                <div class="card-table">
-                                    <div class="content">
-                                        <table class="table is-fullwidth">
-                                            <tbody>
-                                            <tr>
-                                                <td>
-                                                    &#${9311+status.count} <a href="${path1}/winner/detail.do?bno=${winner.bno }">${winner.title }</a>
-                                                </td>
-                                                <td class="level-right">
-                                                    &#x1F44D; ${winner.rec }
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </c:forEach>
-
-						</div>
-					</div>
-
-					<div class="column is-6">
-						<div class="card events-card">
-							<header class="card-header">
-								<p class="card-header-title">댓글 많은 글</p>
-							</header>
-							<div class="card-table">
-								<div class="content">
-									<table class="table is-fullwidth is-striped">
-										<tbody>
-										<tr>
-											<td width="5%"><i class="fa fa-bell-o"></i></td>
-											<td>Lorum ipsum dolem aire</td>
-											<td class="level-right"><a class="button is-small is-primary" href="#">Action</a></td>
-										</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
 			<div class="button-group">
 				<c:if test="${sid.equals('admin')}">
 					<a class="button post-btn" href="${path1 }/winner/insert.do">당첨자 등록</a>
 				</c:if>
 			</div>
-
+				<br>
+				<br>
 			<div class="box content">
 				<c:forEach items="${winnerList }" var="winner" varStatus="status">
 					<article class="post">
@@ -102,13 +80,26 @@
 								<span class="has-text-grey-light"><i class="fa fa-comments"></i> 1</span>
 							</div>
 						</div>
+						<!-- 수정 및 삭제 버튼 -->
+						<c:if test="${sid.equals('admin')}">
+							<div class="button-group" style="float: right;">
+								<a href="${path1}/winner/edit.do?bno=${winner.bno}" class="button is-link">수정</a>
+								<a href="${path1}/winner/delete.do?bno=${winner.bno}" class="button is-danger">삭제</a>
+							</div>
+						</c:if>
 					</article>
 				</c:forEach>
 			</div>
 		</div>
 	</div>
 </div>
+</div>
 <!-- 푸터 부분 인클루드 -->
 <jsp:include page="../../include/ft.jsp"></jsp:include>
+<style>
+	body {
+		margin-bottom: 0;
+	}
+</style>
 </body>
 </html>

@@ -39,60 +39,8 @@
 					<%--<h6>이벤트 게시판</h6>--%>
 					<span class="title">윜이슈(설문) 게시판</span>
 				</div>
-
-				<div class="columns">
-					<div class="column is-6">
-						<div class="card surveys-card">
-							<header class="card-header">
-								<p class="card-header-title">추천 많은 글</p>
-							</header>
-                            <c:forEach items="${surveyRecList }" var="survey" varStatus="status">
-                                <div class="card-table">
-                                    <div class="content">
-                                        <table class="table is-fullwidth">
-                                            <tbody>
-                                            <tr>
-                                                <%--<td width="1%"><i class="fa fa-bell-o"></i></td>--%>
-                                                <td>
-                                                    &#${9311+status.count} <a href="${path1}/survey/detail.do?sno=${survey.sno }">${survey.title }</a>
-                                                </td>
-                                                <%--<td class="level-right"><a class="button is-small is-primary" href="#">Action</a></td>--%>
-                                                <td class="level-right">
-                                                    &#x1F44D; ${survey.rec }
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </c:forEach>
-
-						</div>
-					</div>
-
-					<div class="column is-6">
-						<div class="card surveys-card">
-							<header class="card-header">
-								<p class="card-header-title">댓글 많은 글</p>
-							</header>
-							<div class="card-table">
-								<div class="content">
-									<table class="table is-fullwidth is-striped">
-										<tbody>
-										<tr>
-											<td width="5%"><i class="fa fa-bell-o"></i></td>
-											<td>Lorum ipsum dolem aire</td>
-											<td class="level-right"><a class="button is-small is-primary" href="#">Action</a></td>
-										</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
+				<br>
+				<br>
 			<div class="box content">
 				<div class="content" id="contents">
 					<div class="row column text-center">
@@ -109,6 +57,12 @@
 										<c:forEach var="survey" items="${surveyList }" varStatus="status">
 											<li style="overflow: hidden">
 												<a href="${path1}/survey/detail.do?sno=${survey.sno }">
+													<!-- 수정 및 삭제 버튼 -->
+													<c:if test="${sid.equals('admin')}">
+														<div class="button-group" style="float: right;">
+															<a href="${path1}/survey/delete.do?sno=${survey.sno}" class="button is-danger">삭제</a>
+														</div>
+													</c:if>
 													<div style="width: 600px;">
 														<div>
 															<h3 style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${survey.title }</h3>
@@ -132,6 +86,7 @@
 			</div>
 		</div>
 	</div>
+</div>
 </div>
 <!-- 푸터 부분 인클루드 -->
 <jsp:include page="../../include/ft.jsp"></jsp:include>

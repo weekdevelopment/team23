@@ -2,6 +2,9 @@ create database teaspoon;
 
 USE teaspoon;
 
+-- 이거 건드리지 마세요!!!! 이거 없으면 윈도우 호환성 안될 때 오류 해결 못합니다ㅠㅠㅠ
+ALTER DATABASE teaspoon DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+
 COMMIT;
 
 CREATE TABLE member(
@@ -22,34 +25,68 @@ CREATE TABLE member(
 DESC MEMBER;
 
 INSERT INTO member VALUES ('admin', '1234', '관리자',
-                           'admin@teaspoon.co.kr', '0212341234',
+                           'admin@teaspoon.co.kr', '02-1234-1234',
                            '서울특별시 금천구 디지털로9길 23 (마리오2 패션타워)',
                            '11층 1108호', '08511', DEFAULT, '2023-12-25',
                            DEFAULT, DEFAULT);
-INSERT INTO member VALUES ('kim', '4321', '김천재',
-                           'kim@teaspoon.co.kr', '01043214321',
+
+INSERT INTO member VALUES ('tjrhkd', '1234', '서 광',
+                           'tjrhkd@teaspoon.co.kr', '010-1234-1234',
                            '서울특별시 금천구 가산로9길 54',
-                           '천재교과서', '08513', DEFAULT, '1978-12-25',
+                           '천재교과서', '08513', DEFAULT, '2000-01-01',
                            DEFAULT, DEFAULT);
+
+INSERT INTO member VALUES ('sirious920', '1234', '오태훈',
+                           'sirious920@teaspoon.co.kr', '010-7329-7484',
+                           '서울특별시 금천구 가산로9길 54',
+                           '천재교과서', '08513', DEFAULT, '1998-09-20',
+                           DEFAULT, DEFAULT);
+
+INSERT INTO member VALUES ('dlthdbs', '1234', '이소윤',
+                           'dlthdbs@teaspoon.co.kr', '010-1234-1234',
+                           '서울특별시 금천구 가산로9길 54',
+                           '천재교과서', '08513', DEFAULT, '2000-01-01',
+                           DEFAULT, DEFAULT);
+
+INSERT INTO member VALUES ('gkstjs', '1234', '한 선',
+                           'gkstjs@teaspoon.co.kr', '010-1234-1234',
+                           '서울특별시 금천구 가산로9길 54',
+                           '천재교과서', '08513', DEFAULT, '2000-01-01',
+                           DEFAULT, DEFAULT);
+
+INSERT INTO member VALUES ('dldmsdud', '1234', '이은영',
+                           'dldmsdud@teaspoon.co.kr', '010-1234-1234',
+                           '서울특별시 금천구 가산로9길 54',
+                           '천재교과서', '08513', DEFAULT, '2000-01-01',
+                           DEFAULT, DEFAULT);
+
+
 COMMIT;
 
 UPDATE member SET pw='$2a$10$TMTp1e7vW8nx7l7B49a2d.0robqb2qUFTuBPntKHRvVILg0CmBkqW' WHERE id='admin';
 
-UPDATE member SET pw='$2a$10$mpr36CRQpp903gPf.f76auK1CYzFkq.LD65JsGzdrBCiOluBotWYW' WHERE id='kim';
+UPDATE member SET pw='$2a$10$mpr36CRQpp903gPf.f76auK1CYzFkq.LD65JsGzdrBCiOluBotWYW' WHERE id='tjrhkd';
+
+UPDATE member SET pw='$2a$10$mpr36CRQpp903gPf.f76auK1CYzFkq.LD65JsGzdrBCiOluBotWYW' WHERE id='sirious920';
+
+UPDATE member SET pw='$2a$10$mpr36CRQpp903gPf.f76auK1CYzFkq.LD65JsGzdrBCiOluBotWYW' WHERE id='dlthdbs';
+
+UPDATE member SET pw='$2a$10$mpr36CRQpp903gPf.f76auK1CYzFkq.LD65JsGzdrBCiOluBotWYW' WHERE id='gkstjs';
+
+UPDATE member SET pw='$2a$10$mpr36CRQpp903gPf.f76auK1CYzFkq.LD65JsGzdrBCiOluBotWYW' WHERE id='dldmsdud';
 
 SELECT * FROM member;
 
 CREATE TABLE board (
     seq INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(100) NOT NULL,
-    content VARCHAR(1000) NOT NULL ,
+    content VARCHAR(1000) NOT NULL,
     nickname VARCHAR(20),
     regdate DATETIME DEFAULT CURRENT_TIMESTAMP(),
     visited INT DEFAULT 0
 );
 
 INSERT INTO board VALUES (DEFAULT, "더미 1이욜~!", "게시판 더미 1욜", "doyouni", DEFAULT, 0);
-
 
 INSERT INTO board VALUES (DEFAULT, "더미 2이욜~!", "게시판 더미 2욜", "doyouni", DEFAULT, 0);
 
@@ -67,10 +104,7 @@ CREATE TABLE free (
     visited INT DEFAULT 0,
     id VARCHAR(20),
     rec INT
-)
-
-update sample set NAME='dododoyouni' where NO=3;
-
+);
 
 CREATE TABLE faq (
     fno int PRIMARY KEY AUTO_INCREMENT,
@@ -103,12 +137,11 @@ create table notice(
     visit int DEFAULT 0
 );
 
--- 커뮤니티 전용 공지사항 더미글 추가 10건
-
 commit;
 
 select * from notice;
 
+-- 커뮤니티 전용 공지사항 더미글 추가 10건
 INSERT INTO notice VALUES(DEFAULT, "공지사항 1번", "금주의 공지 전달드립니다~!", DEFAULT, DEFAULT);
 
 INSERT INTO notice VALUES(DEFAULT, "공지사항 2번", "금주의 공지 전달드립니다~!", DEFAULT, DEFAULT);
@@ -154,48 +187,47 @@ CREATE TABLE qna(
 );
 
 -- 더미 데이터 작성
-INSERT INTO qna(title, content, author, lev, secret) VALUES('질문1', '질문입니다. 1', 'park', 0, false);
+INSERT INTO qna(title, content, author, lev, secret) VALUES('질문1', '질문입니다. 1', 'admin', 0, false);
 
 UPDATE qna SET par=qno WHERE lev=0 AND qno=1;
 
-INSERT INTO qna(title, content, author, lev, secret) VALUES('질문2', '질문입니다. 2', 'park', 0, true);
+INSERT INTO qna(title, content, author, lev, secret) VALUES('질문2', '질문입니다. 2', 'admin', 0, true);
 
 UPDATE qna SET par=qno WHERE lev=0 AND qno=2;
 
-INSERT INTO qna(title, content, author, lev, secret) VALUES('질문3', '질문입니다. 3', 'park', 0, false);
+INSERT INTO qna(title, content, author, lev, secret) VALUES('질문3', '질문입니다. 3', 'admin', 0, false);
 
 UPDATE qna SET par=qno WHERE lev=0 AND qno=3;
 
-INSERT INTO qna(title, content, author, lev, secret) VALUES('질문4', '질문입니다. 4', 'park', 0, false);
+INSERT INTO qna(title, content, author, lev, secret) VALUES('질문4', '질문입니다. 4', 'admin', 0, false);
 
 UPDATE qna SET par=qno WHERE lev=0 AND qno=4;
 
-INSERT INTO qna(title, content, author, lev, secret) VALUES('질문5', '질문입니다. 5', 'park', 0, false);
+INSERT INTO qna(title, content, author, lev, secret) VALUES('질문5', '질문입니다. 5', 'admin', 0, false);
 
 UPDATE qna SET par=qno WHERE lev=0 AND qno=5;
 
-INSERT INTO qna(title, content, author, lev, secret) VALUES('질문6', '질문입니다. 6', 'park', 0, false);
+INSERT INTO qna(title, content, author, lev, secret) VALUES('질문6', '질문입니다. 6', 'admin', 0, false);
 
 UPDATE qna SET par=qno WHERE lev=0 AND qno=6;
 
-INSERT INTO qna(title, content, author, lev, secret) VALUES('질문7', '질문입니다. 7', 'park', 0, false);
+INSERT INTO qna(title, content, author, lev, secret) VALUES('질문7', '질문입니다. 7', 'admin', 0, false);
 
 UPDATE qna SET par=qno WHERE lev=0 AND qno=7;
 
-INSERT INTO qna(title, content, author, lev, secret) VALUES('질문8', '질문입니다. 8', 'park', 0, false);
+INSERT INTO qna(title, content, author, lev, secret) VALUES('질문8', '질문입니다. 8', 'admin', 0, false);
 
 UPDATE qna SET par=qno WHERE lev=0 AND qno=8;
 
-INSERT INTO qna(title, content, author, lev, secret) VALUES('질문9', '질문입니다. 9', 'park', 0, false);
+INSERT INTO qna(title, content, author, lev, secret) VALUES('질문9', '질문입니다. 9', 'admin', 0, false);
 
 UPDATE qna SET par=qno WHERE lev=0 AND qno=9;
 
-INSERT INTO qna(title, content, author, lev, secret) VALUES('질문10', '질문입니다. 10', 'park', 0, false);
+INSERT INTO qna(title, content, author, lev, secret) VALUES('질문10', '질문입니다. 10', 'admin', 0, false);
 
 UPDATE qna SET par=qno WHERE lev=0 AND qno=10;
 
 -- 답변
-
 INSERT INTO qna(title, content, author, lev, par, secret) VALUES ('질문1에 대한 답변', '답변입니다. 1', 'admin', 1, 1, false);
 
 INSERT INTO qna(title, content, author, lev, par, secret) VALUES ('질문2에 대한 답변', '답변입니다. 2.', 'admin', 1, 2, true);
@@ -220,12 +252,11 @@ COMMIT;
 
 select * from qna;
 
-select qno from qnalist1 limit 1
-
-
 -- QnA 리스트
 create view qnalist1 AS  (SELECT a.qno AS qno, a.title AS title, a.content AS content, a.author AS author, a.resdate AS resdate, a.visit AS visit, a.lev AS lev,
                                  a.par AS par, b.name AS name FROM qna a, member b WHERE a.author=b.id ORDER BY a.par DESC, a.lev ASC, a.qno ASC);
+
+select qno from qnalist1 limit 1
 
 -- qna JOIN & VIEW 생성 ( 내가 쓴 글에 이용)
 CREATE VIEW qnalist2 AS (SELECT a.qno AS qno, a.title AS title, a.content AS content, a.author AS author, a.resdate AS resdate, a.visit AS visit, a.lev AS lev,
@@ -233,8 +264,9 @@ CREATE VIEW qnalist2 AS (SELECT a.qno AS qno, a.title AS title, a.content AS con
 
 SELECT * FROM qnalist1;
 
-select qno from qnalist1 limit 1
+select qno from qnalist1 limit 1;
 
+-- 자유게시판
 create table free(
     bno INT AUTO_INCREMENT PRIMARY KEY,             -- 글번호
     title VARCHAR(100) not null,                    -- 글제목
@@ -247,100 +279,75 @@ create table free(
 
 DESC free;
 
-CREATE TABLE fileinfo(
-    NO INT AUTO_INCREMENT PRIMARY KEY,  -- 번호
-    articleno varchar(45) DEFAULT NULL,	-- 글번호
-    saveFolder varchar(45) DEFAULT NULL,	-- 저장 디렉토리
-    originFile varchar(45) DEFAULT NULL,	--
-    saveFile varchar(45) DEFAULT NULL
-);
-
-CREATE TABLE guestbook (
-    articleno int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    userid varchar(16) NOT NULL,
-    subject varchar(100) NOT NULL,
-    content varchar(2000) NOT NULL,
-    regtime timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
-
-DESC guestbook;
-
-CREATE TABLE fileobj (
-    no int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    postno INT NOT NULL,
-    savefolder VARCHAR(400),
-    originfile VARCHAR(400),
-    savefile VARCHAR(800),
-    filesize LONG,
-    uploaddate VARCHAR(100)
-);
-
-CREATE TABLE fileboard (
-    postno int NOT NULL AUTO_INCREMENT PRIMARY KEY,	        -- 글 번호
-    title VARCHAR(100) not null,                            -- 글제목
-    content VARCHAR(1500) not null,                         -- 글내용
-    regdate DATETIME DEFAULT CURRENT_TIMESTAMP(),           -- 작성일
-    visited INT DEFAULT 0                                   -- 조회수
-);
-
-DESC fileobj;
-
-DESC fileboard;
-
-SELECT * FROM fileobj;
-SELECT * FROM fileboard;
-
-UPDATE fileboard SET visited=0 WHERE postno=1;
-
-ALTER TABLE fileboard MODIFY COLUMN visited INT DEFAULT 0;
-
-// 설문조사 DB
-CREATE table survey (
-    sno INT auto_increment PRIMARY KEY,
-    title VARCHAR(100) NOT NULL,
-    num INT NOT null
-);
-
--- 이벤트 DB
-create table EVENT(
-    bno INT AUTO_INCREMENT PRIMARY KEY,             -- 글번호
-    title VARCHAR(100) not null,                    -- 글제목
-    content VARCHAR(1500) not null,                 -- 글내용
-    regdate DATETIME DEFAULT CURRENT_TIMESTAMP(),   -- 작성일
-    visited INT DEFAULT 0,                          -- 조회수
-    id VARCHAR(20),                                 -- 작성자
-    rec INT DEFAULT 0                               -- 추천수
-);
-
--- winner 게시판 DB
-create table winner(
-    bno INT AUTO_INCREMENT PRIMARY KEY,             -- 글번호
-    title VARCHAR(100) not null,                    -- 글제목
-    content VARCHAR(1500) not null,                 -- 글내용
-    regdate DATETIME DEFAULT CURRENT_TIMESTAMP(),   -- 작성일
-    visited INT DEFAULT 0,                          -- 조회수
-    id VARCHAR(20),                                 -- 작성자
-    rec INT DEFAULT 0                               -- 추천수
-);
-
-insert into event values(default, '이벤트 글 제목1입니다.', '여기는 이벤트 글1에 대한 내용입니다.', default, DEFAULT, 'admin', default);
-
-COMMIT;
-
--- edumag 게시판 DB
-CREATE TABLE edumag(
-    link VARCHAR(100) NOT NULL,
-    no INT PRIMARY KEY AUTO_INCREMENT,
-    title VARCHAR(200) NOT NULL,
-    content VARCHAR(1000),
+CREATE TABLE free_comment(
+    cno INT PRIMARY KEY AUTO_INCREMENT,
+    bno INT,
+    author VARCHAR(16) NOT NULL,
     resdate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    img varchar (1000) NULL,
-    visited INT(11) DEFAULT 0
+    content VARCHAR(200),
+    FOREIGN KEY(bno) REFERENCES free(bno) ON DELETE CASCADE
+);
+
+CREATE VIEW freecommentlist AS (SELECT a.cno AS cno, a.bno as bno, a.content AS content,
+                                       a.author AS author, a.resdate AS resdate,
+                                       b.name AS name FROM free_comment a,
+                                       member b WHERE a.author=b.id ORDER BY a.cno ASC
+);
+
+CREATE TABLE reco (
+    rno INT AUTO_INCREMENT PRIMARY KEY,
+    bno INT REFERENCES free(bno) ON DELETE CASCADE,
+    id VARCHAR(20),
+    flag INT DEFAULT 0
+);
+
+-- 교재게시판
+CREATE TABLE booktalk(
+    bno INT AUTO_INCREMENT PRIMARY KEY,                 -- 글번호
+    title VARCHAR(100) NOT null,                        -- 글제목
+    content VARCHAR(1500) not null,                     -- 글내용
+    regdate DATETIME DEFAULT CURRENT_TIMESTAMP(),       -- 작성일
+    visited INT,                                        -- 조회수
+    id VARCHAR(20),                                     -- 작성자
+    rec INT                                             -- 추천수
+);
+
+CREATE TABLE booktalk_comment(
+    cno INT PRIMARY KEY AUTO_INCREMENT,
+    bno INT,
+    author VARCHAR(16) NOT NULL,
+    resdate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    content VARCHAR(200),
+    FOREIGN KEY(bno) REFERENCES booktalk(bno) ON DELETE CASCADE
+);
+
+CREATE VIEW booktalkcommentlist AS (SELECT a.cno AS cno, a.bno as bno, a.content AS content,
+                                           a.author AS author, a.resdate AS resdate,
+                                           b.name AS name FROM booktalk_comment a,
+                                           member b WHERE a.author=b.id ORDER BY a.cno ASC
+);
+
+CREATE TABLE bookreco (
+                          rno INT AUTO_INCREMENT PRIMARY KEY,
+                          bno INT REFERENCES booktalk(bno) ON DELETE CASCADE,
+                          id VARCHAR(20),
+                          flag INT DEFAULT 0
+);
+
+
+CREATE TABLE edumag(
+                       link VARCHAR(100) NOT NULL,
+                       no INT PRIMARY KEY AUTO_INCREMENT,
+                       title VARCHAR(200) NOT NULL,
+                       content VARCHAR(1000),
+                       resdate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                       img varchar (1000) NULL,
+                       visited INT(11) DEFAULT 0
 );
 
 INSERT INTO edumag VALUES(
-                          'https://www.youtube.com/embed/-FhhsWwemmE?si=YZE55dqm1u8wuoS4',
-                          DEFAULT,
+                             'https://www.youtube.com/embed/-FhhsWwemmE?si=YZE55dqm1u8wuoS4',
+                             DEFAULT,
                              '200% 효과 보는 문제집 선택과<br> 활용법에 대해 알아보아요!',
                              '아이 수준에 맞는 문제집은 어떻게 고를 수 있을까요?<br>
                              정답률 70%를 기억해 주세요.<br>
@@ -506,15 +513,15 @@ SELECT * FROM edumag;
 
 -- edumagComment DB
 CREATE TABLE edumagComment(
-    NO INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    bno INT NOT NULL,
-    id VARCHAR(20) NOT NULL,
-    content VARCHAR(500),
-    resdate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+                              NO INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                              bno INT NOT NULL,
+                              id VARCHAR(20) NOT NULL,
+                              content VARCHAR(500),
+                              resdate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 INSERT INTO edumagComment VALUES(
-                                 DEFAULT,
+                                    DEFAULT,
                                     '1',
                                     'seo',
                                     '좋은 정보 감사합니다 !',
@@ -537,67 +544,46 @@ INSERT INTO edumagComment VALUES(
                                     DEFAULT
                                 );
 
-// 설문조사 DB
-CREATE table survey (
-                        sno INT auto_increment PRIMARY KEY,
-                        title VARCHAR(100) NOT NULL,
-                        num INT NOT null
+CREATE TABLE survey(
+                       sno int auto_increment primary key,
+                       title VARCHAR(200) NOT NULL,
+                       q1 varchar(200) NOT null,
+                       q2 varchar(200),
+                       q3 varchar(200),
+                       q4 varchar(200),
+                       q5 varchar(200),
+                       q6 varchar(200),
+                       q7 varchar(200),
+                       q8 varchar(200),
+                       q9 varchar(200),
+                       q10 varchar(200),
+                       regdate timestamp default current_timestamp,
+                       ans int default 0,
+                       lev int default 0,
+                       par INT DEFAULT 0,
+                       author VARCHAR(100),
+                       visited INT(11) DEFAULT 0,
+                       content VARCHAR(1500)
 );
 
--- 이벤트 DB
 create table EVENT(
-                      bno INT AUTO_INCREMENT PRIMARY KEY,             -- 글번호
-                      title VARCHAR(100) not null,                    -- 글제목
-                      content VARCHAR(1500) not null,                 -- 글내용
+                      bno INT AUTO_INCREMENT PRIMARY KEY,  -- 글번호
+                      title VARCHAR(100) not null,   -- 글제목
+                      content VARCHAR(1500) not null,    -- 글내용
                       regdate DATETIME DEFAULT CURRENT_TIMESTAMP(),   -- 작성일
-                      visited INT DEFAULT 0,                          -- 조회수
-                      id VARCHAR(20),                                 -- 작성자
-                      rec INT DEFAULT 0                               -- 추천수
+                      visited INT DEFAULT 0,    -- 조회수
+                      id VARCHAR(20),    -- 작성자
+                      rec INT DEFAULT 0 -- 추천수
 );
 
--- winner 게시판 DB
 create table winner(
-                       bno INT AUTO_INCREMENT PRIMARY KEY,             -- 글번호
-                       title VARCHAR(100) not null,                    -- 글제목
-                       content VARCHAR(1500) not null,                 -- 글내용
+                       bno INT AUTO_INCREMENT PRIMARY KEY,  -- 글번호
+                       title VARCHAR(100) not null,   -- 글제목
+                       content VARCHAR(1500) not null,    -- 글내용
                        regdate DATETIME DEFAULT CURRENT_TIMESTAMP(),   -- 작성일
-                       visited INT DEFAULT 0,                          -- 조회수
-                       id VARCHAR(20),                                 -- 작성자
-                       rec INT DEFAULT 0                               -- 추천수
-);
-
-insert into event values(default, '이벤트 글 제목1입니다.', '여기는 이벤트 글1에 대한 내용입니다.', default, DEFAULT, 'admin', default);
-
-COMMIT;
-
--- 교재게시판
-CREATE TABLE booktalk(
-                         bno INT AUTO_INCREMENT PRIMARY KEY,  -- 글번호
-                         title VARCHAR(100) NOT null,   -- 글제목
-                         content VARCHAR(1500) not null,    -- 글내용
-                         regdate DATETIME DEFAULT CURRENT_TIMESTAMP(),   -- 작성일
-                         visited INT,    -- 조회수
-                         id VARCHAR(20),    -- 작성자
-                         rec INT -- 추천수
-);
-
-CREATE TABLE booktalk_comment(
-                                 cno INT PRIMARY KEY AUTO_INCREMENT,
-                                 bno INT,
-                                 author VARCHAR(16) NOT NULL,
-                                 resdate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                                 content VARCHAR(200),
-                                 FOREIGN KEY(bno) REFERENCES booktalk(bno) ON DELETE CASCADE
-);
-
-CREATE VIEW booktalkcommentlist AS (SELECT a.cno AS cno, a.bno as bno, a.content AS content, a.author AS author, a.resdate AS resdate,
-                                           b.name AS name FROM booktalk_comment a, member b WHERE a.author=b.id ORDER BY a.cno ASC);
-
-CREATE TABLE bookreco (
-                          rno INT AUTO_INCREMENT PRIMARY KEY,
-                          bno INT REFERENCES booktalk(bno) ON DELETE CASCADE,
-                          id VARCHAR(20),
-                          flag INT DEFAULT 0
+                       visited INT DEFAULT 0,    -- 조회수
+                       id VARCHAR(20),    -- 작성자
+                       rec INT DEFAULT 0 -- 추천수
 );
 
 
