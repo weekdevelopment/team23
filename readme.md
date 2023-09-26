@@ -1,6 +1,7 @@
 # Project for Team WeekCrew's Tspoon
 
 ![tspoon](./tspoon/1.png)
+![tspoon](./tspoon/2.png)
 
 
 
