@@ -280,11 +280,15 @@ public class FreeController {
 //    }
     @PostMapping("rec")
     @ResponseBody
-    public int rec(@ModelAttribute Reco reco) throws Exception {
+    public Map<String, Integer> rec(@ModelAttribute Reco reco) throws Exception {
+        //System.out.println("reco : " + reco );
         int result = freeService.insertReco(reco);
-        System.out.println("result : " + result);
-        //reco.
-
-        return result;
+        //freeService.freeDetail(reco.getBno()).getRec();
+        int bno = reco.getBno();
+        Map<String, Integer> resultMap = new HashMap<>();
+        resultMap.put("res", result);
+        resultMap.put("reco", freeService.freeDetail(bno).getRec());
+        freeService.hitsDown(bno);
+        return resultMap;
     }
 }

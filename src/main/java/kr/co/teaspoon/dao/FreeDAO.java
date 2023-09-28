@@ -12,6 +12,8 @@ public interface FreeDAO {
 
     public Free freeDetail(int bno) throws Exception;
 
+    public void hitsDown(int bno) throws Exception;
+
     public void freeInsert(Free dto) throws Exception;
 
     public void freeDelete(int bno) throws Exception;
@@ -39,7 +41,7 @@ public interface FreeDAO {
 
     public int insertReco(Reco reco) throws Exception;
 
-    public void deleteReco(Reco reco) throws Exception;
+    public int deleteReco(Reco reco) throws Exception;
 
     public void increaseRec(Reco reco) throws Exception;
 

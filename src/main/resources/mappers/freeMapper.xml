@@ -55,8 +55,11 @@
 	<update id="freeEdit">
 		update free set title=#{title}, content=#{content} where bno=#{bno}
 	</update>
-	<update id="visitCount">
+	<update id="hitsUp">
 		update free set visited=visited+1 where bno=#{bno}
+	</update>
+	<update id="hitsDown">
+		update free set visited=visited-1 where bno=#{bno}
 	</update>
 	<!-- 상위 추천 5개 -->
 	<select id="freeBestRecList" resultType="kr.co.teaspoon.dto.Free">

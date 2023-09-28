@@ -27,8 +27,13 @@ public class FreeDAOImpl implements FreeDAO {
     @Transactional
     @Override
     public Free freeDetail(int bno) throws Exception {
-        sqlSession.update("free.visitCount", bno);
+        sqlSession.update("free.hitsUp", bno);
         return sqlSession.selectOne("free.freeDetail", bno);
+    }
+
+    @Override
+    public void hitsDown(int bno) throws Exception {
+        sqlSession.update("free.hitsDown", bno);
     }
 
     @Override
@@ -100,8 +105,8 @@ public class FreeDAOImpl implements FreeDAO {
     }
 
     @Override
-    public void deleteReco(Reco reco) throws Exception {
-        sqlSession.delete("free.deleteReco", reco);
+    public int deleteReco(Reco reco) throws Exception {
+        return sqlSession.delete("free.deleteReco", reco);
     }
 
     @Override
