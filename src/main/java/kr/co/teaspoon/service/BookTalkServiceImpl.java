@@ -27,6 +27,11 @@ public class BookTalkServiceImpl implements BookTalkService {
     }
 
     @Override
+    public void hitsDown(int bno) throws Exception {
+        bookTalkDAO.hitsDown(bno);
+    }
+
+    @Override
     public void bookTalkInsert(BookTalk dto) throws Exception {
         bookTalkDAO.bookTalkInsert(dto);
     }
@@ -94,6 +99,11 @@ public class BookTalkServiceImpl implements BookTalkService {
         if (find == null) {
             result = bookTalkDAO.insertBookReco(reco);
             bookTalkDAO.increaseRec(reco);
+            //System.out.printf("추천 수 증가 확인 : %d\n", freeDAO.freeDetail(reco.getBno()).getRec());
+        } else {
+            result = bookTalkDAO.deleteBookReco(reco) * -1;
+            bookTalkDAO.decreaseRec(reco);
+            //System.out.printf("추천 수 감소 확인 : %d\n", freeDAO.freeDetail(reco.getBno()).getRec());
         }
         return result;
     }

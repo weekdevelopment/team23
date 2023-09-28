@@ -55,9 +55,13 @@
     <update id="booktalkEdit">
         update booktalk set title=#{title}, content=#{content} where bno=#{bno}
     </update>
-    <update id="visitCount">
+    <update id="hitsUp">
         update booktalk set visited=visited+1 where bno=#{bno}
     </update>
+    <update id="hitsDown">
+        update booktalk set visited=visited-1 where bno=#{bno}
+    </update>
+
     <!-- 상위 추천 5개 -->
     <select id="booktalkBestRecList" resultType="kr.co.teaspoon.dto.BookTalk">
         select * from booktalk order by rec desc limit 5

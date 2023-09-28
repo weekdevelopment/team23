@@ -276,13 +276,15 @@ public class BookTalkController {
 
     @PostMapping("rec")
     @ResponseBody
-    public int rec(@ModelAttribute BookReco reco) throws Exception {
-        System.out.println("test~~~~!!!!");
-
+    public Map<String, Integer> rec(@ModelAttribute BookReco reco) throws Exception {
+        //System.out.println("reco : " + reco );
         int result = bookTalkService.insertBookReco(reco);
-        System.out.println("result : " + result);
-        //reco.
-
-        return result;
+        //freeService.freeDetail(reco.getBno()).getRec();
+        int bno = reco.getBno();
+        Map<String, Integer> resultMap = new HashMap<>();
+        resultMap.put("res", result);
+        resultMap.put("reco", bookTalkService.bookTalkDetail(bno).getRec());
+        bookTalkService.hitsDown(bno);
+        return resultMap;
     }
 }
