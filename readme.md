@@ -49,8 +49,6 @@
 ![tspoon](./tspoon/49.png)
 ![tspoon](./tspoon/50.png)
 ![tspoon](./tspoon/51.png)
-![tspoon](./tspoon/52.png)
-![tspoon](./tspoon/53.png)
 ![tspoon](./tspoon/54.png)
 
 <br>
