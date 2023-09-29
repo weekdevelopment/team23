@@ -46,8 +46,15 @@
 ![tspoon](./tspoon/46.png)
 ![tspoon](./tspoon/47.png)
 ![tspoon](./tspoon/48.png)
+![tspoon](./tspoon/49.png)
+![tspoon](./tspoon/50.png)
+![tspoon](./tspoon/51.png)
+![tspoon](./tspoon/52.png)
+![tspoon](./tspoon/53.png)
+![tspoon](./tspoon/54.png)
 
-
+<br>
+<br>
 ## Guest 기능 영상
 ![예제 GIF](./functionRecord/team23_1.gif)
 
