@@ -12,6 +12,8 @@ public interface BookTalkService {
 
     public BookTalk bookTalkDetail(int bno) throws Exception;
 
+    public void hitsDown(int bno) throws Exception;
+
     public void bookTalkInsert(BookTalk dto) throws Exception;
 
     public void bookTalkDelete(int bno) throws Exception;

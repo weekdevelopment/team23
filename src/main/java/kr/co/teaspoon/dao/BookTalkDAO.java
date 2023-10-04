@@ -13,6 +13,8 @@ public interface BookTalkDAO {
 
     public BookTalk bookTalkDetail(int bno) throws Exception;
 
+    public void hitsDown(int bno) throws Exception;
+
     public void bookTalkInsert(BookTalk dto) throws Exception;
 
     public void bookTalkDelete(int bno) throws Exception;
@@ -40,7 +42,7 @@ public interface BookTalkDAO {
 
     public int insertBookReco(BookReco reco) throws Exception;
 
-    public void deleteBookReco(BookReco reco) throws Exception;
+    public int deleteBookReco(BookReco reco) throws Exception;
 
     public void increaseRec(BookReco reco) throws Exception;
 

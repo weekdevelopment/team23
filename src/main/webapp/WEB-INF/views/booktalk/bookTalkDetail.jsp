@@ -164,7 +164,7 @@
     $(document).ready(function () {
         const bno = '${bookTalkDTO.bno }';
         const id = "${sid }";
-        let recoCnt = Number("${bookTalkDTO.rec }"); // 임시
+        const author = '${bookTalkDTO.id }';
 
         console.log('bno:'+bno);
         console.log('아이디:'+id);
@@ -185,19 +185,25 @@
                 alert("추천은 로그인 후에 가능합니다."); // 로그인되어 있지 않으면 경고창 표시
                 return; // 함수 종료
             }
+            if (id == author) {
+                alert("자신의 글은 추천할 수 없습니다.");
+                return;
+            }
 
             $.ajax({
                 url: '${path1}/booktalk/rec',
                 type: 'POST',
-                data: { 'bno': bno, 'id': id, 'recoCnt': recoCnt},
-                success: function (data) {
-                    if (data == 1) {
+                data: { 'bno': bno, 'id': id},
+                success: function (response) {
+                    let res = response.res;
+                    if (res == 1) {
                         $("#recimg").attr("src", "${path1}/resources/img/after_rec.png");
-                        $("#thumbCnt").html(recoCnt + 1);
                         //location.reload();
-                    } else {
-                        alert("이미 추천한 게시물입니다.");
+                    } else if (res == -1) {
+                        $("#recimg").attr("src", "${path1}/resources/img/before_rec.png");
+                        //alert("이미 추천한 게시물입니다.");
                     }
+                    $("#thumbCnt").html(response.reco);
                 }, error: function () {
                     $("#recimg").attr("src", "${path1}/resources/img/after_rec.png");
                     console.log('오타 찾으세요')

@@ -13,6 +13,8 @@ public interface FreeService {
 
     public Free freeDetail(int bno) throws Exception;
 
+    public void hitsDown(int bno) throws Exception;
+
     public void freeInsert(Free dto) throws Exception;
 
     public void freeDelete(int bno) throws Exception;

@@ -27,8 +27,13 @@ public class BookTalkDAOImpl implements BookTalkDAO {
     @Transactional
     @Override
     public BookTalk bookTalkDetail(int bno) throws Exception {
-        sqlSession.update("booktalk.visitCount", bno);
+        sqlSession.update("booktalk.hitsUp", bno);
         return sqlSession.selectOne("booktalk.booktalkDetail", bno);
+    }
+
+    @Override
+    public void hitsDown(int bno) throws Exception {
+        sqlSession.update("booktalk.hitsDown", bno);
     }
 
     @Override
@@ -100,8 +105,8 @@ public class BookTalkDAOImpl implements BookTalkDAO {
     }
 
     @Override
-    public void deleteBookReco(BookReco reco) throws Exception {
-        sqlSession.delete("booktalk.deleteBookReco", reco);
+    public int deleteBookReco(BookReco reco) throws Exception {
+        return sqlSession.delete("booktalk.deleteBookReco", reco);
     }
 
     @Override

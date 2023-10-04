@@ -27,6 +27,11 @@ public class FreeServiceImpl implements FreeService {
     }
 
     @Override
+    public void hitsDown(int bno) throws Exception {
+        freeDAO.hitsDown(bno);
+    }
+
+    @Override
     public void freeInsert(Free dto) throws Exception {
         freeDAO.freeInsert(dto);
     }
@@ -94,10 +99,12 @@ public class FreeServiceImpl implements FreeService {
         if (find == null) {
             result = freeDAO.insertReco(reco);
             freeDAO.increaseRec(reco);
-        } /*else {
-            freeDAO.deleteReco(reco);
+            //System.out.printf("추천 수 증가 확인 : %d\n", freeDAO.freeDetail(reco.getBno()).getRec());
+        } else {
+            result = freeDAO.deleteReco(reco) * -1;
             freeDAO.decreaseRec(reco);
-        }*/
+            //System.out.printf("추천 수 감소 확인 : %d\n", freeDAO.freeDetail(reco.getBno()).getRec());
+        }
         return result;
     }
 }
