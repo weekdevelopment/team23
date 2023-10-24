@@ -49,9 +49,6 @@
 				<div class="columns">
 					<div class="column is-6">
 						<div class="card events-card">
-							<header class="card-header">
-								<p class="card-header-title">추천 많은 글</p>
-							</header>
                             <c:forEach items="${winnerRecList }" var="winner" varStatus="status">
                                 <div class="card-table">
                                     <div class="content">
@@ -73,27 +70,6 @@
                                 </div>
                             </c:forEach>
 
-						</div>
-					</div>
-
-					<div class="column is-6">
-						<div class="card events-card">
-							<header class="card-header">
-								<p class="card-header-title">댓글 많은 글</p>
-							</header>
-							<div class="card-table">
-								<div class="content">
-									<table class="table is-fullwidth is-striped">
-										<tbody>
-										<tr>
-											<td width="5%"><i class="fa fa-bell-o"></i></td>
-											<td>Lorum ipsum dolem aire</td>
-											<td class="level-right"><a class="button is-small is-primary" href="#">Action</a></td>
-										</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
 						</div>
 					</div>
 				</div>
