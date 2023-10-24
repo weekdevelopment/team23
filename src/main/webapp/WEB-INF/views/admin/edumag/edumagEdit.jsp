@@ -12,7 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>수정</title>
   <!-- 헤드 부분 인클루드 -->
-  <jsp:include page="../include/head.jsp"></jsp:include>
+  <jsp:include page="../../include/head.jsp"></jsp:include>
   <script type="text/javascript" src="${path1 }/resources/ckeditor/ckeditor.js"></script>
 </head>
 <style>
@@ -51,13 +51,13 @@
 <body>
 <div class="container is-fullhd">
   <!-- 헤더 부분 인클루드 -->
-  <jsp:include page="../include/hd.jsp"></jsp:include>
+  <jsp:include page="../../include/hd.jsp"></jsp:include>
   <div class="content" id="contents">
     <div class="row column1 text-center">
       <h2 class="h1">수정</h2>
       <hr>
       <div class="container">
-        <form action="${path1 }/edumag/edit.do" method="post">
+        <form action="${path1 }/admin/edumagEdit.do" method="post">
           <table id="table1">
             <tbody>
             <tr>
@@ -95,7 +95,7 @@
             <tr>
               <td colspan="2">
                 <input type="submit" class="button3" value="수정" >
-                <a class="button" href="${path1 }/edumag/list.do">목록으로</a>
+                <a class="button" href="${path1 }/admin/edumagList.do">목록으로</a>
               </td>
             </tr>
             </tbody>
@@ -105,7 +105,7 @@
     </div>
   </div>
   <!-- 푸터 부분 인클루드 -->
-  <jsp:include page="../include/ft.jsp"></jsp:include>
+  <jsp:include page="../../include/ft.jsp"></jsp:include>
 </div>
 </body>
 </html>

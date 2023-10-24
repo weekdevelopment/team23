@@ -117,7 +117,7 @@
             </trim>
         </where>
     </sql>
-    <select id="getListWithPaging" resultType="kr.co.teaspoon.dto.Board">
+    <select id="getListWithPaging" resultType="kr.co.teaspoon.dto.Notice">
         <![CDATA[
         select * from notice
         ]]>

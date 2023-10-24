@@ -12,12 +12,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>이벤트게시판 글 보기</title>
     <!-- 헤드 부분 인클루드 -->
-    <jsp:include page="../include/head.jsp"></jsp:include>
+    <jsp:include page="../../include/head.jsp"></jsp:include>
 </head>
 <body>
 <!-- 헤더 부분 인클루드 -->
 <div class="container is-fullhd">
-    <jsp:include page="../include/hd.jsp"></jsp:include>
+    <jsp:include page="../../include/hd.jsp"></jsp:include>
     <div class="columns">
         <div class="column is-2">
             <aside class="menu">
@@ -26,13 +26,13 @@
 				</span>
                 <ul class="menu-list">
                     <li>
-                        <a href="${path1}/event/list.do">이벤트 게시판</a>
+                        <a href="${path1}/admin/eventList.do">이벤트 게시판</a>
                     </li>
                     <li>
-                        <a href="${path1}/winner/list.do">이벤트 당첨자</a>
+                        <a href="${path1}/admin/winnerList.do">이벤트 당첨자</a>
                     </li>
                     <li>
-                        <a href="${path1}/survey/list.do">윜이슈(설문)</a>
+                        <a href="${path1}/admin/surveyList.do">윜이슈(설문)</a>
                     </li>
                 </ul>
             </aside>
@@ -67,7 +67,7 @@
                 <div class="columns">
                     <div class="column is-5"></div>
                     <div class="column is-2">
-                        <a class="button is-fullwidth post-btn" href="${path1 }/event/edit.do?bno=${dto.bno}">
+                        <a class="button is-fullwidth post-btn" href="${path1 }/admin/eventEdit.do?bno=${dto.bno}">
                             추천<span style="margin-left: 10px">${dto.rec}</span>
                         </a>
                     </div>
@@ -77,13 +77,13 @@
                 <div class="columns">
                     <div class="column is-3"></div>
                     <div class="column is-2">
-                        <a class="button is-fullwidth is-info" href="${path1 }/event/list.do">글 목록</a>
+                        <a class="button is-fullwidth is-info" href="${path1 }/admin/eventList.do">글 목록</a>
                     </div>
                     <div class="column is-2">
-                        <a class="button is-fullwidth is-primary" href="${path1 }/event/edit.do?bno=${dto.bno}">글 수정</a>
+                        <a class="button is-fullwidth is-primary" href="${path1 }/admin/eventEdit.do?bno=${dto.bno}">글 수정</a>
                     </div>
                     <div class="column is-2">
-                        <a class="button is-fullwidth is-danger" href="${path1 }/event/delete.do?bno=${dto.bno}">글 삭제</a>
+                        <a class="button is-fullwidth is-danger" href="${path1 }/admin/eventEelete.do?bno=${dto.bno}">글 삭제</a>
                     </div>
                     <div class="column is-3"></div>
                 </div>
@@ -106,6 +106,6 @@
     </div>
 </div>
 <!-- 푸터 부분 인클루드 -->
-<jsp:include page="../include/ft.jsp"></jsp:include>
+<jsp:include page="../../include/ft.jsp"></jsp:include>
 </body>
 </html>

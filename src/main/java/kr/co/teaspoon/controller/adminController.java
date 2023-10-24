@@ -186,7 +186,7 @@ public class adminController {
 
     @GetMapping("freeInsert.do")
     public String freeInsertForm(HttpServletRequest request, Model model) throws Exception {
-        return "/free/freeInsert";
+        return "/admin/freeInsert";
     }
 
     @PostMapping("freeInsert.do")
@@ -320,14 +320,14 @@ public class adminController {
         dto.setContent(request.getParameter("content"));
         dto.setId((String) session.getAttribute("sid"));
         bookTalkService.bookTalkInsert(dto);
-        return "redirect:list.do";
+        return "redirect:bookTalkList.do";
     }
 
     @GetMapping("bookTalkDelete.do")
     public String bookTalkDelete(HttpServletRequest request, Model model) throws Exception {
         int bno = Integer.parseInt(request.getParameter("bno"));
         bookTalkService.bookTalkDelete(bno);
-        return "redirect:list.do";
+        return "redirect:bookTalkList.do";
     }
 
     @GetMapping("bookTalkEdit.do")
@@ -346,7 +346,7 @@ public class adminController {
         dto.setTitle(request.getParameter("title"));
         dto.setContent(request.getParameter("content"));
         bookTalkService.bookTalkEdit(dto);
-        return "redirect:list.do";
+        return "redirect:bookTalkList.do";
     }
 
     @GetMapping("edumagList.do")
@@ -638,7 +638,7 @@ public class adminController {
         dto.setQno(qno);
         dto.setLev(lev);
         qnaService.qnaDelete(dto);
-        return "redirect:list.do";
+        return "redirect:qnaList.do";
     }
 
     @GetMapping("qnaEdit.do")
@@ -767,7 +767,7 @@ public class adminController {
         dto.setQ10(request.getParameter("q10"));
         dto.setContent(request.getParameter("content"));
         surveyService.surveyInsert(dto);
-        return "redirect:list.do";
+        return "redirect:surveyList.do";
     }
 
     @PostMapping("sanswerInsert.do")
@@ -789,14 +789,14 @@ public class adminController {
             System.out.println("dto : "+dto);
             surveyService.sanswerInsert(dto);
         }
-        return "redirect:list.do";
+        return "redirect:surveyList.do";
     }
 
     @GetMapping("surveyDelete.do")
     public String surveyDelete(HttpServletRequest request, Model model) throws Exception {
         int sno = Integer.parseInt(request.getParameter("sno"));
         surveyService.surveyDelete(sno);
-        return "redirect:list.do";
+        return "redirect:surveyList.do";
     }
 
     //ckeditor를 이용한 이미지 업로드
@@ -819,8 +819,8 @@ public class adminController {
             byte[] bytes = upload.getBytes();
 
             //이미지 경로 생성
-            String path = "D:\\kim\\spring1\\pro31\\src\\main\\webapp\\resources\\upload" + "ckImage/";	// 이미지 경로 설정(폴더 자동 생성)
-            //String path = request.getRealPath("/resource/uploadckImage/");
+            String path = "D:\\sg\\team23\\src\\main\\webapp\\resources\\upload" + "ckImage/";	// 이미지 경로 설정(폴더 자동 생성)
+//            String path = request.getRealPath("/resource/uploadckImage/");
             String ckUploadPath = path + uid + "_" + fileName;
             File folder = new File(path);
             System.out.println("path:"+path);	// 이미지 저장경로 console에 확인
@@ -839,7 +839,7 @@ public class adminController {
 
             String callback = request.getParameter("CKEditorFuncNum");
             printWriter = response.getWriter();
-            String fileUrl = "/pro3_war/free/ckImgSubmit.do?uid=" + uid + "&fileName=" + fileName; // 작성화면
+            String fileUrl = "/team23/survey/ckImgSubmit.do?uid=" + uid + "&fileName=" + fileName; // 작성화면
 
             // 업로드시 메시지 출력
             printWriter.println("{\"filename\" : \""+fileName+"\", \"uploaded\" : 1, \"url\":\""+fileUrl+"\"}");
@@ -864,7 +864,7 @@ public class adminController {
             throws ServletException, IOException{
 
         //서버에 저장된 이미지 경로
-        String path = "D:\\kim\\spring1\\pro31\\src\\main\\webapp\\resources\\upload" + "ckImage/";	// 저장된 이미지 경로
+        String path = "D:\\sg\\team23\\src\\main\\webapp\\resources\\upload" + "ckImage/";	// 저장된 이미지 경로
         //String path = request.getRealPath("/resource/uploadckImage/");
         System.out.println("path:"+path);
         String sDirPath = path + uid + "_" + fileName;

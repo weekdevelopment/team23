@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-		 pageEncoding="UTF-8"%>
+		 pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri = "http://java.sun.com/jsp/jstl/functions"%>
@@ -12,12 +12,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>공지사항</title>
 	<!-- 헤드 부분 인클루드 -->
-	<jsp:include page="../include/head.jsp"></jsp:include>
+	<jsp:include page="../../include/head.jsp"></jsp:include>
 </head>
 <body>
 <header id="header">
 	<!-- 헤더 부분 인클루드 -->
-	<jsp:include page="../include/hd.jsp"></jsp:include>
+	<jsp:include page="../../include/hd.jsp"></jsp:include>
 </header>
 <div class="container is-fullhd">
 	<div class="columns">
@@ -47,7 +47,7 @@
 			</div>
 
 			<div class="formwrap">
-				<form action="${path1 }/notice/edit.do" method="post">
+				<form action="${path1 }/admin/noticeEdit.do" method="post">
 					<div class="field">
 						<label class="label" for="title">공지사항 제목</label>
 						<div class="control">
@@ -67,7 +67,7 @@
 </div>
 <footer id="footer" class="footer-nav row expanded collapse">
 	<!-- 푸터 부분 인클루드 -->
-	<jsp:include page="../include/ft.jsp"></jsp:include>
+	<jsp:include page="../../include/ft.jsp"></jsp:include>
 </footer>
 </body>
 </html>

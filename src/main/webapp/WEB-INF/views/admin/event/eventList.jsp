@@ -47,19 +47,19 @@
 							<section class="eventbox">
 								<div class="button-group">
 									<c:if test="${sid.equals('admin')}">
-										<a class="button post-btn" href="${path1 }/event/insert.do">이벤트 등록</a>
+										<a class="button post-btn" href="${path1 }/admin/eventInsert.do">이벤트 등록</a>
 									</c:if>
 								</div>
 								<div class="box_wrap">
 									<ul class="lst">
 										<c:forEach var="event" items="${eventList }" varStatus="status">
 											<li style="overflow: hidden">
-												<a href="${path1}/event/detail.do?bno=${event.bno }">
+												<a href="${path1}/admin/eventDetail.do?bno=${event.bno }">
 													<!-- 수정 및 삭제 버튼 -->
 													<c:if test="${sid.equals('admin')}">
 														<div class="button-group" style="float: right;">
-															<a href="${path1}/event/edit.do?bno=${event.bno}" class="button is-link">수정</a>
-															<a href="${path1}/event/delete.do?bno=${event.bno}" class="button is-danger">삭제</a>
+															<a href="${path1}/admin/eventEdit.do?bno=${event.bno}" class="button is-link">수정</a>
+															<a href="${path1}/admin/eventDelete.do?bno=${event.bno}" class="button is-danger">삭제</a>
 														</div>
 													</c:if>
 													<div style="width: 600px;">

@@ -12,14 +12,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>이벤트 게시판 글쓰기</title>
 	<!-- 헤드 부분 인클루드 -->
-    <jsp:include page="../include/head.jsp"></jsp:include>
+    <jsp:include page="../../include/head.jsp"></jsp:include>
 	<!-- <script src="https://cdn.ckeditor.com/4.20.0/standard/ckeditor.js"></script> -->
 	<script type="text/javascript" src="${path1 }/resources/ckeditor/ckeditor.js"></script>
 </head>
 <body>
 <div class="container is-fullhd">
 	<!-- 헤더 부분 인클루드 -->
-	<jsp:include page="../include/hd.jsp"></jsp:include>
+	<jsp:include page="../../include/hd.jsp"></jsp:include>
 	<div class="columns">
 		<div class="column is-2">
 			<aside class="menu">
@@ -47,7 +47,7 @@
 			</div>
 
 			<div class="formwrap">
-				<form action="${path1 }/survey/insert.do" method="post">
+				<form action="${path1 }/admin/surveyInsert.do" method="post">
 					<div class="field">
 						<label class="label" for="title">제목</label>
 						<div class="control">
@@ -106,7 +106,7 @@
 					<div class="columns">
 						<div class="column is-3"></div>
 						<div class="column is-2">
-							<a class="button is-fullwidth is-primary" href="${path1 }/suvey/list.do">글 목록</a>
+							<a class="button is-fullwidth is-primary" href="${path1 }/admin/suveyList.do">글 목록</a>
 						</div>
 						<div class="column is-2">
 							<button type="submit" class="button is-fullwidth is-success">설문 등록</button>
@@ -122,6 +122,6 @@
 	</div>
 </div>
 <!-- 푸터 부분 인클루드 -->
-<jsp:include page="../include/ft.jsp"></jsp:include>
+<jsp:include page="../../include/ft.jsp"></jsp:include>
 </body>
 </html>

@@ -12,7 +12,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>묻고 답하기</title>
 	<!-- 헤드 부분 인클루드 -->
-	<jsp:include page="../include/head.jsp"></jsp:include>
+	<jsp:include page="../../include/head.jsp"></jsp:include>
 	<style>
 		.commentnull {
 			min-height: 100px;
@@ -28,7 +28,7 @@
 <body>
 <header id="header">
 	<!-- 헤더 부분 인클루드 -->
-	<jsp:include page="../include/hd.jsp"></jsp:include>
+	<jsp:include page="../../include/hd.jsp"></jsp:include>
 </header>
 <div class="container is-fullhd">
 	<div class="columns">
@@ -39,13 +39,13 @@
 				</span>
 				<ul class="menu-list">
 					<li>
-						<a href="${path1 }/notice/list.do">공지사항</a>
+						<a href="${path1 }/admin/noticeList.do">공지사항</a>
 					</li>
 					<li>
-						<a href="${path1 }/qna/list.do">묻고 답하기</a>
+						<a href="${path1 }/admin/qnaList.do">묻고 답하기</a>
 					</li>
 					<li>
-						<a href="${path1 }/faq/list.do">자주 묻는 질문</a>
+						<a href="${path1 }/admin/faqList.do">자주 묻는 질문</a>
 					</li>
 				</ul>
 			</aside>
@@ -99,46 +99,46 @@
 						<c:when test="${(sid eq 'admin' || sid eq dto.author) && dto.lev == 0 }">
 							<div class="column is-2"></div>
 							<div class="column is-2">
-								<a class="button is-fullwidth is-info" href="${path1 }/qna/list.do" style="background-color: #2B3A55;">글 목록</a>
+								<a class="button is-fullwidth is-info" href="${path1 }/admin/qnaList.do" style="background-color: #2B3A55;">글 목록</a>
 							</div>
 							<div class="column is-2">
-								<a class="button is-fullwidth is-info" href="${path1 }/qna/edit.do?qno=${dto.qno}&lev=${dto.lev }" style="background-color: #2B3A55;">글 수정</a>
+								<a class="button is-fullwidth is-info" href="${path1 }/admin/qnaEdit.do?qno=${dto.qno}&lev=${dto.lev }" style="background-color: #2B3A55;">글 수정</a>
 							</div>
 							<div class="column is-2">
-								<a class="button is-fullwidth is-danger" href="${path1 }/qna/delete.do?qno=${dto.qno}&lev=${dto.lev }">글 삭제</a>
+								<a class="button is-fullwidth is-danger" href="${path1 }/admin/qnaDelete.do?qno=${dto.qno}&lev=${dto.lev }">글 삭제</a>
 							</div>
 							<div class="column is-2">
-								<a class="button is-fullwidth submission" href="${path1 }/qna/insert.do?lev=1&par=${dto.qno}" style="background-color: #2B3A55; color: #ffffff">답변하기</a>
+								<a class="button is-fullwidth submission" href="${path1 }/admin/qnaInsert.do?lev=1&par=${dto.qno}" style="background-color: #2B3A55; color: #ffffff">답변하기</a>
 							</div>
 							<div class="column is-2"></div>
 						</c:when>
 						<c:when test="${(sid eq 'admin' || sid eq dto.author) && dto.lev == 1 }">
 							<div class="column is-3"></div>
 							<div class="column is-2">
-								<a class="button is-fullwidth is-info" href="${path1 }/qna/list.do" style="background-color: #2B3A55;">글 목록</a>
+								<a class="button is-fullwidth is-info" href="${path1 }/admin/qnaList.do" style="background-color: #2B3A55;">글 목록</a>
 							</div>
 							<div class="column is-2">
-								<a class="button is-fullwidth is-info" href="${path1 }/qna/edit.do?qno=${dto.qno}&lev=${dto.lev }" style="background-color: #2B3A55;">글 수정</a>
+								<a class="button is-fullwidth is-info" href="${path1 }/admin/qnaEdit.do?qno=${dto.qno}&lev=${dto.lev }" style="background-color: #2B3A55;">글 수정</a>
 							</div>
 							<div class="column is-2">
-								<a class="button is-fullwidth is-danger" href="${path1 }/qna/delete.do?qno=${dto.qno}&lev=${dto.lev }">글 삭제</a>
+								<a class="button is-fullwidth is-danger" href="${path1 }/admin/qnaDelete.do?qno=${dto.qno}&lev=${dto.lev }">글 삭제</a>
 							</div>
 							<div class="column is-3"></div>
 						</c:when>
 						<c:when test="${!empty sid }">
 							<div class="column is-4"></div>
 							<div class="column is-2">
-								<a class="button is-fullwidth is-info" href="${path1 }/qna/list.do" style="background-color: #2B3A55;">글 목록</a>
+								<a class="button is-fullwidth is-info" href="${path1 }/admin/qnaList.do" style="background-color: #2B3A55;">글 목록</a>
 							</div>
 							<div class="column is-2">
-								<a class="button is-fullwidth submission" href="${path1 }/qna/insert.do?lev=1&par=${dto.qno}" style="background-color: #2B3A55; color: #ffffff">답변하기</a>
+								<a class="button is-fullwidth submission" href="${path1 }/admin/qnaInsert.do?lev=1&par=${dto.qno}" style="background-color: #2B3A55; color: #ffffff">답변하기</a>
 							</div>
 							<div class="column is-4"></div>
 						</c:when>
 						<c:otherwise>
 							<div class="column is-5"></div>
 							<div class="column is-2">
-								<a class="button is-fullwidth is-info" href="${path1 }/qna/list.do" style="background-color: #2B3A55;">글 목록</a>
+								<a class="button is-fullwidth is-info" href="${path1 }/admin/qnaList.do" style="background-color: #2B3A55;">글 목록</a>
 							</div>
 							<div class="column is-5"></div>
 						</c:otherwise>
@@ -149,7 +149,7 @@
 			<div class="cmtwrap">
 				<c:if test="${!empty sid}">
 					<div class="column is-12">
-					<form action="${path1 }/qna/detail.do?qno=${dto.qno }&lev=${dto.lev }" method="post" class="columns mt-5">
+					<form action="${path1 }/admin/qnaDetail.do?qno=${dto.qno }&lev=${dto.lev }" method="post" class="columns mt-5">
 						<div class="column is-10">
 							<textarea class="textarea" name="content" id="content" placeholder="댓글을 입력해주세요." rows="2" cols="30" maxlength="800" required></textarea>
 							<input type="hidden" name="author" id="author" value="${sid }">
@@ -188,7 +188,7 @@
 					</div>
 					<c:if test='${sid eq comment.author }'>
 						<div class="media-right">
-							<a class="delete" style="background-color: #2B3A55" href="${path1 }/qna/commentDelete.do?qno=${dto.qno }&lev=${dto.lev }&cno=${comment.cno }">x</a>
+							<a class="delete" style="background-color: #2B3A55" href="${path1 }/admin/qnaCommentDelete.do?qno=${dto.qno }&lev=${dto.lev }&cno=${comment.cno }">x</a>
 						</div>
 					</c:if>
 				</article>
@@ -199,7 +199,7 @@
 </div>
 <footer id="footer" class="footer-nav row expanded collapse">
 	<!-- 푸터 부분 인클루드 -->
-	<jsp:include page="../include/ft.jsp"></jsp:include>
+	<jsp:include page="../../include/ft.jsp"></jsp:include>
 </footer>
 </body>
 </html>

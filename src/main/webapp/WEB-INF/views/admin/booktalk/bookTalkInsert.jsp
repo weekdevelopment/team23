@@ -12,14 +12,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>자유 게시판 글쓰기</title>
 	<!-- 헤드 부분 인클루드 -->
-    <jsp:include page="../include/head.jsp"></jsp:include>
+    <jsp:include page="../../include/head.jsp"></jsp:include>
 	<!-- <script src="https://cdn.ckeditor.com/4.20.0/standard/ckeditor.js"></script> -->
 	<script type="text/javascript" src="${path1 }/resources/ckeditor/ckeditor.js"></script>
 </head>
 <body>
 <div class="container is-fullhd">
 	<!-- 헤더 부분 인클루드 -->
-	<jsp:include page="../include/hd.jsp"></jsp:include>
+	<jsp:include page="../../include/hd.jsp"></jsp:include>
 	<div class="columns">
 		<div class="column is-2">
 			<aside class="menu">
@@ -28,10 +28,10 @@
 				</span>
 				<ul class="menu-list">
 					<li>
-						<a href="${path1}/free/list.do">자유게시판</a>
+						<a href="${path1}/admin/freeList.do">자유게시판</a>
 					</li>
 					<li>
-						<a href="${path1}/booktalk/list.do">교재게시판</a>
+						<a href="${path1}/admin/bookTalkList.do">교재게시판</a>
 					</li>
 				</ul>
 			</aside>
@@ -44,7 +44,7 @@
 			</div>
 
 			<div class="formwrap">
-				<form action="${path1 }/booktalk/insert.do" method="post">
+				<form action="${path1 }/admin/bookTalkInsert.do" method="post">
 					<div class="field">
 						<label class="label" for="title">제목</label>
 						<div class="control">
@@ -65,6 +65,6 @@
 	</div>
 </div>
 <!-- 푸터 부분 인클루드 -->
-<jsp:include page="../include/ft.jsp"></jsp:include>
+<jsp:include page="../../include/ft.jsp"></jsp:include>
 </body>
 </html>

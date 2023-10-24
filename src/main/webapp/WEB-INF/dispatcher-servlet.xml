@@ -13,7 +13,6 @@
     <resources mapping="/resources/**" location="/resources/" />
     <resources mapping="/data/**" location="/data/" />
     <resources mapping="/admin/**" location="/WEB-INF/views/admin" />
-    <resources mapping="/board/**" location="/WEB-INF/views/board" />
     <resources mapping="/check/**" location="/WEB-INF/views/check" />
     <resources mapping="/databank/**" location="/WEB-INF/views/databank" />
     <resources mapping="/free/**" location="/WEB-INF/views/free" />

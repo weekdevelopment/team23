@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>글 쓰기</title>
     <!-- 헤드 부분 인클루드 -->
-    <jsp:include page="../include/head.jsp"></jsp:include>
+    <jsp:include page="../../include/head.jsp"></jsp:include>
     <script src="https://cdn.ckeditor.com/4.20.0/standard/ckeditor.js"></script>
     <script type="text/javascript" src="${path1 }/resources/ckeditor/ckeditor.js"></script>
 </head>
@@ -51,7 +51,7 @@
 <body>
 <div class="container is-fullhd">
     <!-- 헤더 부분 인클루드 -->
-    <jsp:include page="../include/hd.jsp"></jsp:include>
+    <jsp:include page="../../include/hd.jsp"></jsp:include>
     <div class="content" id="contents">
         <div class="row column1 text-center">
             <h2 class="h1">글 쓰기</h2>
@@ -102,7 +102,7 @@
         </div>
     </div>
     <!-- 푸터 부분 인클루드 -->
-    <jsp:include page="../include/ft.jsp"></jsp:include>
+    <jsp:include page="../../include/ft.jsp"></jsp:include>
 </div>
 </body>
 </html>

@@ -12,12 +12,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>설문 게시판 글보기</title>
     <!-- 헤드 부분 인클루드 -->
-    <jsp:include page="../include/head.jsp"></jsp:include>
+    <jsp:include page="../../include/head.jsp"></jsp:include>
 </head>
 <body>
 <div class="container is-fullhd">
     <!-- 헤더 부분 인클루드 -->
-    <jsp:include page="../include/hd.jsp"></jsp:include>
+    <jsp:include page="../../include/hd.jsp"></jsp:include>
     <div class="columns">
         <div class="column is-2">
             <aside class="menu">
@@ -45,7 +45,7 @@
                     <hr>
                     <div class="card article">
                         <div class="card-content">
-                            <form id="frm1" name="frm1" action="${path1 }/survey/sanswerInsert.do" method="post" onsubmit="return ckAuthor()">
+                            <form id="frm1" name="frm1" action="${path1 }/admin/sanswerInsert.do" method="post" onsubmit="return ckAuthor()">
                                 <table id="table1">
                                     <tbody>
                                     <tr>
@@ -122,8 +122,7 @@
                             <div class="button-group">
                                 <c:if test="${sid.equals('admin')}">
                                     <br>
-                                    <a class="button is-primary" href="${path1 }/survey/delete.do?sno=${dto.sno}">글 삭제(관리자)</a>
-                                    <a class="button is-danger" href="${path1 }/survey/edit.do?sno=${dto.sno}">글 수정(관리자)</a>
+                                    <a class="button is-primary" href="${path1 }/admin/surveyDelete.do?sno=${dto.sno}">글 삭제(관리자)</a>
                                 </c:if>
                             </div>
                         </div>
@@ -133,7 +132,7 @@
         </div>
     </div>
     <!-- 푸터 부분 인클루드 -->
-    <jsp:include page="../include/ft.jsp"></jsp:include>
+    <jsp:include page="../../include/ft.jsp"></jsp:include>
 </div>
 <script>
     function ckAuthor(){

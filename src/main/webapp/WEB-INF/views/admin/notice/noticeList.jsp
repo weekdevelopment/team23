@@ -82,8 +82,8 @@
 							</div>
 							<div class="buttons is-right">
 								<c:if test="${sid eq 'admin'}">
-									<a href="${path1}/notice/edit.do?nno=${notice.nno}" class="button is-link is-small">수정</a>
-									<a href="${path1}/notice/delete.do?nno=${notice.nno}" class="button is-danger is-small">삭제</a>
+									<a href="${path1}/admin/noticeEdit.do?nno=${notice.nno}" class="button is-link is-small">수정</a>
+									<a href="${path1}/admin/noticeDelete.do?nno=${notice.nno}" class="button is-danger is-small">삭제</a>
 								</c:if>
 							</div>
 						</article>

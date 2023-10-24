@@ -47,7 +47,7 @@
 						<div class="container">
 							<div class="button-group">
 								<c:if test="${sid.equals('admin')}">
-									<a class="button post-btn" href="${path1 }/survey/insert.do">설문 등록</a>
+									<a class="button post-btn" href="${path1 }/admin/surveyInsert.do">설문 등록</a>
 								</c:if>
 							</div>
 							<%-- </c:if> --%>
@@ -56,22 +56,19 @@
 									<ul class="lst">
 										<c:forEach var="survey" items="${surveyList }" varStatus="status">
 											<li style="overflow: hidden">
-												<a href="${path1}/survey/detail.do?sno=${survey.sno }">
-													<!-- 수정 및 삭제 버튼 -->
-													<c:if test="${sid.equals('admin')}">
-														<div class="button-group" style="float: right;">
-															<a href="${path1}/survey/delete.do?sno=${survey.sno}" class="button is-danger">삭제</a>
-														</div>
-													</c:if>
+												<a href="${path1}/admin/surveyDetail.do?sno=${survey.sno }">
 													<div style="width: 600px;">
 														<div>
 															<h3 style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${survey.title }</h3>
 														</div>
-														<div style="width:600px;">
-															${survey.content}
-														</div>
 													</div>
 												</a>
+												<!-- 수정 및 삭제 버튼 -->
+												<c:if test="${sid.equals('admin')}">
+													<div class="button-group" style="float: right;">
+														<a href="${path1}/admin/surveyDelete.do?sno=${survey.sno}" class="button is-danger">삭제</a>
+													</div>
+												</c:if>
 											</li>
 										</c:forEach>
 										<c:if test="${empty surveyList}">
