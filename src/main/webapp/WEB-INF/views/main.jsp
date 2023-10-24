@@ -120,7 +120,7 @@
                         <p class="subtitle"></p>
                         <div class="content">
                             <div>
-                                <a href="${path1}/survey/detail.do?sno=${lastSurvey.sno }" style="color: #2B3A55; margin: 11px 11px;">
+                                <a href="${path1}/survey/detail.do?sno=${lastSurvey.sno }" style="color: #2B3A55; margin: 11px 11px; list-style: none; text-decoration: none; ">
                                     <div>
                                         <h2>${lastSurvey.title }</h2>
                                         ${lastSurvey.content}
