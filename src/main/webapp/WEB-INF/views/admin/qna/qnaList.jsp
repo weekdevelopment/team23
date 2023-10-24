@@ -66,7 +66,7 @@
 						<div class="card-content">
 							<fmt:parseDate value="${qna.resdate }" var="resdate" pattern="yyyy-MM-dd HH:mm:ss" />
 							<div class="content">
-								<a href="${path1}/qna/detail.do?qno=${qna.qno }&lev=${qna.lev }">
+								<a href="${path1}/admin/qnaDetail.do?qno=${qna.qno }&lev=${qna.lev }">
 									<div class="media">
 										<div class="media-content">
 											<div class="content">
@@ -90,8 +90,8 @@
 									<!-- 관리자로 로그인한 경우에만 수정과 삭제 버튼 표시 -->
 									<c:if test="${sid.equals('admin')}">
 										<div class="button-group" style="text-align: right; margin-top: 10px;">
-											<a href="${path1}/qna/edit.do?qno=${qna.qno}&lev=${qna.lev}" class="button is-link">수정</a>
-											<a href="${path1}/qna/delete.do?qno=${qna.qno}&lev=${qna.lev}" class="button is-danger">삭제</a>
+											<a href="${path1}/admin/qnaEdit.do?qno=${qna.qno}&lev=${qna.lev}" class="button is-link">수정</a>
+											<a href="${path1}/admin/qnaDelete.do?qno=${qna.qno}&lev=${qna.lev}" class="button is-danger">삭제</a>
 										</div>
 									</c:if>
 
@@ -120,12 +120,12 @@
 						<c:choose>
 							<c:when test="${i == curPage }">
 								<li>
-									<a href="${path1 }/qna/list.do?page=${i }<c:if test="${!empty keyword }">&type=${type }&keyword=${keyword }</c:if>" class="pagination-link is-current" aria-label="Page ${i }" aria-current="page" >${i }</a>
+									<a href="${path1 }/admin/qnaList.do?page=${i }<c:if test="${!empty keyword }">&type=${type }&keyword=${keyword }</c:if>" class="pagination-link is-current" aria-label="Page ${i }" aria-current="page" >${i }</a>
 								</li>
 							</c:when>
 							<c:otherwise>
 								<li>
-									<a href="${path1 }/qna/list.do?page=${i }<c:if test="${!empty keyword }">&type=${type }&keyword=${keyword }</c:if>" class="pagination-link" aria-label="Page ${i }" aria-current="page">${i }</a>
+									<a href="${path1 }/admin/qnaList.do?page=${i }<c:if test="${!empty keyword }">&type=${type }&keyword=${keyword }</c:if>" class="pagination-link" aria-label="Page ${i }" aria-current="page">${i }</a>
 								</li>
 							</c:otherwise>
 						</c:choose>
@@ -134,9 +134,9 @@
 			</nav>
 				<div class="button-group">
 					<c:if test='${!empty sid}'>
-					<a class="button post-btn" href="${path1 }/qna/insert.do?lev=0&par=0">질문</a>
+					<a class="button post-btn" href="${path1 }/admin/qnaInsert.do?lev=0&par=0">질문등록</a>
 					</c:if>
-					<form action="${path1 }/qna/list.do" method="get" class="field has-addons has-addons-right">
+					<form action="${path1 }/admin/qnaList.do" method="get" class="field has-addons has-addons-right">
 						<p class="control">
 						<span class="select">
 							<select id="type" name="type">

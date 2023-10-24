@@ -12,12 +12,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>묻고 답하기</title>
     <!-- 헤드 부분 인클루드 -->
-    <jsp:include page="../include/head.jsp"></jsp:include>
+    <jsp:include page="../../include/head.jsp"></jsp:include>
 </head>
 <body>
 <header id="header">
     <!-- 헤더 부분 인클루드 -->
-    <jsp:include page="../include/hd.jsp"></jsp:include>
+    <jsp:include page="../../include/hd.jsp"></jsp:include>
 </header>
 <div class="container is-fullhd">
     <div class="columns">
@@ -28,13 +28,13 @@
 				</span>
                 <ul class="menu-list">
                     <li>
-                        <a href="${path1 }/notice/list.do">공지사항</a>
+                        <a href="${path1 }/admin/noticeList.do">공지사항</a>
                     </li>
                     <li>
-                        <a href="${path1 }/qna/list.do">묻고 답하기</a>
+                        <a href="${path1 }/admin/qnaList.do">묻고 답하기</a>
                     </li>
                     <li>
-                        <a href="${path1 }/faq/list.do">자주 묻는 질문</a>
+                        <a href="${path1 }/admin/faqList.do">자주 묻는 질문</a>
                     </li>
                 </ul>
             </aside>
@@ -47,7 +47,7 @@
             </div>
 
             <div class="formwrap">
-                <form action="${path1 }/qna/edit.do" method="post">
+                <form action="${path1 }/admin/qnaEdit.do" method="post">
                     <div class="field">
                         <c:if test='${lev == 0}'>
                             <label class="label" for="title">질문 제목</label>
@@ -78,7 +78,7 @@
 </div>
 <footer id="footer" class="footer-nav row expanded collapse">
     <!-- 푸터 부분 인클루드 -->
-    <jsp:include page="../include/ft.jsp"></jsp:include>
+    <jsp:include page="../../include/ft.jsp"></jsp:include>
 </footer>
 </body>
 </html>

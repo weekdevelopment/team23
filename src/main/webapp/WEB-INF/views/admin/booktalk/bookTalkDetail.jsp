@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>교재게시판 글 보기</title>
     <!-- 헤드 부분 인클루드 -->
-    <jsp:include page="../include/head.jsp"></jsp:include>
+    <jsp:include page="../../include/head.jsp"></jsp:include>
     <style>
         .commentnull {
             min-height: 100px;
@@ -30,7 +30,7 @@
 <body>
 <!-- 헤더 부분 인클루드 -->
 <div class="container is-fullhd">
-    <jsp:include page="../include/hd.jsp"></jsp:include>
+    <jsp:include page="../../include/hd.jsp"></jsp:include>
     <div class="columns">
         <div class="column is-2">
             <aside class="menu">
@@ -39,10 +39,10 @@
 				</span>
                 <ul class="menu-list">
                     <li>
-                        <a href="${path1}/free/list.do">자유게시판</a>
+                        <a href="${path1}/admin/freeList.do">자유게시판</a>
                     </li>
                     <li>
-                        <a href="${path1}/booktalk/list.do">교재게시판</a>
+                        <a href="${path1}/admin/bookTalkList.do">교재게시판</a>
                     </li>
                 </ul>
             </aside>
@@ -87,20 +87,20 @@
                         <c:when test="${not empty sid && (sid eq 'admin' || sid eq bookTalkDTO.id)}">
                             <div class="column is-3"></div>
                             <div class="column is-2">
-                                <a class="button is-fullwidth" style="background-color: #2B3A55; color: #fff;" href="${path1 }/booktalk/list.do">글 목록</a>
+                                <a class="button is-fullwidth" style="background-color: #2B3A55; color: #fff;" href="${path1 }/admin/bookTalkList.do">글 목록</a>
                             </div>
                             <div class="column is-2">
-                                <a class="button is-fullwidth is-info" href="${path1 }/booktalk/edit.do?bno=${bookTalkDTO.bno}">글 수정</a>
+                                <a class="button is-fullwidth is-info" href="${path1 }/admin/bookTalkEdit.do?bno=${bookTalkDTO.bno}">글 수정</a>
                             </div>
                             <div class="column is-2">
-                                <a class="button is-fullwidth is-danger" href="${path1 }/booktalk/delete.do?bno=${bookTalkDTO.bno}">글 삭제</a>
+                                <a class="button is-fullwidth is-danger" href="${path1 }/admin/bookTalkDelete.do?bno=${bookTalkDTO.bno}">글 삭제</a>
                             </div>
                             <div class="column is-3"></div>
                         </c:when>
                         <c:otherwise>
                             <div class="column is-5"></div>
                             <div class="column is-2">
-                                <a class="button is-fullwidth is-info" href="${path1 }/booktalk/list.do">글 목록</a>
+                                <a class="button is-fullwidth is-info" href="${path1 }/admin/bookTalkList.do">글 목록</a>
                             </div>
                             <div class="column is-5"></div>
                         </c:otherwise>
@@ -111,7 +111,7 @@
 
             <div class="cmtwrap">
                 <c:if test="${!empty sid}">
-                    <form action="${path1 }/booktalk/detail.do?bno=${bookTalkDTO.bno }" method="post" class="columns mt-5">
+                    <form action="${path1 }/admin/bookTalkDetail.do?bno=${bookTalkDTO.bno }" method="post" class="columns mt-5">
                         <div class="column is-10">
                             <textarea class="textarea" name="content" id="content" placeholder="댓글을 입력해주세요." rows="2" cols="30" maxlength="800" required></textarea>
                             <input type="hidden" name="author" id="author" value="${sid }">
@@ -148,7 +148,7 @@
                     </div>
                     <c:if test='${sid eq comment.author }'>
                         <div class="media-right">
-                            <a class="delete" style="background-color: #2B3A55" href="${path1 }/booktalk/commentDelete.do?bno=${bookTalkDTO.bno }&cno=${comment.cno }">x</a>
+                            <a class="delete" style="background-color: #2B3A55" href="${path1 }/admin/bookTalkCommentDelete.do?bno=${bookTalkDTO.bno }&cno=${comment.cno }">x</a>
                         </div>
                     </c:if>
                 </article>
@@ -158,7 +158,7 @@
     </div>
 </div>
 <!-- 푸터 부분 인클루드 -->
-<jsp:include page="../include/ft.jsp"></jsp:include>
+<jsp:include page="../../include/ft.jsp"></jsp:include>
 
 <script>
     $(document).ready(function () {

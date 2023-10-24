@@ -83,8 +83,8 @@
 										<!-- 수정 및 삭제 버튼 -->
 										<c:if test="${sid.equals('admin')}">
 											<div class="button-group" style="float: right;">
-												<a href="${path1}/free/edit.do?bno=${free.bno}" class="button is-link">수정</a>
-												<a href="${path1}/free/delete.do?bno=${free.bno}" class="button is-danger">삭제</a>
+												<a href="${path1}/admin/freeEdit.do?bno=${free.bno}" class="button is-link">수정</a>
+												<a href="${path1}/admin/freeDelete.do?bno=${free.bno}" class="button is-danger">삭제</a>
 											</div>
 										</c:if>
 									</div>
@@ -103,7 +103,7 @@
 				<div class="button-group">
 					<c:choose>
 						<c:when test="${not empty sid}">
-							<a class="button post-btn" href="${path1}/free/insert.do">글쓰기</a>
+							<a class="button post-btn" href="${path1}/admin/freeInsert.do">글쓰기</a>
 						</c:when>
 						<c:otherwise>
 							<a class="button post-btn" href="javascript:checkLogin()">글쓰기</a>

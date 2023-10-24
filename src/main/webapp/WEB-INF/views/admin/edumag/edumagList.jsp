@@ -79,7 +79,7 @@
                 학부모들을 위한 가장 신뢰할 만한 정보와 유용한 교육 리소스를 제공합니다!
             </h2>
             <br>
-            <form action="${path1 }/edumag/list.do" method="get" class="field has-addons has-addons-right">
+            <form action="${path1 }/admin/edumagList.do" method="get" class="field has-addons has-addons-right">
                 <p class="control">
                 <span class="select">
                     <select id="type" name="type">
@@ -106,8 +106,8 @@
                                         <!-- 관리자로 로그인한 경우에만 수정과 삭제 버튼 표시 -->
                                         <c:if test="${sid.equals('admin')}">
                                             <div class="button-group">
-                                                <a href="${path1}/edumag/edit.do?no=${edumag.no}" class="button is-link">수정</a>
-                                                <a href="${path1}/edumag/delete.do?no=${edumag.no}" class="button is-danger">삭제</a>
+                                                <a href="${path1}/admin/edumagEdit.do?no=${edumag.no}" class="button is-link">수정</a>
+                                                <a href="${path1}/admin/edumagDelete.do?no=${edumag.no}" class="button is-danger">삭제</a>
                                             </div>
                                         </c:if>
                                     </div>
@@ -125,10 +125,10 @@
 
                     <nav class="pagination is-rounded is-centered mb-6" role="navigation" aria-label="pagination">
                         <c:if test="${curPage > page.pageCount }">
-                            <a href="${path1 }/edumag/list.do?page=${page.blockStartNum - 1 }<c:if test="${!empty keyword }">&type=${type }&keyword=${keyword }</c:if>" class="pagination-previous">Previous</a>
+                            <a href="${path1 }/admin/edumagList.do?page=${page.blockStartNum - 1 }<c:if test="${!empty keyword }">&type=${type }&keyword=${keyword }</c:if>" class="pagination-previous">Previous</a>
                         </c:if>
                         <c:if test="${page.blockLastNum < page.totalPageCount }">
-                            <a href="${path1 }/edumag/list.do?page=${page.blockLastNum + 1 }<c:if test="${!empty keyword }">&type=${type }&keyword=${keyword }</c:if>" class="pagination-next">Next page</a>
+                            <a href="${path1 }/admin/edumagList.do?page=${page.blockLastNum + 1 }<c:if test="${!empty keyword }">&type=${type }&keyword=${keyword }</c:if>" class="pagination-next">Next page</a>
                         </c:if>
 
                         <ul class="pagination-list">
@@ -136,12 +136,12 @@
                                 <c:choose>
                                     <c:when test="${i == curPage }">
                                         <li>
-                                            <a href="${path1 }/edumag/list.do?page=${i }<c:if test="${!empty keyword }">&type=${type }&keyword=${keyword }</c:if>" class="pagination-link is-current1" aria-label="Page ${i }" aria-current="page">${i }</a>
+                                            <a href="${path1 }/admin/edumagList.do?page=${i }<c:if test="${!empty keyword }">&type=${type }&keyword=${keyword }</c:if>" class="pagination-link is-current1" aria-label="Page ${i }" aria-current="page">${i }</a>
                                         </li>
                                     </c:when>
                                     <c:otherwise>
                                         <li>
-                                            <a href="${path1 }/edumag/list.do?page=${i }<c:if test="${!empty keyword }">&type=${type }&keyword=${keyword }</c:if>" class="pagination-link" aria-label="Page ${i }" aria-current="page">${i }</a>
+                                            <a href="${path1 }/admin/edumagList.do?page=${i }<c:if test="${!empty keyword }">&type=${type }&keyword=${keyword }</c:if>" class="pagination-link" aria-label="Page ${i }" aria-current="page">${i }</a>
                                         </li>
                                     </c:otherwise>
                                 </c:choose>
@@ -151,7 +151,7 @@
 
                     <c:if test= "${sid.equals('admin')}">
                         <div class="button-group">
-                            <a class="button2" href="${path1 }/edumag/insert.do">글쓰기</a>
+                            <a class="button2" href="${path1 }/admin/edumagInsert.do">글쓰기</a>
                         </div>
                     </c:if>
 

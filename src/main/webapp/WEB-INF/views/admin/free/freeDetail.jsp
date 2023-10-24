@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>자유게시판 글 보기</title>
     <!-- 헤드 부분 인클루드 -->
-    <jsp:include page="../include/head.jsp"></jsp:include>
+    <jsp:include page="../../include/head.jsp"></jsp:include>
     <style>
         .commentnull {
             min-height: 100px;
@@ -27,7 +27,7 @@
 <body>
 <!-- 헤더 부분 인클루드 -->
 <div class="container is-fullhd">
-    <jsp:include page="../include/hd.jsp"></jsp:include>
+    <jsp:include page="../../include/hd.jsp"></jsp:include>
     <div class="columns">
         <div class="column is-2">
             <aside class="menu">
@@ -36,7 +36,7 @@
 				</span>
                 <ul class="menu-list">
                     <li>
-                        <a href="${path1}/free/list.do">자유게시판</a>
+                        <a href="${path1}/admin/freeList.do">자유게시판</a>
                     </li>
                     <li>
                         <a href="#">교재게시판</a>
@@ -167,7 +167,7 @@
     </div>
 </div>
 <!-- 푸터 부분 인클루드 -->
-<jsp:include page="../include/ft.jsp"></jsp:include>
+<jsp:include page="../../include/ft.jsp"></jsp:include>
 
 <script>
     $(document).ready(function () {

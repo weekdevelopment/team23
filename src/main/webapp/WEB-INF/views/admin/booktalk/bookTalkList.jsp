@@ -65,7 +65,7 @@
 					<c:forEach items="${bookTalkList }" var="bt" varStatus="status">
 						<article class="post">
 							<h4>
-								<a href="${path1}/booktalk/detail.do?bno=${bt.bno }">${bt.title }</a>
+								<a href="${path1}/admin/bookTalkDetail.do?bno=${bt.bno }">${bt.title }</a>
 
 								<c:if test="${bt.count != 0}">
 									<span class="cmtNum">(${bt.count})</span>
@@ -91,8 +91,8 @@
 
 							<div class="buttons is-right">
 								<c:if test="${sid eq 'admin'}">
-									<a href="${path1}/booktalk/edit.do?bno=${bt.bno}" class="button is-link is-small">수정</a>
-									<a href="${path1}/booktalk/delete.do?bno=${bt.bno}" class="button is-danger is-small">삭제</a>
+									<a href="${path1}/admin/bookTalkEdit.do?bno=${bt.bno}" class="button is-link is-small">수정</a>
+									<a href="${path1}/admin/bookTalkDelete.do?bno=${bt.bno}" class="button is-danger is-small">삭제</a>
 								</c:if>
 							</div>
 						</article>
@@ -101,10 +101,10 @@
 
 				<nav class="pagination is-rounded is-centered mb-6" role="navigation" aria-label="pagination">
 					<c:if test="${curPage > page.pageCount }">
-						<a href="${path1 }/booktalk/list.do?page=${page.blockStartNum - 1 }<c:if test="${!empty keyword }">&type=${type }&keyword=${keyword }</c:if>" class="pagination-previous">Previous</a>
+						<a href="${path1 }/admin/bookTalkList.do?page=${page.blockStartNum - 1 }<c:if test="${!empty keyword }">&type=${type }&keyword=${keyword }</c:if>" class="pagination-previous">Previous</a>
 					</c:if>
 					<c:if test="${page.blockLastNum < page.totalPageCount }">
-						<a href="${path1 }/booktalk/list.do?page=${page.blockLastNum + 1 }<c:if test="${!empty keyword }">&type=${type }&keyword=${keyword }</c:if>" class="pagination-next">Next page</a>
+						<a href="${path1 }/admin/bookTalkList.do?page=${page.blockLastNum + 1 }<c:if test="${!empty keyword }">&type=${type }&keyword=${keyword }</c:if>" class="pagination-next">Next page</a>
 					</c:if>
 
 					<ul class="pagination-list">
@@ -112,12 +112,12 @@
 							<c:choose>
 								<c:when test="${i == curPage }">
 									<li>
-										<a href="${path1 }/booktalk/list.do?page=${i }<c:if test="${!empty keyword }">&type=${type }&keyword=${keyword }</c:if>" class="pagination-link is-current" aria-label="Page ${i }" aria-current="page" >${i }</a>
+										<a href="${path1 }/admin/bookTalkList.do?page=${i }<c:if test="${!empty keyword }">&type=${type }&keyword=${keyword }</c:if>" class="pagination-link is-current" aria-label="Page ${i }" aria-current="page" >${i }</a>
 									</li>
 								</c:when>
 								<c:otherwise>
 									<li>
-										<a href="${path1 }/booktalk/list.do?page=${i }<c:if test="${!empty keyword }">&type=${type }&keyword=${keyword }</c:if>" class="pagination-link" aria-label="Page ${i }" aria-current="page">${i }</a>
+										<a href="${path1 }/admin/bookTalkList.do?page=${i }<c:if test="${!empty keyword }">&type=${type }&keyword=${keyword }</c:if>" class="pagination-link" aria-label="Page ${i }" aria-current="page">${i }</a>
 									</li>
 								</c:otherwise>
 							</c:choose>
@@ -127,14 +127,14 @@
 				<div class="button-group">
 					<c:choose>
 						<c:when test="${not empty sid }">
-							<a class="button post-btn" href="${path1 }/booktalk/insert.do">글쓰기</a>
+							<a class="button post-btn" href="${path1 }/admin/bookTalkInsert.do">글쓰기</a>
 						</c:when>
 						<c:otherwise>
 							<a class="button post-btn" href="javascript:checkLogin()">글쓰기</a>
 						</c:otherwise>
 					</c:choose>
 
-					<form action="${path1 }/booktalk/list.do" method="get" class="field has-addons has-addons-right">
+					<form action="${path1 }/admin/bookTalkList.do" method="get" class="field has-addons has-addons-right">
 						<p class="control">
 				<span class="select">
 					<select id="type" name="type">
