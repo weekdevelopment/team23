@@ -136,8 +136,7 @@
             </div>
         </div>
     </div>
-    <!-- 푸터 부분 인클루드 -->
-    <jsp:include page="../include/ft.jsp"></jsp:include>
 </div>
+<jsp:include page="../include/ft.jsp" />
 </body>
 </html>

@@ -72,8 +72,6 @@ public class adminController {
     public String adminPageGET(Model model) {
         logger.info("메인 페이지 진입");
 
-        // 모델에 데이터를 추가하려면 여기에 코드를 추가하세요.
-        // 예를 들어, 모델에 today와 myName을 추가하는 코드는 다음과 같습니다.
         model.addAttribute("today", "오늘 날짜");
         model.addAttribute("myName", "내 이름");
 
