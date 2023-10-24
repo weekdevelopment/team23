@@ -52,7 +52,7 @@
 </head>
 <body>
 <!-- 헤더 부분 인클루드 -->
-<div class="container is-fullhd">
+<div class="container is-fullhd" style="min-height: 100vh">
 	<jsp:include page="../include/hd.jsp"></jsp:include>
 	<div class="columns">
 		<div class="column is-2">
@@ -247,7 +247,9 @@
 	</div>
 </div>
 <!-- 푸터 부분 인클루드 -->
-<jsp:include page="../include/ft.jsp"></jsp:include>
+<footer>
+	<jsp:include page="../include/ft.jsp"></jsp:include>
+</footer>
 
 <script>
     function checkLogin() {

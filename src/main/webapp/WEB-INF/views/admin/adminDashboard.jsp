@@ -33,7 +33,7 @@
     </style>
 </head>
 <body>
-<div class="container is-fullhd">
+<div class="container is-fullhd" style="min-height: 90vh">
     <!-- hd.jsp 인클루드 -->
     <jsp:include page="../include/hd.jsp" />
     <!-- main_banner.jsp 인클루드 -->
