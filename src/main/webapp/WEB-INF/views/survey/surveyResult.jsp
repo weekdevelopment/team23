@@ -56,49 +56,76 @@
                                         <td class="content">${dto.content }</td>
                                     </tr>
                                     <tr>
+                                        <td>
+                                            <h2>총 답변 수 : ${totalSACount }건</h2>
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <td style="font-size: 1.5em;">
                                             <input type="hidden" id="sno" name="sno" value="${dto.sno }">
                                             <input type="hidden" id="sid" name="sid" value="${sid }">
-                                            <input type="radio" id="q1" name="ans" value="1">
+                                            <input type="text" id="q1" name="ans" value="1" readonly>
                                             <label for="q1">${dto.q1 }</label><br>
-                                            <c:if test="${not empty dto.q2 }">
-                                                <input type="radio" id="q2" name="ans" value="2">
-                                                <label for="q2">${dto.q2 }</label><br>
-                                            </c:if>
-                                            <c:if test="${not empty dto.q3 }">
-                                                <input type="radio" id="q3" name="ans" value="3">
-                                                <label for="q3">${dto.q3 }</label><br>
-                                            </c:if>
-                                            <c:if test="${not empty dto.q4 }">
-                                                <input type="radio" id="q4" name="ans" value="4">
-                                                <label for="q4">${dto.q4 }</label><br>
-                                            </c:if>
-                                            <c:if test="${not empty dto.q5 }">
-                                                <input type="radio" id="q5" name="ans" value="5">
-                                                <label for="q5">${dto.q5 }</label><br>
-                                            </c:if>
-                                            <c:if test="${not empty dto.q6 }">
-                                                <input type="radio" id="q6" name="ans" value="6">
-                                                <label for="q6">${dto.q6 }</label><br>
-                                            </c:if>
-                                            <c:if test="${not empty dto.q7 }">
-                                                <input type="radio" id="q7" name="ans" value="7">
-                                                <label for="q7">${dto.q7 }</label><br>
-                                            </c:if>
-                                            <c:if test="${not empty dto.q8 }">
-                                                <input type="radio" id="q8" name="ans" value="8">
-                                                <label for="q8">${dto.q8 }</label><br>
-                                            </c:if>
-                                            <c:if test="${not empty dto.q9 }">
-                                                <input type="radio" id="q9" name="ans" value="9">
-                                                <label for="q9">${dto.q9 }</label><br>
-                                            </c:if>
-                                            <c:if test="${not empty dto.q10 }">
-                                                <input type="radio" id="q10" name="ans" value="10">
-                                                <label for="q10">${dto.q10 }</label><br>
-                                            </c:if>
+                                        </td>
+                                        <td>
+                                            <div style="width: 200px;" >
+                                                <div style="width: ${rate }%; background-color: #ffdddd">${SAOneCount }</div>
+                                            </div>
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <c:if test="${not empty dto.q2 }">
+                                        <td>
+                                                <input type="text" id="q2" name="ans" value="2" readonly>
+                                                <label for="q2">${dto.q2 }</label><br>
+                                        </td>
+                                        <td>
+                                            <div style="width: 200px;" >
+                                                <div style="width: ${rate }%; background-color: #ffdddd">${SAOneCount }</div>
+                                            </div>
+                                        </td>
+                                        </c:if>
+                                    </tr>
+                                    <tr>
+                                        <c:if test="${not empty dto.q3 }">
+                                            <td>
+                                                <input type="text" id="q3" name="ans" value="3" readonly>
+                                                <label for="q3">${dto.q3 }</label><br>
+                                            </td>
+                                            <td>
+                                                <div style="width: 200px;" >
+                                                    <div style="width: ${rate }%; background-color: #fff6dd">${SAOneCount }</div>
+                                                </div>
+                                            </td>
+                                        </c:if>
+                                    </tr>
+                                    <tr>
+                                        <c:if test="${not empty dto.q4 }">
+                                            <td>
+                                                <input type="text" id="q4" name="ans" value="4" readonly>
+                                                <label for="q4">${dto.q4 }</label><br>
+                                            </td>
+                                            <td>
+                                                <div style="width: 200px;" >
+                                                    <div style="width: ${rate }%; background-color: #ffdddd">${SAOneCount }</div>
+                                                </div>
+                                            </td>
+                                        </c:if>
+                                    </tr>
+                                    <tr>
+                                        <c:if test="${not empty dto.q5 }">
+                                            <td>
+                                                <input type="text" id="q5" name="ans" value="5" readonly>
+                                                <label for="q5">${dto.q5 }</label><br>
+                                            </td>
+                                            <td>
+                                                <div style="width: 200px;" >
+                                                    <div style="width: ${rate }%; background-color: #ffdddd">${SAOneCount }</div>
+                                                </div>
+                                            </td>
+                                        </c:if>
+                                    </tr>
+
                                     <c:if test="${empty sid}">
                                     <br>
                                     <tr>
@@ -111,11 +138,6 @@
                                         <tr>
                                             <td colspan="3">
                                                 <a class="button is-info" href="${path1 }/survey/list.do">글 목록</a>
-                                                <input type="submit" class="submit success button" value="설문 답변 등록" >
-                                                <c:if test="${result != null}">
-                                                    <a class="button is-info" href="${path1 }/survey/sResult.do">결과보기</a>
-                                                </c:if>
-                                                <input type="reset" class="reset button" value="취소" >
                                             </td>
                                         </tr>
                                     </c:if>

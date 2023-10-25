@@ -13,4 +13,6 @@ public interface SurveyDAO {
     public void surveyDelete(int sno) throws Exception;
     public void surveyEdit(Survey dto) throws Exception;
     public Survey ckAuthor(Survey dto) throws Exception;
+    public int totalSACount(Survey dto) throws Exception;
+    public int SAOneCount(Survey dto) throws Exception;
 }

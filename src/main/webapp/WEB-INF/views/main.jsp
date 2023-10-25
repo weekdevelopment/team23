@@ -164,6 +164,11 @@
                                                 <label for="q10">${lastSurvey.q10 }</label><br>
                                             </c:if>
                                         </div>
+                                        <div>
+                                            <button href="${path1}/survey/detail.do?sno=${lastSurvey.sno }" class="button is-link">
+                                                설문 답변 하러 가기!
+                                            </button>
+                                        </div>
                                     </div>
                                 </a>
                             </div>

@@ -54,4 +54,14 @@ public class SurveyDAOImpl implements SurveyDAO {
     public Survey ckAuthor(Survey dto) throws Exception {
         return sqlSession.selectOne("survey.ckAuthor", dto);
     }
+
+    @Override
+    public int totalSACount(Survey dto) throws Exception {
+        return sqlSession.selectOne("survey.totalSACount", dto);
+    }
+
+    @Override
+    public int SAOneCount(Survey dto) throws Exception {
+        return sqlSession.selectOne("survey.SAOnceCount", dto);
+    }
 }
