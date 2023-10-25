@@ -74,7 +74,7 @@ public class SurveyController {
         model.addAttribute("dto", dto);
 
         dto.setPar(par);
-        dto.setSno(ans);
+        dto.setAns(1);
 
         int totalSACount = surveyService.totalSACount(dto);
         int SAOneCount = surveyService.SAOneCount(dto);
@@ -119,6 +119,7 @@ public class SurveyController {
        Survey result = new Survey();
        ck.setPar(Integer.parseInt(request.getParameter("sno")));
        ck.setAuthor((String) session.getAttribute("sid"));
+       System.out.println("ckresult : " + ck);
        result = surveyService.ckAuthor(ck);
        model.addAttribute("result", result);
        System.out.println("result : "+result);

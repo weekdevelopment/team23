@@ -34,7 +34,7 @@
 						<a href="${path1}/winner/list.do">이벤트 당첨자</a>
 					</li>
 					<li>
-						<a href="${path1}/survey/list.do">윜이슈(설문)</a>
+						<a href="${path1}/survey/list.do">윜이슈</a>
 					</li>
 				</ul>
 			</aside>
