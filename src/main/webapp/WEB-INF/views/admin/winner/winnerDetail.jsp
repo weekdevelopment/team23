@@ -63,29 +63,19 @@
                         </p>
                     </div>
                 </div>
-
-                <div class="columns">
-                    <div class="column is-5"></div>
-                    <div class="column is-2">
-                        <a class="button is-fullwidth post-btn" href="${path1 }/winner/edit.do?bno=${dto.bno}">
-                            추천<span style="margin-left: 10px">${dto.rec}</span>
-                        </a>
-                    </div>
-                    <div class="column is-5"></div>
-                </div>
-
                 <div class="columns">
                     <div class="column is-3"></div>
                     <div class="column is-2">
                         <a class="button is-fullwidth is-info" href="${path1 }/winner/list.do">글 목록</a>
                     </div>
+                    <c:if test="${sid == 'admin'}">
                     <div class="column is-2">
                         <a class="button is-fullwidth is-primary" href="${path1 }/winner/edit.do?bno=${dto.bno}">글 수정</a>
                     </div>
                     <div class="column is-2">
                         <a class="button is-fullwidth is-danger" href="${path1 }/winner/delete.do?bno=${dto.bno}">글 삭제</a>
                     </div>
-                    <div class="column is-3"></div>
+                    </c:if>
                 </div>
             </div>
 

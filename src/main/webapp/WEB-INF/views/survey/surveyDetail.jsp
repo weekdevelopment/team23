@@ -15,7 +15,7 @@
     <jsp:include page="../include/head.jsp"></jsp:include>
 
     <style>
-        .button { height: 40px; }
+        .button { height: 40px; color: white; }
     </style>
 
 </head>
@@ -117,10 +117,6 @@
                                             <td colspan="3">
                                                 <a class="button is-info" href="${path1 }/survey/list.do">글 목록</a>
                                                 <input type="submit" class="button is-success" value="설문 답변 등록" >
-                                                <c:if test="${result != null}">
-                                                    <a class="button is-warning" href="${path1 }/survey/sResult.do">결과보기</a>
-                                                </c:if>
-                                                <input type="reset" class="button is-danger" value="취소" >
                                             </td>
                                         </tr>
                                     </c:if>
@@ -131,7 +127,6 @@
                                 <c:if test="${sid.equals('admin')}">
                                     <br>
                                     <a class="button is-primary" href="${path1 }/survey/delete.do?sno=${dto.sno}">글 삭제(관리자)</a>
-                                    <a class="button is-danger" href="${path1 }/survey/edit.do?sno=${dto.sno}">글 수정(관리자)</a>
                                 </c:if>
                             </div>
                         </div>

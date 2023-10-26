@@ -11,7 +11,7 @@
 <meta name="description" content="Bulma Hotel is a business hotel with unmatched hospitality, convenience &amp; comforts. Bulma Hotel is an ideal choice for your stay. Whether business trip or just a weekend leisure."/>
 <meta name="keywords" content="bulma, hotel, website, template, free, awesome" />
 <link rel="canonical" href="https://aldi.github.io/bulma-hotel-template/index.html" />
-<title>WeekiTalk_Teaspoon css+Script 정리</title>
+<title>Teaspoon</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-social@1/bin/bulma-social.min.css" />

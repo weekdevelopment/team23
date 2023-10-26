@@ -13,6 +13,9 @@
     <title>설문 게시판 글보기</title>
     <!-- 헤드 부분 인클루드 -->
     <jsp:include page="../../include/head.jsp"></jsp:include>
+    <style>
+        .button { height: 40px; color: white; }
+    </style>
 </head>
 <body>
 <div class="container is-fullhd">
@@ -108,13 +111,11 @@
                                     </tr>
                                     </c:if>
                                     <c:if test="${not empty sid && !sid.equals('admin')}">
-                                        <tr>
-                                            <td colspan="3">
-                                                <a class="button is-info" href="${path1 }/survey/list.do">글 목록</a>
-                                                <input type="submit" class="submit success button" value="설문 답변 등록" >
-                                                <input type="reset" class="reset button" value="취소" >
-                                            </td>
-                                        </tr>
+                                    <tr>
+                                        <td colspan="3">
+                                            <a class="button is-info" href="${path1 }/survey/list.do">글 목록</a>
+                                            <input type="submit" class="button is-success" value="설문 답변 등록" >
+                                        </td>
                                     </c:if>
                                     </tbody>
                                 </table>
