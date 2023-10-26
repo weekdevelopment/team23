@@ -127,10 +127,12 @@
                                     * 로그인 후 참여하실 수 있습니다.
                                 </p>
                                 </c:if>
-                                <c:if test="${not empty sid }">
-                                    <a href="${path1 }/survey/detail.do?sno=${lastSurvey.sno }">
-                                        <button type="button" class="button is-success"  style="margin-top: 10px;">설문 참여</button>
-                                    </a>
+                                <c:if test="${lastSurvey.sno != null }">
+                                    <c:if test="${not empty sid }">
+                                        <a href="${path1 }/survey/detail.do?sno=${lastSurvey.sno }">
+                                            <button type="button" class="button is-success"  style="margin-top: 10px;">설문 참여</button>
+                                        </a>
+                                    </c:if>
                                 </c:if>
                             </div>
                     </div>

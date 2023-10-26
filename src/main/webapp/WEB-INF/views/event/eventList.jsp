@@ -101,10 +101,7 @@
 										<c:forEach var="event" items="${eventList }" varStatus="status">
 											<li style="overflow: hidden">
 												<a href="${path1}/event/detail.do?bno=${event.bno }">
-													<div style="width: 600px;">
-														<div>
-															<h3 style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${event.title }</h3>
-														</div>
+													<div>
 														<div style="width:600px;">
 																${event.content}
 														</div>

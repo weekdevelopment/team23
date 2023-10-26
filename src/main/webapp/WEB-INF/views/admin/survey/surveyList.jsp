@@ -59,7 +59,9 @@
 												<a href="${path1}/admin/surveyDetail.do?sno=${survey.sno }">
 													<div style="width: 600px;">
 														<div>
-															<h3 style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${survey.title }</h3>
+															<div>
+																${survey.content }
+															</div>
 														</div>
 													</div>
 												</a>

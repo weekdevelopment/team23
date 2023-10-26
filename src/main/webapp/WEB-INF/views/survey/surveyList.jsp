@@ -103,9 +103,6 @@
 											<li style="overflow: hidden">
 												<a href="${path1}/survey/detail.do?sno=${survey.sno }">
 													<div style="width: 600px;">
-														<div>
-															<h3 style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${survey.title }</h3>
-														</div>
 														<div style="width:600px;">
 															${survey.content}
 														</div>

@@ -63,9 +63,6 @@
 														</div>
 													</c:if>
 													<div style="width: 600px;">
-														<div>
-															<h3 style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${event.title }</h3>
-														</div>
 														<div style="width:600px;">
 																${event.content}
 														</div>
