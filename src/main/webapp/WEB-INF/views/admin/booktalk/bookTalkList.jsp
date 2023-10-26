@@ -56,6 +56,21 @@
 	<jsp:include page="../../include/hd.jsp"></jsp:include>
 	<div class="columns">
 		<jsp:include page="../../include/head.jsp"></jsp:include>
+		<div class="column is-2">
+			<aside class="menu">
+				<span class="box has-text-white has-text-weight-semibold has-text-centered is-size-5">
+					커뮤니티
+				</span>
+				<ul class="menu-list">
+					<li>
+						<a href="${path1}/admin/freeList.do">자유게시판</a>
+					</li>
+					<li>
+						<a href="${path1}/admin/bookTalkList.do">교재게시판</a>
+					</li>
+				</ul>
+			</aside>
+		</div>
 		<div class="column is-10">
 			<div class="conwrap">
 				<div class="box">

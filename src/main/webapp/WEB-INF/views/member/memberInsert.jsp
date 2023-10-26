@@ -171,13 +171,12 @@
 
                         <div class="field">
                             <b>비밀번호</b>
-                            <input type="password" name="pw" id="pw" placeholder="비밀번호 입력" maxlength="12" required>
-                            <!-- pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,12}$"  -->
+                            <input type="password" name="pw" id="pw" placeholder="비밀번호 입력" maxlength="12" pattern="^(?=.*[A-Za-z0-9])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z0-9\d$@$!%*#?&]{8,12}$" required>
                         </div>
                         <div class="field">
                             <b>비밀번호 확인</b>
-                            <input type="password" name="pw2" id="pw2" placeholder="비밀번호 확인 입력" maxlength="12" required>
-                            <!-- pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,12}$"  -->
+                            <input type="password" name="pw2" id="pw2" placeholder="비밀번호 확인 입력" maxlength="12" pattern="^(?=.*[A-Za-z0-9])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z0-9\d$@$!%*#?&]{8,12}$" required>
+                            <p style="font-size: 0.9em;">*비밀번호는 영대/소문자,숫자,특수문자 조합 8~12글자</p>
                         </div>
 
                         <div class="field">
@@ -214,14 +213,15 @@
                             <div>
                                 <input type="tel" name="tel" id="tel" placeholder="전화번호 입력" pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{3,4}" maxlength="19" required>
                             </div>
-                            <div/>
-
+                        </div>
+                        <div>
                             <!-- 6. 가입하기 버튼 -->
                             <td colspan="2">
                                 <input type="submit" class="submit success button" value="회원 가입" >
                                 <input type="reset" class="reset button" value="취소" >
                             </td>
                         </div>
+                    </div>
                 </form>
                 <script>
                     $(document).ready(function(){
