@@ -64,7 +64,7 @@
                                         <td style="font-size: 1.5em;">
                                             <input type="hidden" id="sno" name="sno" value="${dto.sno }">
                                             <input type="hidden" id="sid" name="sid" value="${sid }">
-                                            <input type="radio" id="q1" name="ans" value="1">
+                                            <input type="radio" id="q1" name="ans" value="1" checked>
                                             <label for="q1">${dto.q1 }</label><br>
                                             <c:if test="${not empty dto.q2 }">
                                                 <input type="radio" id="q2" name="ans" value="2">
