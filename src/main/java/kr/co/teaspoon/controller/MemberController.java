@@ -147,7 +147,7 @@ public class MemberController {
     @GetMapping("logout.do")
     public String memberLogout(HttpSession session) throws Exception {
         session.invalidate();
-        return "/main";
+        return "redirect:/main";
     }
 
     // 아이디 찾기 폼 로딩
