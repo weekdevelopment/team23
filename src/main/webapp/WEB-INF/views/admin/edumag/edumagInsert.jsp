@@ -57,7 +57,7 @@
             <h2 class="h1">글 쓰기</h2>
             <hr>
             <div class="container">
-                <form action="${path1 }/edumag/insert.do" method="post">
+                <form action="${path1 }/admin/edumagInsert.do" method="post">
                     <table id="table1">
                         <tbody>
                         <tr>
@@ -79,20 +79,20 @@
                             <th style="background-color:#dcdcdc">유튜브<br> 링크</th>
                             <td>
                                 <input type="text" name="link" id="link" class="textarea" placeholder="유튜브 영상 링크 입력"
-                                       style="width: 1200px; height: 50px;">
+                                       style="width: 1200px; height: 50px;" required>
                             </td>
                         </tr>
                         <tr>
                             <th style="background-color:#dcdcdc">썸네일 <br>이미지</th>
                             <td>
                                 <input type="text" name="imagesLink" id="imagesLink" class="textarea" placeholder="썸네일 이미지 주소 등록"
-                                       style="width: 1200px; height: 50px;">
+                                       style="width: 1200px; height: 50px;" required>
                             </td>
                         </tr>
                         <tr>
                             <td colspan="2">
                                 <input type="submit" class="button2" value="등록" >
-                                <a class="button" href="${path1 }/edumag/list.do">목록으로</a>
+                                <a class="button" href="${path1 }/admin/edumagList.do">목록으로</a>
                             </td>
                         </tr>
                         </tbody>

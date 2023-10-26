@@ -82,14 +82,14 @@
               <th style="background-color:#dcdcdc">유튜브<br> 링크</th>
               <td>
                 <input type="text" name="link" id="link" value="${dto.link }"
-                       style="width: 1200px; height: 50px;">
+                       style="width: 1200px; height: 50px;" required>
               </td>
             </tr>
             <tr>
               <th style="background-color:#dcdcdc">썸네일<br>이미지</th>
               <td>
                 <input type="text" name="imagesLink" id="imagesLink" class="textarea" placeholder="썸네일 이미지 주소 등록" value="${dto.imagesLink }"
-                       style="width: 1200px; height: 50px;">
+                       style="width: 1200px; height: 50px;" required>
               </td>
             </tr>
             <tr>

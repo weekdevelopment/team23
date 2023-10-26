@@ -68,7 +68,7 @@
 								<div class="media-content">
 									<div class="content">
 										<h4>
-											<a href="${path1}/free/detail.do?bno=${free.bno}">${free.title}</a>
+											<a href="${path1}/admin/freeDetail.do?bno=${free.bno}">${free.title}</a>
 											<c:if test="${free.count != 0}">
 												<span class="cmtNum">(${free.count})</span>
 											</c:if>
@@ -109,7 +109,7 @@
 							<a class="button post-btn" href="javascript:checkLogin()">글쓰기</a>
 						</c:otherwise>
 					</c:choose>
-					<form action="${path1}/free/list.do" method="get" class="field has-addons has-addons-right">
+					<form action="${path1}/admin/freeList.do" method="get" class="field has-addons has-addons-right">
 						<p class="control">
                             <span class="select">
                                 <select id="type" name="type">

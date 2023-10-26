@@ -56,7 +56,7 @@
 
 			<div class="button-group">
 				<c:if test="${sid.equals('admin')}">
-					<a class="button post-btn" href="${path1 }/winner/insert.do">당첨자 등록</a>
+					<a class="button post-btn" href="${path1 }/admin/winnerInsert.do">당첨자 등록</a>
 				</c:if>
 			</div>
 				<br>
@@ -64,7 +64,7 @@
 			<div class="box content">
 				<c:forEach items="${winnerList }" var="winner" varStatus="status">
 					<article class="post">
-						<h4><a href="${path1}/winner/detail.do?bno=${winner.bno }">${winner.title }</a></h4>
+						<h4><a href="${path1}/admin/winnerDetail.do?bno=${winner.bno }">${winner.title }</a></h4>
 						<div class="media">
 							<div class="media-content">
 								<div class="content">
@@ -83,8 +83,8 @@
 						<!-- 수정 및 삭제 버튼 -->
 						<c:if test="${sid.equals('admin')}">
 							<div class="button-group" style="float: right;">
-								<a href="${path1}/winner/edit.do?bno=${winner.bno}" class="button is-link">수정</a>
-								<a href="${path1}/winner/delete.do?bno=${winner.bno}" class="button is-danger">삭제</a>
+								<a href="${path1}/admin/winnerEdit.do?bno=${winner.bno}" class="button is-link">수정</a>
+								<a href="${path1}/admin/winnerDelete.do?bno=${winner.bno}" class="button is-danger">삭제</a>
 							</div>
 						</c:if>
 					</article>

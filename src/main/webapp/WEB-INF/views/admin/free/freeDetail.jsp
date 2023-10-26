@@ -39,7 +39,7 @@
                         <a href="${path1}/admin/freeList.do">자유게시판</a>
                     </li>
                     <li>
-                        <a href="#">교재게시판</a>
+                        <a href="${path1}/admin/bookTalkList.do">교재게시판</a>
                     </li>
                 </ul>
             </aside>
@@ -96,20 +96,20 @@
                         <c:when test="${not empty sid && (sid eq 'admin' || sid eq freeDTO.id)}">
                             <div class="column is-3"></div>
                             <div class="column is-2">
-                                <a class="button is-fullwidth" style="background-color: #2B3A55; color: #fff" href="${path1 }/free/list.do">글 목록</a>
+                                <a class="button is-fullwidth" style="background-color: #2B3A55; color: #fff" href="${path1 }/admin/freeList.do">글 목록</a>
                             </div>
                             <div class="column is-2">
-                                <a class="button is-fullwidth is-info" href="${path1 }/free/edit.do?bno=${freeDTO.bno}">글 수정</a>
+                                <a class="button is-fullwidth is-info" href="${path1 }/admin/freeEdit.do?bno=${freeDTO.bno}">글 수정</a>
                             </div>
                             <div class="column is-2">
-                                <a class="button is-fullwidth is-danger" href="${path1 }/free/delete.do?nno=${freeDTO.bno}">글 삭제</a>
+                                <a class="button is-fullwidth is-danger" href="${path1 }/admin/freeDelete.do?nno=${freeDTO.bno}">글 삭제</a>
                             </div>
                             <div class="column is-3"></div>
                         </c:when>
                         <c:otherwise>
                             <div class="column is-5"></div>
                             <div class="column is-2">
-                                <a class="button is-fullwidth is-info" href="${path1 }/free/list.do">글 목록</a>
+                                <a class="button is-fullwidth is-info" href="${path1 }/admin/freeList.do">글 목록</a>
                             </div>
                             <div class="column is-5"></div>
                         </c:otherwise>
@@ -120,7 +120,7 @@
 
             <div class="cmtwrap">
                 <c:if test="${!empty sid}">
-                    <form action="${path1 }/free/detail.do?bno=${freeDTO.bno }" method="post" class="columns mt-5">
+                    <form action="${path1 }/admin/freeDetail.do?bno=${freeDTO.bno }" method="post" class="columns mt-5">
                         <div class="column is-10">
                             <textarea class="textarea" name="content" id="content" placeholder="댓글을 입력해주세요." rows="2" cols="30" maxlength="800" required></textarea>
                             <input type="hidden" name="author" id="author" value="${sid }">

@@ -158,6 +158,7 @@
                         <div class="field">
                             <b>아이디</b>
                             <input type="text" name="id" id="id" placeholder="아이디 입력" pattern="^[a-z0-9]{5,12}" maxlength="12">
+                            <p style="font-size: 0.9em;">*아이디는 영소문자,숫자 조합 5~12글자</p>
                             <input type="button" id="idCkBtn" class="button" value="아이디 중복 체크" onclick="idCheck()">
                             <input type="hidden" name="idck" id="idck" value="no"/>
                             <c:if test="${empty qid }">

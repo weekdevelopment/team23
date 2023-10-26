@@ -37,6 +37,7 @@
     <!-- hd.jsp 인클루드 -->
     <jsp:include page="../include/hd.jsp" />
     <!-- main_banner.jsp 인클루드 -->
+    <jsp:include page="../include/main_banner.jsp" />
     <br>
     <br>
     <div class="tile is-ancestor">
@@ -61,14 +62,6 @@
                                 <p class="title">자유게시판</p>
                                 <div class="table is-fullwidth is-striped" style="background: none">
                                     <a href="${path1}/admin/freeList.do" class="button is-warning is-fullwidth">자유게시판 바로가기</a>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="tile is-child notification is-warning" style="background: #FEE1E8;">
-                            <div class="tile-content">
-                                <p class="title">설문조사</p>
-                                <div class="table is-fullwidth is-striped" style="background: none">
-                                    <a href="${path1}/admin/surveyList.do" class="button is-warning is-fullwidth">설문조사 바로가기</a>
                                 </div>
                             </div>
                         </article>
@@ -105,24 +98,30 @@
                             </article>
                             <article class="tile is-child notification is-info" style="background: #CBAACB; height: 50%;">
                                 <div class="tile-content">
-                                    <p class="title">FAQ</p>
+                                    <p class="title">설문조사</p>
                                     <div class="table is-fullwidth is-striped" style="background: none">
-                                        <a href="${path1}/admin/faqList.do" class="button is-info is-fullwidth">FAQ 바로가기</a>
+                                        <a href="${path1}/admin/surveyList.do" class="button is-info is-fullwidth">설문조사 바로가기</a>
                                     </div>
                                 </div>
+<%--                                <div class="tile-content">--%>
+<%--                                    <p class="title">FAQ</p>--%>
+<%--                                    <div class="table is-fullwidth is-striped" style="background: none">--%>
+<%--                                        <a href="${path1}/admin/faqList.do" class="button is-info is-fullwidth">FAQ 바로가기</a>--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
                             </article>
                         </div>
                     </div>
                 </div>
-                <div class="tile is-parent">
-                    <article class="tile is-child notification is-danger" style="background: #FFCCB6;">
-                        <p class="title">슬로건</p>
-                        <p class="subtitle">윜 캔 두잇! Week Can Do It!!!!</p>
-                        <div class="content">
-                            <!-- Content -->
-                        </div>
-                    </article>
-                </div>
+<%--                <div class="tile is-parent">--%>
+<%--                    <article class="tile is-child notification is-danger" style="background: #FFCCB6;">--%>
+<%--                        <p class="title">슬로건</p>--%>
+<%--                        <p class="subtitle">윜 캔 두잇! Week Can Do It!!!!</p>--%>
+<%--                        <div class="content">--%>
+<%--                            <!-- Content -->--%>
+<%--                        </div>--%>
+<%--                    </article>--%>
+<%--                </div>--%>
             </div>
             <div class="tile is-parent">
                 <article class="tile is-child notification is-success" style="background: #F3B0C3;">

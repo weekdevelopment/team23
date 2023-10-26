@@ -50,12 +50,6 @@
                                     </span>
                             </p>
                         </div>
-                        <div class="field">
-                            <label class="checkbox">
-                                <input type="checkbox"/>
-                                Remember me
-                            </label>
-                        </div>
                         <button class="button is-block is-info is-large is-fullwidth">Login</button>
                         <br/>
                     </form>

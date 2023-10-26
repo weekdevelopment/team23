@@ -28,7 +28,7 @@
 <body>
 <header id="header">
 	<!-- 헤더 부분 인클루드 -->
-	<jsp:include page="../include/hd.jsp"></jsp:include>
+	<jsp:include page="../../include/hd.jsp"></jsp:include>
 </header>
 <div class="container is-fullhd">
 	<div class="columns">
@@ -39,13 +39,13 @@
 				</span>
 				<ul class="menu-list">
 					<li>
-						<a href="${path1 }/notice/list.do">공지사항</a>
+						<a href="${path1 }/admin/noticeList.do">공지사항</a>
 					</li>
 					<li>
-						<a href="${path1 }/qna/list.do">묻고 답하기</a>
+						<a href="${path1 }/admin/qnaList.do">묻고 답하기</a>
 					</li>
 					<li>
-						<a href="${path1 }/faq/list.do">자주 묻는 질문</a>
+						<a href="${path1 }/admin/faqList.do">자주 묻는 질문</a>
 					</li>
 				</ul>
 			</aside>
@@ -81,20 +81,20 @@
 						<c:when test="${sid eq 'admin'}">
 							<div class="column is-3"></div>
 							<div class="column is-2">
-								<a class="button is-fullwidth is-info" href="${path1 }/notice/list.do" style="background-color: #2B3A55;">글 목록</a>
+								<a class="button is-fullwidth is-info" href="${path1 }/admin/noticeList.do" style="background-color: #2B3A55;">글 목록</a>
 							</div>
 							<div class="column is-2">
-								<a class="button is-fullwidth is-info" href="${path1 }/notice/edit.do?nno=${dto.nno}" style="background-color: #2B3A55;">글 수정</a>
+								<a class="button is-fullwidth is-info" href="${path1 }/admin/noticeEdit.do?nno=${dto.nno}" style="background-color: #2B3A55;">글 수정</a>
 							</div>
 							<div class="column is-2">
-								<a class="button is-fullwidth is-danger" href="${path1 }/notice/delete.do?nno=${dto.nno}">글 삭제</a>
+								<a class="button is-fullwidth is-danger" href="${path1 }/admin/noticeDelete.do?nno=${dto.nno}">글 삭제</a>
 							</div>
 							<div class="column is-3"></div>
 						</c:when>
 						<c:otherwise>
 							<div class="column is-5"></div>
 							<div class="column is-2">
-								<a class="button is-fullwidth is-info" href="${path1 }/notice/list.do" style="background-color: #2B3A55;">글 목록</a>
+								<a class="button is-fullwidth is-info" href="${path1 }/admin/noticeList.do" style="background-color: #2B3A55;">글 목록</a>
 							</div>
 							<div class="column is-5"></div>
 						</c:otherwise>
@@ -104,7 +104,7 @@
 
 			<div class="cmtwrap">
 				<c:if test="${!empty sid}">
-				<form action="${path1 }/notice/detail.do?nno=${dto.nno }" method="post" class="columns mt-5">
+				<form action="${path1 }/admin/noticeDetail.do?nno=${dto.nno }" method="post" class="columns mt-5">
 					<div class="column is-10">
 						<textarea class="textarea" name="content" id="content" placeholder="댓글을 입력해주세요." rows="2" cols="30" maxlength="800" required></textarea>
 						<input type="hidden" name="author" id="author" value="${sid }">
@@ -153,7 +153,7 @@
 </div>
 <footer id="footer" class="footer-nav row expanded collapse">
 	<!-- 푸터 부분 인클루드 -->
-	<jsp:include page="../include/ft.jsp"></jsp:include>
+	<jsp:include page="../../include/ft.jsp"></jsp:include>
 </footer>
 </body>
 </html>

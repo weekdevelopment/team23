@@ -28,10 +28,10 @@
 				</span>
 				<ul class="menu-list">
 					<li>
-						<a href="${path1}/free/list.do">자유게시판</a>
+						<a href="${path1}/admin/freeList.do">자유게시판</a>
 					</li>
 					<li>
-						<a href="#">교재게시판</a>
+						<a href="${path1}/admin/bookTalkList.do">교재게시판</a>
 					</li>
 				</ul>
 			</aside>
