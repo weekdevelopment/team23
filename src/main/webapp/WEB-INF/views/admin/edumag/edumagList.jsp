@@ -102,7 +102,7 @@
                             <div class="column is-one-third">
                                 <div class="card rb-card">
                                     <div style=" cursor: pointer;"
-                                         onclick="location.href='${path1 }/edumag/detail.do?no=${edumag.no}';">
+                                         onclick=location.href="${path1 }/admin/edumagDetail.do?no=${edumag.no}";>
                                         <!-- 관리자로 로그인한 경우에만 수정과 삭제 버튼 표시 -->
                                         <c:if test="${sid.equals('admin')}">
                                             <div class="button-group">
@@ -113,7 +113,7 @@
                                     </div>
                                     <div class="card-content" style="text-overflow:ellipsis;">
                                         <h3 class="title is-size-6 ellipsis is-ellipsis-1">
-                                            <a class="has-text-dark1">
+                                            <a class="has-text-dark1" href="${path1 }/admin/edumagDetail.do?no=${edumag.no}">
                                                     ${edumag.title}
                                             </a>
                                         </h3>

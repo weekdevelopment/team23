@@ -397,8 +397,10 @@ public class adminController {
     @PostMapping("edumagInsert.do")
     public String edumagInsert(HttpServletRequest request, Model model) throws Exception {
         Edumag dto = new Edumag();
+        dto.setLink(request.getParameter("link"));
         dto.setTitle(request.getParameter("title"));
         dto.setContent(request.getParameter("content"));
+        dto.setImagesLink(request.getParameter("imagesLink"));
         edumagService.edumagInsert(dto);
         return "redirect:edumagList.do"; // 글 작성 후 Edumag 게시판 목록으로 리다이렉트
     }
@@ -425,6 +427,8 @@ public class adminController {
         dto.setNo(no);
         dto.setTitle(request.getParameter("title"));
         dto.setContent(request.getParameter("content"));
+        dto.setLink(request.getParameter("link"));
+        dto.setImagesLink(request.getParameter("imagesLink"));
         edumagService.edumagEdit(dto);
         return "redirect:edumagList.do"; // 수정 후 Edumag 게시판 목록으로 리다이렉트
     }

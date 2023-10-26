@@ -117,7 +117,7 @@
                 </table>
                 <div class="cmtwrap">
                     <c:if test="${!empty sid}">
-                        <form action="${path1 }/edumagComment/insert.do" method="post" class="columns mt-5">
+                        <form action="${path1 }/admin/edumagCommentInsert.do" method="post" class="columns mt-5">
                             <div class="column is-10">
                                 <textarea class="textarea" name="content" id="content" placeholder="댓글을 입력해주세요!" rows="2" cols="30" maxlength="800" required style="left: 130px;margin-bottom: 50px;"></textarea>
                                 <input type="hidden" name="author" id="author" value="${sid }">
@@ -163,7 +163,7 @@
                         <c:if test='${sid eq edumagComment.author }'>
                             <div class="media-right">
                                 <a class="delete" style="background-color: #2B3A55"
-                                   href="${path1 }/edumagComment/delete.do?dno=${edumagComment.dno}&no=${dto.no}">x</a>
+                                   href="${path1 }/admin/edumagCommentDelete.do?dno=${edumagComment.dno}&no=${dto.no}">x</a>
                             </div>
                         </c:if>
                     </article>
@@ -171,9 +171,9 @@
                 <br>
                 <c:if test= "${sid.equals('admin')}">
                     <div class="button-group">
-                        <a class="button" href="${path1 }/edumag/list.do">목록으로</a>
-                        <a class="button3" href="${path1 }/edumag/delete.do?no=${dto.no}">삭제</a>
-                        <a class="button3" href="${path1 }/edumag/edit.do?no=${dto.no}">수정</a>
+                        <a class="button" href="${path1 }/admin/edumagList.do">목록으로</a>
+                        <a class="button3" href="${path1 }/admin/edumagDelete.do?no=${dto.no}">삭제</a>
+                        <a class="button3" href="${path1 }/admin/edumagEdit.do?no=${dto.no}">수정</a>
                     </div>
                 </c:if>
         </div>

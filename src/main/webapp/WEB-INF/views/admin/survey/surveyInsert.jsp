@@ -28,13 +28,13 @@
 				</span>
 				<ul class="menu-list">
 					<li>
-						<a href="${path1}/survey/list.do">이벤트 게시판</a>
+						<a href="${path1}/admin/surveyList.do">이벤트 게시판</a>
 					</li>
 					<li>
-						<a href="${path1}/winner/list.do">이벤트 당첨자</a>
+						<a href="${path1}/admin/winnerList.do">이벤트 당첨자</a>
 					</li>
 					<li>
-						<a href="${path1}/survey/list.do">윜이슈</a>
+						<a href="${path1}/admin/surveyList.do">윜이슈</a>
 					</li>
 				</ul>
 			</aside>

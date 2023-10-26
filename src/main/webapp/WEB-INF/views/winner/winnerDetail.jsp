@@ -77,20 +77,6 @@
                     </c:if>
                 </div>
             </div>
-
-            <div class="cmtwrap">
-                <form action="/" method="post" class="columns mt-5">
-                    <div class="column is-10">
-                        <textarea class="textarea" name="content" id="content" placeholder="댓글을 입력해주세요."  rows="2" cols="30" maxlength="800" required></textarea>
-                    </div>
-                    <div class="column is-2">
-                        <button type="submit" class="button is-fullwidth submission">등록</button>
-                    </div>
-                </form>
-            </div>
-
-
-
         </div>
     </div>
 </div>

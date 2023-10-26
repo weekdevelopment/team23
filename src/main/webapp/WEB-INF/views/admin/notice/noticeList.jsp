@@ -62,7 +62,7 @@
 							<div class="media">
 								<div class="media-content">
 									<div class="content">
-										<a href="${path1}/notice/detail.do?nno=${notice.nno }"><h4>${notice.title }</h4></a>
+										<a href="${path1}/admin/noticeDetail.do?nno=${notice.nno }"><h4>${notice.title }</h4></a>
 										<p>
 											조회수
 											<span>${notice.visit }</span>
@@ -91,22 +91,22 @@
 				</div>
 				<nav class="pagination is-rounded is-centered mb-6" role="navigation" aria-label="pagination">
 					<c:if test="${curPage > page.pageCount }">
-						<a href="${path1 }/notice/list.do?page=${page.blockStartNum - 1 }<c:if test="${!empty keyword }">&type=${type }&keyword=${keyword }</c:if>" class="pagination-previous">Previous</a>
+						<a href="${path1 }/admin/noticeList.do?page=${page.blockStartNum - 1 }<c:if test="${!empty keyword }">&type=${type }&keyword=${keyword }</c:if>" class="pagination-previous">Previous</a>
 					</c:if>
 					<c:if test="${page.blockLastNum < page.totalPageCount }">
-						<a href="${path1 }/notice/list.do?page=${page.blockLastNum + 1 }<c:if test="${!empty keyword }">&type=${type }&keyword=${keyword }</c:if>" class="pagination-next">Next page</a>
+						<a href="${path1 }/admin/noticeList.do?page=${page.blockLastNum + 1 }<c:if test="${!empty keyword }">&type=${type }&keyword=${keyword }</c:if>" class="pagination-next">Next page</a>
 					</c:if>
 					<ul class="pagination-list">
 						<c:forEach var="i" begin="${page.blockStartNum }" end="${page.blockLastNum }">
 							<c:choose>
 								<c:when test="${i == curPage }">
 									<li>
-										<a href="${path1 }/notice/list.do?page=${i }<c:if test="${!empty keyword }">&type=${type }&keyword=${keyword }</c:if>" class="pagination-link is-current" aria-label="Page ${i }" aria-current="page" >${i }</a>
+										<a href="${path1 }/admin/noticeList.do?page=${i }<c:if test="${!empty keyword }">&type=${type }&keyword=${keyword }</c:if>" class="pagination-link is-current" aria-label="Page ${i }" aria-current="page" >${i }</a>
 									</li>
 								</c:when>
 								<c:otherwise>
 									<li>
-										<a href="${path1 }/notice/list.do?page=${i }<c:if test="${!empty keyword }">&type=${type }&keyword=${keyword }</c:if>" class="pagination-link" aria-label="Page ${i }" aria-current="page">${i }</a>
+										<a href="${path1 }/admin/noticeList.do?page=${i }<c:if test="${!empty keyword }">&type=${type }&keyword=${keyword }</c:if>" class="pagination-link" aria-label="Page ${i }" aria-current="page">${i }</a>
 									</li>
 								</c:otherwise>
 							</c:choose>
@@ -115,9 +115,9 @@
 				</nav>
 				<div class="button-group">
 					<c:if test='${sid eq "admin"}'>
-						<a class="button post-btn" href="${path1 }/notice/insert.do">글쓰기</a>
+						<a class="button post-btn" href="${path1 }/admin/noticeInsert.do">글쓰기</a>
 					</c:if>
-					<form action="${path1 }/notice/list.do" method="get" class="field has-addons has-addons-right">
+					<form action="${path1 }/admin/noticeList.do" method="get" class="field has-addons has-addons-right">
 						<p class="control">
                      <span class="select">
                         <select id="type" name="type">

@@ -29,13 +29,13 @@
 				</span>
                 <ul class="menu-list">
                     <li>
-                        <a href="${path1}/survey/list.do">이벤트 게시판</a>
+                        <a href="${path1}/admin/surveyList.do">이벤트 게시판</a>
                     </li>
                     <li>
-                        <a href="${path1}/winner/list.do">이벤트 당첨자</a>
+                        <a href="${path1}/admin/winnerList.do">이벤트 당첨자</a>
                     </li>
                     <li>
-                        <a href="${path1}/survey/list.do">윜이슈</a>
+                        <a href="${path1}/admin/surveyList.do">윜이슈</a>
                     </li>
                 </ul>
             </aside>
@@ -113,7 +113,7 @@
                                     <c:if test="${not empty sid && !sid.equals('admin')}">
                                     <tr>
                                         <td colspan="3">
-                                            <a class="button is-info" href="${path1 }/survey/list.do">글 목록</a>
+                                            <a class="button is-info" href="${path1 }/admin/surveyList.do">글 목록</a>
                                             <input type="submit" class="button is-success" value="설문 답변 등록" >
                                         </td>
                                     </c:if>

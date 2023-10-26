@@ -28,13 +28,13 @@
 				</span>
 				<ul class="menu-list">
 					<li>
-						<a href="${path1 }/notice/list.do">공지사항</a>
+						<a href="${path1 }/admin/noticeList.do">공지사항</a>
 					</li>
 					<li>
-						<a href="${path1 }/qna/list.do">묻고 답하기</a>
+						<a href="${path1 }/admin/qnaList.do">묻고 답하기</a>
 					</li>
 					<li>
-						<a href="${path1 }/faq/list.do">자주 묻는 질문</a>
+						<a href="${path1 }/admin/faqList.do">자주 묻는 질문</a>
 					</li>
 				</ul>
 			</aside>

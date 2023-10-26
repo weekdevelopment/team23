@@ -22,7 +22,7 @@
         <div class="container">
             <ol class="breadcrumb justify-content-end">
                 <li class="breadcrumb-item"><a href="${path1 }">Home</a></li>
-                <li class="breadcrumb-item"><a href="${path1 }/board/list.do">관리자 페이지 메인</a></li>
+                <li class="breadcrumb-item"><a href="${path1 }/adminList.do">관리자 페이지 메인</a></li>
             </ol>
         </div>
     </nav>
