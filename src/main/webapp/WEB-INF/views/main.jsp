@@ -120,7 +120,6 @@
                         <p class="title">윜 이슈!</p>
                         <p class="subtitle"></p>
                             <div>
-                                <h2>${lastSurvey.title }</h2>
                                 ${lastSurvey.content}
                                 <c:if test="${empty sid }">
                                 <p style="font-size: 0.9em; margin-top: 10px;">

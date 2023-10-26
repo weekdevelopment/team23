@@ -22,7 +22,7 @@ DEFAULT,
 70%의 정답률로 아이들의 자존감을 상승시키고, <br>
 30%의 오답률로 아이들의 도전 정신을 자극시켜 주세요.',
 DEFAULT,
-'/team23_war/edumag/ckImgSubmit.do?uid=a5c485fd-f453-4220-90b9-45b0d4baed95&fileName=yoon1.png',
+'/team23/edumag/ckImgSubmit.do?uid=a5c485fd-f453-4220-90b9-45b0d4baed95&fileName=yoon1.png',
 DEFAULT
 );
 
@@ -40,7 +40,7 @@ DEFAULT,
 진도를 못 따라 가는 게 문제가 아니라<br>
 여러가지 공부 계획부터 시간까지 무너지게 됩니다.<br> ',
 DEFAULT,
-'/team23_war/edumag/ckImgSubmit.do?uid=aeab0724-5c0e-472f-8028-b1f87ab1751f&fileName=young1.png',
+'/team23/edumag/ckImgSubmit.do?uid=aeab0724-5c0e-472f-8028-b1f87ab1751f&fileName=young1.png',
 DEFAULT
 );
 
@@ -70,7 +70,7 @@ Q5)&nbsp;
 Q6)&nbsp;
 연산과 사고력 수학 중 어떤 것이 더 중요한가요?<br>',
 DEFAULT,
-'/team23_war/edumag/ckImgSubmit.do?uid=fa1a96e6-769c-4fab-bb54-5cb831c1db2b&fileName=sun1.png',
+'/team23/edumag/ckImgSubmit.do?uid=fa1a96e6-769c-4fab-bb54-5cb831c1db2b&fileName=sun1.png',
 DEFAULT
 );
 
@@ -88,7 +88,7 @@ Q2)&nbsp;준혁이의 영어 노출 방법이 궁금해요.<br><br>
 Q3)&nbsp;영어 공부에 앞서 잊지 말아야 할 영어를 대하는 태도가 있을까요?<br><br>
 Q4)&nbsp;영어 교육은 언제 시작하는 것이 좋을까요?<br><br>',
 DEFAULT,
-'/team23_war/edumag/ckImgSubmit.do?uid=1b5b7f79-7525-4f2d-a5e9-2b1031ffe0a0&fileName=gwang1.png',
+'/team23/edumag/ckImgSubmit.do?uid=1b5b7f79-7525-4f2d-a5e9-2b1031ffe0a0&fileName=gwang1.png',
 DEFAULT
 );
 
@@ -103,7 +103,7 @@ DEFAULT,
 아이의 마음을 이해해 줘야 합니다.<br>
 이를 통해 자연스럽게 감정을 표현할 수 있도록 도와주셔야 합니다.',
 DEFAULT,
-'/team23_war/edumag/ckImgSubmit.do?uid=fdae3718-ce3e-42f5-93a0-9403168ad54e&fileName=oh1.png',
+'/team23/edumag/ckImgSubmit.do?uid=fdae3718-ce3e-42f5-93a0-9403168ad54e&fileName=oh1.png',
 DEFAULT
 );
 
@@ -121,7 +121,7 @@ DEFAULT,
 집에서 시험을 보는 훈련을 시켜준다면<br>
 나중에 학교에서 시험을 볼 때 아이의 부담감을 내려줄 수 있어요.',
 DEFAULT,
-'/team23_war/edumag/ckImgSubmit.do?uid=2c3ea6a5-0dee-402e-8731-0d9c1cb3fa44&fileName=yoon2.png',
+'/team23/edumag/ckImgSubmit.do?uid=2c3ea6a5-0dee-402e-8731-0d9c1cb3fa44&fileName=yoon2.png',
 DEFAULT
 );
 
@@ -138,7 +138,7 @@ DEFAULT,
 하지만 부모와 함께 읽는다면<br>
 자연스럽게 책의 수준과 종류를 업그레이드 시키는 분위기가 만들어질 거예요.',
 DEFAULT,
-'/team23_war/edumag/ckImgSubmit.do?uid=cc8d5421-7c37-445f-94da-6f2774cde61f&fileName=young2.png',
+'/team23/edumag/ckImgSubmit.do?uid=cc8d5421-7c37-445f-94da-6f2774cde61f&fileName=young2.png',
 DEFAULT
 );
 
@@ -152,7 +152,7 @@ DEFAULT,
 나아가 문제집을 어떻게 활용해야 하는지까지<br>
 한선쌤이 수학을 어떻게 씹어 먹어야 하는지 알려드릴게요!',
 DEFAULT,
-'/team23_war/edumag/ckImgSubmit.do?uid=1f1b3e11-3bae-483d-afe1-2d9ea496d8d2&fileName=sun2.png',
+'/team23/edumag/ckImgSubmit.do?uid=1f1b3e11-3bae-483d-afe1-2d9ea496d8d2&fileName=sun2.png',
 DEFAULT
 );
 
@@ -168,7 +168,7 @@ DEFAULT,
 아이가 좋아하는 영상과 학습용 영상을 병행해서 보여주면<br>
 학습 효과를 더 높일 수 있어요.',
 DEFAULT,
-'/team23_war/edumag/ckImgSubmit.do?uid=0f0aef4e-0e4c-4d9e-abc0-87639ed32927&fileName=gwang2.png',
+'/team23/edumag/ckImgSubmit.do?uid=0f0aef4e-0e4c-4d9e-abc0-87639ed32927&fileName=gwang2.png',
 DEFAULT
 );
 
