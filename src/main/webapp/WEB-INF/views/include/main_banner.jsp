@@ -6,6 +6,6 @@
 <c:set var="path0" value="${pageContext.request.contextPath }" />
 <figure class="visual" id="vs1">
     <ul class="imgbox">
-        <img src="${path0}/resources/img/mainimage.png" alt="배너이미지" style="height: 520px; width: 1344px; overflow: hidden; background-size: 100%; display: ">
+        <img src="${path0}/resources/img/mainimage.png" alt="배너이미지" style="height: auto; width: 1344px; overflow: hidden; background-size: 100%; ">
     </ul>
 </figure>

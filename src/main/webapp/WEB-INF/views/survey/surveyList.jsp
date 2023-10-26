@@ -12,7 +12,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>윜이슈(설문) 게시판 목록</title>
+	<title>윜이슈 게시판 목록</title>
     <!-- 헤드 부분 인클루드 -->
     <jsp:include page="../include/head.jsp"></jsp:include>
 	<style>
@@ -45,7 +45,7 @@
 						<a href="${path1}/winner/list.do">이벤트 당첨자</a>
 					</li>
 					<li>
-						<a href="${path1}/survey/list.do">윜이슈(설문)</a>
+						<a href="${path1}/survey/list.do">윜이슈</a>
 					</li>
 				</ul>
 			</aside>
@@ -54,7 +54,7 @@
 			<div class="conwrap">
 				<div class="box">
 					<%--<h6>이벤트 게시판</h6>--%>
-					<span class="title">윜이슈(설문) 게시판</span>
+					<span class="title">윜이슈 게시판</span>
 				</div>
 
 				<div class="columns">

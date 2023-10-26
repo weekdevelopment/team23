@@ -32,7 +32,7 @@
                         <a href="${path1}/winner/list.do">이벤트 당첨자</a>
                     </li>
                     <li>
-                        <a href="${path1}/survey/list.do">윜이슈(설문)</a>
+                        <a href="${path1}/survey/list.do">윜이슈</a>
                     </li>
                 </ul>
             </aside>
@@ -49,7 +49,7 @@
                 <div class="card-content">
                     <div class="media">
                         <div class="media-content has-text-centered">
-                            <h1 class="title article-title">${dto.title }</h1>
+<%--                            <h1 class="title article-title">${dto.title }</h1>--%>
                             <h6 class="subtitle is-6 article-subtitle">
                                 ${dto.id } | ${dto.regdate } | 조회수:${dto.visited }
                             </h6>
@@ -63,22 +63,12 @@
                         </p>
                     </div>
                 </div>
-
-                <div class="columns">
-                    <div class="column is-5"></div>
-                    <div class="column is-2">
-                        <a class="button is-fullwidth post-btn" href="${path1 }/event/edit.do?bno=${dto.bno}">
-                            추천<span style="margin-left: 10px">${dto.rec}</span>
-                        </a>
-                    </div>
-                    <div class="column is-5"></div>
-                </div>
-
                 <div class="columns">
                     <div class="column is-3"></div>
                     <div class="column is-2">
                         <a class="button is-fullwidth is-info" href="${path1 }/event/list.do">글 목록</a>
                     </div>
+                    <c:if test="${sid == 'admin' }">
                     <div class="column is-2">
                         <a class="button is-fullwidth is-primary" href="${path1 }/event/edit.do?bno=${dto.bno}">글 수정</a>
                     </div>
@@ -86,6 +76,7 @@
                         <a class="button is-fullwidth is-danger" href="${path1 }/event/delete.do?bno=${dto.bno}">글 삭제</a>
                     </div>
                     <div class="column is-3"></div>
+                    </c:if>
                 </div>
             </div>
 

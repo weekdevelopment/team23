@@ -53,6 +53,41 @@ public class SurveyController {
         return ("/survey/surveyDetail");
     }
 
+    @GetMapping("sResult.do")
+    public String sResult(HttpServletRequest request, Model model) throws Exception {
+        Survey dto = new Survey();
+        Survey ck = new Survey();
+        Survey result = new Survey();
+        int par = Integer.parseInt(request.getParameter("par"));
+        int ans = Integer.parseInt(request.getParameter("ans"));
+        int sno = Integer.parseInt(request.getParameter("sno"));
+        String sid = (String) session.getAttribute("sid");
+
+        ck.setPar(sno);
+        ck.setAuthor(sid);
+        result = surveyService.ckAuthor(ck);
+
+        model.addAttribute("result", result);
+
+        dto = surveyService.surveyDetail(sno);
+
+        model.addAttribute("dto", dto);
+
+        dto.setPar(par);
+        dto.setAns(1);
+
+        int totalSACount = surveyService.totalSACount(dto);
+        int SAOneCount = surveyService.SAOneCount(dto);
+
+        int rate = SAOneCount / totalSACount ;
+
+        model.addAttribute("totalSACount",totalSACount);
+        model.addAttribute("SAOneCount",SAOneCount);
+        model.addAttribute("rate",rate);
+
+        return ("/survey/surveyResult");
+    }
+
     @GetMapping("insert.do")
     public String getsurveyInsertForm(Model model) throws Exception {
         return "/survey/surveyInsert";
@@ -84,6 +119,7 @@ public class SurveyController {
        Survey result = new Survey();
        ck.setPar(Integer.parseInt(request.getParameter("sno")));
        ck.setAuthor((String) session.getAttribute("sid"));
+       System.out.println("ckresult : " + ck);
        result = surveyService.ckAuthor(ck);
        model.addAttribute("result", result);
        System.out.println("result : "+result);

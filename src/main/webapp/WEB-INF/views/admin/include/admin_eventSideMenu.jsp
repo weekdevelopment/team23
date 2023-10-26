@@ -17,7 +17,7 @@
                 <a href="${path1}/admin/winnerList.do">이벤트 당첨자</a>
             </li>
             <li>
-                <a href="${path1}/admin/surveyList.do">윜이슈(설문)</a>
+                <a href="${path1}/admin/surveyList.do">윜이슈</a>
             </li>
         </ul>
     </aside>

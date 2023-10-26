@@ -70,4 +70,14 @@ public class SurveyServiceImpl implements SurveyService{
     public Survey ckAuthor(Survey dto) throws Exception {
         return surveyDAO.ckAuthor(dto);
     }
+
+    @Override
+    public int totalSACount(Survey dto) throws Exception {
+        return surveyDAO.totalSACount(dto);
+    }
+
+    @Override
+    public int SAOneCount(Survey dto) throws Exception {
+        return surveyDAO.SAOneCount(dto);
+    }
 }

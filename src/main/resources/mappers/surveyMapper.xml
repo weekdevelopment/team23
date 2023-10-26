@@ -16,12 +16,13 @@
 		SELECT * FROM survey WHERE LEV=0 ORDER BY regdate desc LIMIT 1;
 	</select>
 
-	<!-- 답변 수 카운트 -->
-	<select id="totalCount" resultType="integer" >
-		select count(*) from survey where sno=#{sno}
+	<!-- 전체 답변 수 카운트 -->
+	<select id="totalSACount" resultType="integer" >
+		select count(*) from survey where par=#{par} and lev=1
 	</select>
-	<select id="surveyCount">
-		select count(*) from where sno=#{sno} and ans=#{ans}
+	<!-- 특정 답변 수 카운트 -->
+	<select id="SAOneCount">
+		select count(*) from where par=#{par} and lev=1 and ans=#{ans}
 	</select>
 	<insert id="surveyInsert">
 		insert into survey values (default, #{title}, #{q1}, #{q2}, #{q3}, #{q4}, #{q5}, #{q6}, #{q7}, #{q8}, #{q9}, #{q10}, default, default, default, default, 'admin', default, #{content})
